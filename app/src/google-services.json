@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "201272004955",
+    "project_id": "jki-hananeel-cinta",
+    "storage_bucket": "jki-hananeel-cinta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201272004955:android:fb69ed8f2acb5984508a7e",
+        "android_client_info": {
+          "package_name": "com.jki.hananeelcinta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201272004955-lpng6hkp458rokbihge264jpletlenbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjtCicXhJp6WBah0l5zSKyVPBL7h09vbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201272004955-lpng6hkp458rokbihge264jpletlenbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
