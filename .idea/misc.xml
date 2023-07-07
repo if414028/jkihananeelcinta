@@ -1,13 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/edittext_background_grey.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/edittext_background_grey_border.xml" value="0.242" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_disabled_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_red_red_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_red_stroke_primary_button.xml" value="0.189" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_red_stroke_ripple_primary_button.xml" value="0.189" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/hancin_white_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/roundrect_top.xml" value="0.1875" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/white_custom_progress_bg.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/white_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/drawable/white_trans_submit_button.xml" value="0.241" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/activity_camera.xml" value="0.14786324786324787" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/activity_main.xml" value="0.3458333333333333" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/activity_register.xml" value="0.2952991452991453" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/activity_splash.xml" value="0.35989583333333336" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/confirmation_dialog.xml" value="0.29444444444444445" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/dialog_confirmation.xml" value="0.2952991452991453" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_address_input.xml" value="0.29444444444444445" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_baptism_information_input.xml" value="0.2952991452991453" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_credential_input.xml" value="0.33" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_education_information_input.xml" value="0.29444444444444445" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_information_input.xml" value="0.33" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_martial_information_input.xml" value="0.2952991452991453" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_user_selfie_information_input.xml" value="0.29444444444444445" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/fragment_usser_family_information_input.xml" value="0.29444444444444445" />
+        <entry key="..\:/Workspace/JKIHananeelCinta/app/src/main/res/layout/hancin_stepper_layout.xml" value="0.29444444444444445" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

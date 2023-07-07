@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Fonts-->
+    <style name="Manrope.Reguler" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/regular</item>
+    </style>
+
+    <style name="Manrope.Bold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bold</item>
+    </style>
+
+    <style name="Manrope.ExtraBold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/extrabold</item>
+    </style>
+
+    <style name="Manrope.Light" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/light</item>
+    </style>
+
+    <style name="Manrope.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="Manrope.SemiBold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/semibold</item>
+    </style>
+
+    <style name="Manrope.Thin" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/thin</item>
+    </style>
+
+    <style name="Manrope.Black" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/black</item>
+    </style>
+
+    <style name="HancinSubmitButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/hancin_red_red_submit_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8sdp</item>
+    </style>
+
+    <style name="HancinWhiteSubmitButton" parent="HancinSubmitButton">
+        <item name="android:background">@drawable/hancin_white_submit_button</item>
+        <item name="android:textColor">@color/red_9A031E</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/roundrect_top</item>
+    </style>
+
+    <style name="BaseHancinBottomAlert" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="HancinBottomAlertTheme" parent="BaseHancinBottomAlert" />
+    <style name="HancinBottomAlertThemeWithInput" parent="BaseHancinBottomAlert">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="HancinDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/red_9A031E</item>
+        <!--selected Item color-->
+        <item name="colorControlActivated">@color/red_C2576A</item>
+        <!-- Highlight item color-->
+        <item name="colorControlHighlight">@color/red_9A031E</item>
+        <!-- Ok Cancel Color-->
+        <item name="android:textColor">@color/red_9A031E</item>
+    </style>
+
+    <style name="filterDialogTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

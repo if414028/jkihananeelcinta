@@ -3,16 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jki.hananeelcinta">
 
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".HancinApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/hancin_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/hancin_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.JKIHananeelCinta"
         tools:targetApi="31">
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".reflection.ReflectionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".camera.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false"/>
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true">
@@ -23,9 +52,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:name=".home.MainActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

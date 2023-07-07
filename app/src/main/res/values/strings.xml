@@ -1,3 +1,90 @@
 <resources>
     <string name="app_name">JKI Hananeel Cinta</string>
+    <string name="app_initial">JKI HanCin</string>
+
+    <string name="login">Masuk</string>
+    <string name="welcome">Selamat datang di JKI Hananeel Cinta</string>
+
+    <string name="sign_up_desc">Belum punya akun? </string>
+    <string name="sign_up">Daftar</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="next">Lanjut</string>
+    <string name="submit">Submit</string>
+    <string name="register">Daftar</string>
+
+    <string name="text_pleaseWait">Harap Bersabar, Aktifitas sedang diproses</string>
+    <string name="stepper_format_txt">%1$d dari %2$d</string>
+
+    <string name="email">Email</string>
+    <string name="password_confirmation">Konfirmasi Password</string>
+    <string name="name">Nama Lengkap</string>
+    <string name="id_number">Nomor KTP</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="male">Laki - laki</string>
+    <string name="female">Perempuan</string>
+    <string name="place_of_birth">Tempat Lahir</string>
+    <string name="date_of_birth">Tanggal Lahir</string>
+    <string name="phone_number">Nomor Handphone</string>
+    <string name="address">Alamat</string>
+    <string name="blood_type">Golongan Darah</string>
+    <string name="education">Pendidikan Terakhir</string>
+    <string name="work">Pekerjaan</string>
+    <string name="baptis">Sudah Baptis Air?</string>
+    <string name="baptis_time">Kapan Babtis Air?</string>
+    <string name="baptism_time_hint">Tanggal Baptis Air</string>
+    <string name="baptis_place">Gereja Tempat Baptis Air</string>
+    <string name="church_origin">Asal Gereja (bila pindah gereja)</string>
+    <string name="church_origin_hint">Asal Gereja</string>
+    <string name="baptis_holy_spirit">Sudah Baptis Roh Kudus?</string>
+    <string name="reason_moving_church">Alasan Pindah Gereja</string>
+    <string name="marital_status">Status Pernikahan</string>
+    <string name="father_name">Nama Lengkap Orang Tua (Ayah)</string>
+    <string name="father_name_hint">Nama Lengkap Ayah</string>
+    <string name="mother_name">Nama Lengkap Orang Tua (Ibu)</string>
+    <string name="mother_name_hint">Nama Lengkap Ibu</string>
+    <string name="status_in_family">Status Dalam Keluarga</string>
+    <string name="selfie">Foto Diri</string>
+
+    <string name="email_error_message">Email tidak boleh kosong</string>
+    <string name="username_error_message">Username tidak boleh kosong</string>
+    <string name="password_error_message">Password tidak boleh kosong</string>
+    <string name="password_confirmation_error_message">Konfirmasi password tidak boleh kosong</string>
+    <string name="password_confirmation_not_match">Password harus sama dengan yang diatas</string>
+    <string name="name_error_message">Nama tidak boleh kosong</string>
+    <string name="id_number_error_message">Nomor KTP tidak boleh kosong</string>
+    <string name="place_of_birth_error_message">Tempat lahir tidak boleh kosong</string>
+    <string name="date_of_birth_error_message">Tanggal lahir tidak boleh kosong</string>
+    <string name="phone_number_error_message">Nomor handphone tidak boleh kosong</string>
+    <string name="address_error_message">Alamat tidak boleh kosong</string>
+    <string name="selfie_error_message">Foto diri tidak boleh kosong</string>
+
+    <string name="user_registration">Pendaftaran Jemaat Baru</string>
+
+    <string name="success_user_registration_title">Pendaftaran Jemaat Baru Berhasil</string>
+    <string name="success_user_registration_desc">Selamat datang di JKI HanCin \n Datamu berhasil kami simpan</string>
+
+    <string name="OK">OK!</string>
+    <string name="dialog_general_cancel">Apakah Anda yakin ingin keluar?</string>
+    <string name="text_confirmation_no">Tidak</string>
+    <string name="text_confirmation_yes_">Ya</string>
+
+    <string name="take_photo">Take Photo</string>
+    <string name="start_capture">Start Capture</string>
+    <string name="stop_capture">Stop Capture</string>
+
+    <string name="verse_of_the_day_sample">Therefore, there is now no condemnation for those who are in Christ Jesus, because through Christ Jesus the law of the Spirit of life set me free from the law of sin and death.</string>
+    <string name="verse_sample">Romans 8:1-2</string>
+
+    <string name="menu">Menu</string>
+
+    <string name="reflection">Reflection</string>
+
+    <string name="help">Minta Bantuan</string>
+    <string name="about">Tentang Aplikasi</string>
+    <string name="sign_out">Keluar</string>
+
+    <string name="more">Baca Selengkapnya -></string>
 </resources>
