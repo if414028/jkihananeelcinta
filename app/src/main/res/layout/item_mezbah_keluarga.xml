@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_16sdp">
+
+        <LinearLayout
+            android:id="@+id/ly_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_day"
+                style="@style/Manrope.Reguler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumat"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/Manrope.ExtraBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:00 WIB"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/dot"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_dot"
+            app:layout_constraintStart_toEndOf="@id/ly_datetime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dot"
+            app:layout_constraintStart_toStartOf="@id/dot"
+            app:layout_constraintTop_toBottomOf="@id/dot" />
+
+        <LinearLayout
+            android:id="@+id/ly_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dot"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/Manrope.ExtraBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hancin"
+                android:textColor="@color/yellowC79C52"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tv_pic"
+                style="@style/Manrope.Reguler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pak Ryan - Ibu Rut"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                style="@style/Manrope.Reguler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Youth / ROCK Jakarta"
+                android:textColor="@color/yellowC79C52"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="italic"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_contact"
+                    style="@style/Manrope.SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0815 9153 607"
+                    android:textColor="@color/red_9A031E"
+                    android:textSize="@dimen/_12ssp" />
+
+                <ImageView
+                    android:id="@+id/btn_whatsapp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_whatsapp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

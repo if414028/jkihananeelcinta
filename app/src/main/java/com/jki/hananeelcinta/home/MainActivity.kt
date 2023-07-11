@@ -12,7 +12,9 @@ import com.jki.hananeelcinta.databinding.ItemMenuBinding
 import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
 import com.jki.hananeelcinta.profile.ProfileActivity
 import com.jki.hananeelcinta.reflection.ReflectionActivity
+import com.jki.hananeelcinta.services.ServicesActivity
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
+import com.jki.hananeelcinta.util.UserConfiguration
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, ProfileActivity::class.java)
             startActivity(intent)
         }
+        binding.tvUsername.text = UserConfiguration.getInstance().getUserData()!!.username + "!"
     }
 
     private fun setupMenuRecyclerView() {
@@ -53,8 +56,8 @@ class MainActivity : AppCompatActivity() {
             itemBinding.tvMenu.text = item.moduleName
             itemBinding.root.setOnClickListener {
                 val intent: Intent = when (item.moduleName) {
-                    resources.getString(R.string.reflection) ->
-                        Intent(applicationContext, ReflectionActivity::class.java)
+                    resources.getString(R.string.services) ->
+                        Intent(applicationContext, ServicesActivity::class.java)
 
                     else -> Intent(applicationContext, ReflectionActivity::class.java)
                 }
@@ -66,8 +69,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupModuleView() {
-        val reflectionModule =
-            ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
+        val servicesModule =
+            ModuleView(resources.getString(R.string.services), R.drawable.ic_church)
         val eventModule =
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
         val churchServiceScheduleModule =
@@ -75,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val givingModule =
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
 
-        moduleList.add(reflectionModule)
+        moduleList.add(servicesModule)
         moduleList.add(eventModule)
         moduleList.add(churchServiceScheduleModule)
         moduleList.add(givingModule)

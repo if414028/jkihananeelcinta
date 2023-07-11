@@ -22,32 +22,44 @@
                 android:orientation="vertical"
                 android:padding="@dimen/_16sdp">
 
-                <ImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/hancin_logo" />
+                    android:layout_marginTop="@dimen/_24sdp">
 
-                <TextView
-                    style="@style/Manrope.Reguler"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_24sdp"
-                    android:text="Hello,"
-                    android:textSize="@dimen/_16sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_hi"
+                        style="@style/Manrope.Reguler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hi,"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    style="@style/Manrope.ExtraBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hananeel!"
-                    android:textSize="@dimen/_20sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_username"
+                        style="@style/Manrope.ExtraBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Hananeel!"
+                        android:textSize="@dimen/_20sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_hi" />
+
+                    <ImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/hancin_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -96,7 +108,7 @@
                     style="@style/Manrope.ExtraBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
                     android:text="@string/menu"
                     android:textSize="@dimen/_14ssp" />
 
@@ -104,7 +116,6 @@
                     android:id="@+id/rv_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3"
                     tools:listitem="@layout/item_menu" />

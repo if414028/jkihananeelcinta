@@ -87,4 +87,25 @@
     <string name="sign_out">Keluar</string>
 
     <string name="more">Baca Selengkapnya -></string>
+    <string name="services">Ibadah</string>
+    <string name="service_verse">Janganlah kita menjauhkan diri dari pertemuan-pertemuan ibadah kita, seperti dibiasakan oleh beberapa orang, tetapi marilah kita saling menasihati, dan semakin giat melakukannya menjelang hari Tuhan yang mendekat.</string>
+    <string name="service_nats">Ibrani 10:25</string>
+    <string name="ibadah_raya">Ibadah Raya</string>
+    <string name="ibadah_raya_notes">Memuji, menyembah Tuhan secara korporat dan menerima santapan rohani yang baik untuk roh, jiwa dan tubuh kita</string>
+    <string name="ibadah_pagi">07.00 – 09.00 WIB</string>
+    <string name="ibadah_siang">10.00 – 12.00 WIB</string>
+    <string name="holy_spirit_night">Holy Spirit Night</string>
+    <string name="holy_spirit_night_notes">Memperdalam hubungan pribadi dengan Roh Kudus, sehingga setiap kita mampu berjalan hari demi hari bersama-Nya</string>
+    <string name="hsn_malam">19.00 – 21.00 WIB</string>
+    <string name="mezbah_keluarga">Mezbah Keluarga</string>
+    <string name="mezbah_keluarga_notes">Memelihara dan memperkuat keluarga kita dalam iman dan pengajaran yang benar tentang Tuhan, lewat sharing dan kebersamaan</string>
+    <string name="lihat_jadwal">Lihat Jadwal</string>
+    <string name="sekolah_minggu">Sekolah Minggu</string>
+    <string name="sekolah_minggu_notes">Mendidik anak-anak untuk mengenal dan mencintai Tuhan dengan benar dari masa kecilnya, sehinga mempunyai dasar yang kuat</string>
+    <string name="youth">Youth</string>
+    <string name="youth_notes">Membangkitkan generasi muda yang cinta dan takut akan Tuhan untuk membawa keluar jiwa-jiwa dari dalam kegelapan dan menjadi anak panah Tuhan di akhir jaman</string>
+    <string name="mk_message">Shalom, Boleh saya mengetahui informasi lebih lanjut mengenai MK di rumah %1s ?</string>
+
+    <string name="oops">Oops...</string>
+    <string name="network_error">Gagal mendapatkan data, coba periksa jaringan kamu.</string>
 </resources>

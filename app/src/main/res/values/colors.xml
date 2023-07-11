@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_background">#FAFAFA</color>
     <color name="true_white">#FFFFFF</color>
+    <color name="transparentBlack">#CC333333</color>
 
     <color name="purple_5F0F40">#5F0F40</color>
     <color name="red_9A031E">#9A031E</color>
@@ -19,4 +20,11 @@
     <color name="transparentWhite">#66ffffff</color>
     <color name="transparentWhiteButton">#e6ffffff</color>
     <color name="greyAAAAAA">#AAAAAA</color>
+
+    <color name="purple350547">#350547</color>
+    <color name="yellowC79C52">#C79C52</color>
+    <color name="yellowF0DFA0">#F0DFA0</color>
+    <color name="redD11008">#D11008</color>
+    <color name="brown8B5E40">#8B5E40</color>
+    <color name="redFD879D">#FD879D</color>
 </resources>
