@@ -3,6 +3,7 @@ package com.jki.hananeelcinta.register
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +23,7 @@ import java.io.File
 class UserSelfieInputFragment : Fragment() {
 
     private lateinit var binding: FragmentUserSelfieInformationInputBinding
+    private var capturedBitmap: Bitmap? = null
 
     companion object {
         @JvmStatic
@@ -53,11 +55,14 @@ class UserSelfieInputFragment : Fragment() {
     }
 
     private val getResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == RESULT_OK) {
-                val value = it.data?.getStringExtra(CameraActivity.RESULT_IMAGE_PATH)
-                val imageUri = Uri.parse(value)
-                setCapturedImage(imageUri)
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val capturedImageData =
+                    result.data?.getByteArrayExtra(CameraActivity.ARG_CAMERA_RESULT)
+                capturedImageData?.let { imageData ->
+                    capturedBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
+                    binding.ivSelfie.setImageBitmap(capturedBitmap)
+                }
             }
         }
 
