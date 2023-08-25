@@ -8,12 +8,12 @@
 
         <TextView
             android:id="@+id/tv_login_title"
-            style="@style/Manrope.Black"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/app_initial"
-            android:textColor="@color/red_9A031E"
+            android:textColor="@color/color_primary"
             android:textSize="@dimen/_32ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_login_desc"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
@@ -54,7 +54,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/baptis" />
@@ -85,14 +85,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/baptis_place" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_batpism_church"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -101,7 +101,8 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
 
                     <View
                         android:layout_width="@dimen/_50sdp"
@@ -121,19 +122,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/baptis_time" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_baptism_time"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/edittext_background_grey_border"
                         android:drawableEnd="@drawable/ic_baseline_today_24"
+                        android:editable="false"
                         android:hint="@string/baptism_time_hint"
                         android:inputType="number"
                         android:paddingLeft="@dimen/_16sdp"
@@ -151,7 +153,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/baptis_holy_spirit" />
@@ -182,14 +184,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/church_origin" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_church_origin"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -198,7 +200,18 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:id="@+id/tv_chruch_origin_error_message"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/church_origin_error_message"
+                        android:textColor="@color/red_C2576A"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="@dimen/_50sdp"
@@ -217,14 +230,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/reason_moving_church" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_reason_for_moving_church"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -233,8 +246,18 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
 
+                    <TextView
+                        android:id="@+id/tv_reason_moving_church_error_message"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/reason_moving_church_error_message"
+                        android:textColor="@color/red_C2576A"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

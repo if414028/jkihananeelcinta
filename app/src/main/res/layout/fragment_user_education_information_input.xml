@@ -10,12 +10,12 @@
 
         <TextView
             android:id="@+id/tv_login_title"
-            style="@style/Manrope.Black"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/app_initial"
-            android:textColor="@color/red_9A031E"
+            android:textColor="@color/color_primary"
             android:textSize="@dimen/_32ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/tv_login_desc"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
@@ -56,7 +56,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/blood_type" />
@@ -86,7 +86,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/education" />
@@ -99,9 +99,9 @@
 
                     </RadioGroup>
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_last_education"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -109,7 +109,8 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
 
                     <View
                         android:layout_width="@dimen/_50sdp"
@@ -128,7 +129,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/work" />
@@ -141,9 +142,9 @@
 
                     </RadioGroup>
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_work"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -151,7 +152,8 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
 
                 </LinearLayout>
 

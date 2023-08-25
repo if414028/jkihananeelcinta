@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/tv_day"
-                style="@style/Manrope.Reguler"
+                style="@style/Sanfransisco.Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jumat"
@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/tv_time"
-                style="@style/Manrope.ExtraBold"
+                style="@style/Sanfransisco.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19:00 WIB"
@@ -44,7 +44,8 @@
             android:adjustViewBounds="true"
             android:src="@drawable/ic_dot"
             app:layout_constraintStart_toEndOf="@id/ly_datetime"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_primary" />
 
         <View
             android:layout_width="@dimen/_1sdp"
@@ -69,7 +70,7 @@
 
             <TextView
                 android:id="@+id/tv_location"
-                style="@style/Manrope.ExtraBold"
+                style="@style/Sanfransisco.Bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hancin"
@@ -78,7 +79,7 @@
 
             <TextView
                 android:id="@+id/tv_pic"
-                style="@style/Manrope.Reguler"
+                style="@style/Sanfransisco.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pak Ryan - Ibu Rut"
@@ -86,7 +87,7 @@
 
             <TextView
                 android:id="@+id/tv_desc"
-                style="@style/Manrope.Reguler"
+                style="@style/Sanfransisco.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Youth / ROCK Jakarta"
@@ -105,11 +106,11 @@
 
                 <TextView
                     android:id="@+id/tv_contact"
-                    style="@style/Manrope.SemiBold"
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0815 9153 607"
-                    android:textColor="@color/red_9A031E"
+                    android:textColor="@color/color_primary"
                     android:textSize="@dimen/_12ssp" />
 
                 <ImageView

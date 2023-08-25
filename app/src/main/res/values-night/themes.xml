@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.JKIHananeelCinta" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_5F0F40</item>
-        <item name="colorPrimaryVariant">@color/quinacridone_magenta</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/yellow_FB8B24</item>

@@ -131,4 +131,37 @@ public class UIHelper {
             }
         }
     }
+
+    public void displaySuccessDialog(String info, String subInfo, Context context, @NonNull final Runnable onConfirmed,
+                                     String confirmText,
+                                     boolean isCancelable) {
+        if (isContextRunning(context)) {
+            final Dialog dialog = new BottomSheetDialog(context, R.style.HancinBottomAlertTheme);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.dialog_success);
+            dialog.setCancelable(isCancelable);
+
+            TextView mainText = dialog.findViewById(R.id.tv_dialog_main_text);
+            mainText.setText(info);
+
+            TextView subText = dialog.findViewById(R.id.tv_dialog_secondary_text);
+            subText.setText(subInfo);
+
+            Button positiveButton = dialog.findViewById(R.id.btn_positive);
+            positiveButton.setText(confirmText);
+            positiveButton.setOnClickListener(view -> {
+                dialog.dismiss();
+                if (onConfirmed != null) onConfirmed.run();
+            });
+
+            if (context instanceof Activity) {
+                Activity activity = (Activity) context;
+                if (!activity.isFinishing()) {
+                    dialog.show();
+                }
+            } else {
+                dialog.show();
+            }
+        }
+    }
 }

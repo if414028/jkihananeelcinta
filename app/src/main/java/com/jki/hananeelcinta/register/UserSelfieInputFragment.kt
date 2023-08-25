@@ -1,6 +1,7 @@
 package com.jki.hananeelcinta.register
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
@@ -14,16 +15,20 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.camera.CameraActivity
 import com.jki.hananeelcinta.databinding.FragmentUserSelfieInformationInputBinding
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class UserSelfieInputFragment : Fragment() {
 
     private lateinit var binding: FragmentUserSelfieInformationInputBinding
-    private var capturedBitmap: Bitmap? = null
+    private lateinit var viewModel: RegisterViewModel
+    private var isPhotoCaptured: Boolean = false
 
     companion object {
         @JvmStatic
@@ -32,6 +37,7 @@ class UserSelfieInputFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = activity?.let { ViewModelProvider(it)[RegisterViewModel::class.java] }!!
     }
 
     override fun onCreateView(
@@ -60,33 +66,36 @@ class UserSelfieInputFragment : Fragment() {
                 val capturedImageData =
                     result.data?.getByteArrayExtra(CameraActivity.ARG_CAMERA_RESULT)
                 capturedImageData?.let { imageData ->
-                    capturedBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
-                    binding.ivSelfie.setImageBitmap(capturedBitmap)
+                    val capturedImage = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
+                    viewModel.capturedImageFile =
+                        getProfilePictureFile(
+                            "profile-picture.jpg",
+                            capturedImage
+                        )
+                    isPhotoCaptured = true
+                    binding.ivSelfie.setImageBitmap(capturedImage)
+                    validateSection()
                 }
             }
         }
 
-    private fun setCapturedImage(selectedFileUri: Uri) {
-        val fixImageresult = getRealPathFromURI(selectedFileUri)
-        val imageFile = File(fixImageresult)
-        if (imageFile.exists()) {
-            val imageBitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-            binding.ivSelfie.setImageBitmap(imageBitmap)
+    private fun getProfilePictureFile(fileName: String, bitmap: Bitmap): File? {
+        val file = File(requireContext().cacheDir, fileName)
+        try {
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+            outputStream.flush()
+            outputStream.close()
+            return file
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
+        return null
     }
 
-    fun getRealPathFromURI(uri: Uri?): String? {
-        var path = ""
-        if (context?.contentResolver != null) {
-            val cursor: Cursor? =
-                uri?.let { requireContext().contentResolver.query(it, null, null, null, null) }
-            if (cursor != null) {
-                cursor.moveToFirst()
-                val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-                path = cursor.getString(idx)
-                cursor.close()
-            }
-        }
-        return path
+    fun validateSection() {
+        viewModel.setIsEnableToSubmit(
+            isPhotoCaptured
+        )
     }
 }

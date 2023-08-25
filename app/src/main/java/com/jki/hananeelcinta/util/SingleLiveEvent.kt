@@ -36,7 +36,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
      */
     @MainThread
     fun call() {
-        setValue(null)
+        value = null
     }
 
     @MainThread

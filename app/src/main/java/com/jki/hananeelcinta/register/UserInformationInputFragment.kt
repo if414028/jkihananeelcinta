@@ -70,19 +70,13 @@ class UserInformationInputFragment : Fragment() {
 
     private fun setupDatePicker() {
         calendar = Calendar.getInstance()
-        val dateListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(
-                view: DatePicker?,
-                year: Int,
-                monthOfYear: Int,
-                dayOfMonth: Int
-            ) {
+        val dateListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
-        }
 
         binding.etDateOfBirth.setOnClickListener {
             context?.let { context ->
@@ -128,7 +122,7 @@ class UserInformationInputFragment : Fragment() {
             viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
         }
         binding.etIdNumber.addTextChangedListener {
-            isIdNumberValid = it.toString().isNotEmpty()
+            isIdNumberValid = it.toString().isNotEmpty() && it.toString().length == 16
             if (isIdNumberValid)
                 binding.tvIdNumberErrorMessage.visibility = View.GONE
             else binding.tvIdNumberErrorMessage.visibility = View.VISIBLE
@@ -161,11 +155,11 @@ class UserInformationInputFragment : Fragment() {
         viewModel.setIsSectionValid(
             binding.etName.text.toString().isNotEmpty()
                     && binding.etIdNumber.text.toString().isNotEmpty()
+                    && binding.etIdNumber.text.toString().length == 16
                     && binding.etPlaceOfBirth.text.toString().isNotEmpty()
                     && binding.etPlaceOfBirth.text.toString().isNotEmpty()
                     && binding.etDateOfBirth.text.toString().isNotEmpty()
                     && binding.etPhoneNumber.text.toString().isNotEmpty()
         )
-
     }
 }

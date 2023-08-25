@@ -2,6 +2,7 @@ package com.jki.hananeelcinta.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -37,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
-        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         supportActionBar?.hide()
 
         setupStepperAdapter()
@@ -48,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         stepperLayout = binding.stepperContainer
         stepperLayout.listener = object : HancinStepperContract.Event {
             override fun onSubmitClicked() {
+                showLoading(true)
                 setResult(HancinStepperLayout.Direction.NEXT)
                 viewModel.signUpUser()
             }
@@ -103,21 +105,19 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                     is UserBaptismInputFragment -> {
-                        stepperLayout.setStepperButtonEnabled(true)
+                        userBaptismInputFragment.validateSection()
                     }
 
                     is UserMartialInputFragment -> {
-                        stepperLayout.setStepperButtonEnabled(true)
+                        userMartialInputFragment.validateSection()
                     }
 
                     is UserSelfieInputFragment -> {
                         stepperLayout.setSubmitButtonText(resources.getString(R.string.register))
-                        stepperLayout.setStepperButtonEnabled(false)
-                        stepperLayout.setSubmitButtonEnabled(true)
+                        userSelfieInputFragment.validateSection()
                     }
                 }
             }
-
         }
 
         userCredentialInputFragment = UserCredentialInputFragment.newInstance()
@@ -144,6 +144,11 @@ class RegisterActivity : AppCompatActivity() {
         stepperLayout.setStepperButtonEnabled(enable)
     }
 
+    private fun showLoading(isVisible: Boolean) {
+        if (isVisible) binding.loading.visibility = View.VISIBLE
+        else binding.loading.visibility = View.GONE
+    }
+
     override fun onBackPressed() {
         val isPreviousSectionAvailable: Boolean = stepperAdapter.prev(stepperLayout)
         if (!isPreviousSectionAvailable) {
@@ -163,16 +168,43 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun showSuccessDialog() {
+        binding.loading.visibility = View.GONE
+        UIHelper.getInstance().displaySuccessDialog(
+            resources.getString(R.string.success_user_registration_title),
+            resources.getString(R.string.success_user_registration_desc),
+            this,
+            {
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+            },
+            resources.getString(R.string.OK),
+            false,
+        )
+    }
+
     private fun observeViewModel() {
         viewModel.isSectionValid.observe(this) {
             enableStepperButton(it)
         }
+        viewModel.isEnableToSubmit.observe(this) {
+            if (it) {
+                stepperLayout.setStepperButtonEnabled(false)
+                stepperLayout.setSubmitButtonEnabled(true)
+            } else {
+                stepperLayout.setSubmitButtonEnabled(false)
+            }
+        }
         viewModel.isSuccessCreateNewUser.observe(this) {
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+            showSuccessDialog()
         }
         viewModel.isFailCreateNewUser.observe(this) { errorMessage ->
+            showLoading(false)
             Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+        }
+        viewModel.isUserAlreadyRegistered.observe(this) {
+            showLoading(false)
+            Toast.makeText(applicationContext, "Email sudah terdaftar", Toast.LENGTH_LONG).show()
         }
     }
 }

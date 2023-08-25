@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_background"
         tools:context=".services.ServicesActivity">
 
         <androidx.cardview.widget.CardView
@@ -30,15 +28,16 @@
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_primary" />
 
                 <TextView
-                    style="@style/Manrope.Bold"
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/services"
-                    android:textColor="@color/red_9A031E"
-                    android:textSize="@dimen/_14ssp"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btn_back"
@@ -72,15 +71,18 @@
                     app:layout_constraintTop_toBottomOf="@id/appbar">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular.Italic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="@dimen/_2sdp"
                         android:text="@string/service_verse"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
-                        style="@style/Manrope.SemiBold"
+                        style="@style/Sanfransisco.SemiBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
@@ -121,7 +123,7 @@
                                 android:src="@drawable/ic_church" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
@@ -130,15 +132,16 @@
                                 android:textSize="@dimen/_16ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:lineSpacingExtra="@dimen/_2sdp"
                                 android:text="@string/ibadah_raya_notes"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
@@ -147,7 +150,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ibadah_pagi"
@@ -155,7 +158,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ibadah_siang"
@@ -188,7 +191,7 @@
                                 android:src="@drawable/ic_pigeon" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
@@ -197,15 +200,17 @@
                                 android:textSize="@dimen/_16ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:lineSpacingExtra="@dimen/_2sdp"
                                 android:text="@string/holy_spirit_night_notes"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
@@ -214,7 +219,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/hsn_malam"
@@ -247,7 +252,7 @@
                                 android:src="@drawable/ic_mezbah_keluarga" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
@@ -256,22 +261,24 @@
                                 android:textSize="@dimen/_16ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:lineSpacingExtra="@dimen/_2sdp"
                                 android:text="@string/mezbah_keluarga_notes"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
                                 android:id="@+id/btn_jadwa_mk"
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
                                 android:text="@string/lihat_jadwal"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/red_9A031E"
+                                android:textColor="@color/color_primary"
                                 android:textSize="@dimen/_10ssp" />
 
                         </LinearLayout>
@@ -300,7 +307,7 @@
                                 android:src="@drawable/ic_kids" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
@@ -309,15 +316,17 @@
                                 android:textSize="@dimen/_16ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:lineSpacingExtra="@dimen/_2sdp"
                                 android:text="@string/sekolah_minggu_notes"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
@@ -326,7 +335,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ibadah_pagi"
@@ -334,7 +343,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ibadah_siang"
@@ -367,7 +376,7 @@
                                 android:src="@drawable/ic_youth" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
@@ -376,15 +385,17 @@
                                 android:textSize="@dimen/_16ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:lineSpacingExtra="@dimen/_2sdp"
                                 android:text="@string/youth_notes"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.ExtraBold"
+                                style="@style/Sanfransisco.SemiBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
@@ -393,7 +404,7 @@
                                 android:textSize="@dimen/_10ssp" />
 
                             <TextView
-                                style="@style/Manrope.Reguler"
+                                style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/hsn_malam"

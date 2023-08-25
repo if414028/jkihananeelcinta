@@ -9,19 +9,19 @@
 
         <TextView
             android:id="@+id/tv_login_title"
-            style="@style/Manrope.Black"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/app_initial"
-            android:textColor="@color/red_9A031E"
+            android:textColor="@color/color_primary"
             android:textSize="@dimen/_32ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_login_desc"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
@@ -43,15 +43,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:text="@string/address" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_address"
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
@@ -70,7 +70,7 @@
 
                 <TextView
                     android:id="@+id/tv_address_error_message"
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"

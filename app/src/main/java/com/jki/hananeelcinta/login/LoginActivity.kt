@@ -2,6 +2,7 @@ package com.jki.hananeelcinta.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -46,7 +47,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun showLoading(isVisible: Boolean) {
+        if (isVisible) {
+            binding.loading.visibility = View.VISIBLE
+            binding.lottieAnimation.playAnimation()
+        }
+        else {
+            binding.lottieAnimation.cancelAnimation()
+            binding.loading.visibility = View.GONE
+        }
+    }
+
     private fun signIn() {
+        showLoading(true)
         val email = binding.etUsername.text.toString()
         val password = binding.etPassword.text.toString()
 
@@ -62,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
                     firebaseAuth.currentUser?.let { userId -> saveUserData(userId.uid) }
                 } else {
                     if (it.exception is FirebaseAuthInvalidCredentialsException) {
+                        showLoading(false)
                         when ((it.exception as FirebaseAuthInvalidCredentialsException).errorCode) {
                             "ERROR_USER_NOT_FOUND" -> Toast.makeText(
                                 this,
@@ -72,6 +86,12 @@ class LoginActivity : AppCompatActivity() {
                             "ERROR_INVALID_EMAIL" -> Toast.makeText(
                                 this,
                                 "Format email salah",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            "ERROR_WRONG_PASSWORD" -> Toast.makeText(
+                                this,
+                                "Password Salah",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -101,6 +121,7 @@ class LoginActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         val user = snapshot.getValue(User::class.java)
                         user?.let {
+                            showLoading(false)
                             UserConfiguration.getInstance().setUserId(userId)
                             UserConfiguration.getInstance().setUserData(it)
                             val intent = Intent(applicationContext, MainActivity::class.java)
@@ -110,6 +131,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
+                    showLoading(false)
                     Toast.makeText(
                         applicationContext,
                         "Gagal mendapatkan data user",

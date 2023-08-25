@@ -2,36 +2,40 @@
 <resources>
 
     <!--Fonts-->
-    <style name="Manrope.Reguler" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.Regular" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/regular</item>
     </style>
 
-    <style name="Manrope.Bold" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.Regular.Italic" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/regularitalic</item>
+    </style>
+
+    <style name="Sanfransisco.Bold" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/bold</item>
     </style>
 
-    <style name="Manrope.ExtraBold" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/extrabold</item>
+    <style name="Sanfransisco.Bold.Italic" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/bolditalic</item>
     </style>
 
-    <style name="Manrope.Light" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.Light" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/light</item>
     </style>
 
-    <style name="Manrope.Medium" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.Light.Italic" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/lightitalic</item>
+    </style>
+
+    <style name="Sanfransisco.Medium" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/medium</item>
     </style>
 
-    <style name="Manrope.SemiBold" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.SemiBold" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/semibold</item>
     </style>
 
-    <style name="Manrope.Thin" parent="TextAppearance.AppCompat">
+    <style name="Sanfransisco.Thin" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/thin</item>
-    </style>
-
-    <style name="Manrope.Black" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/black</item>
     </style>
 
     <style name="HancinSubmitButton" parent="Base.Widget.AppCompat.Button">
@@ -39,11 +43,12 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_marginTop">@dimen/_8sdp</item>
         <item name="android:layout_marginBottom">@dimen/_8sdp</item>
+        <item name="fontFamily">@font/semibold</item>
     </style>
 
     <style name="HancinWhiteSubmitButton" parent="HancinSubmitButton">
         <item name="android:background">@drawable/hancin_white_submit_button</item>
-        <item name="android:textColor">@color/red_9A031E</item>
+        <item name="android:textColor">@color/color_primary</item>
     </style>
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
@@ -56,23 +61,42 @@
     </style>
 
     <style name="HancinBottomAlertTheme" parent="BaseHancinBottomAlert" />
+
     <style name="HancinBottomAlertThemeWithInput" parent="BaseHancinBottomAlert">
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
     <style name="HancinDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/red_9A031E</item>
+        <item name="colorAccent">@color/color_primary</item>
         <!--selected Item color-->
-        <item name="colorControlActivated">@color/red_C2576A</item>
+        <item name="colorControlActivated">@color/color_primary</item>
         <!-- Highlight item color-->
-        <item name="colorControlHighlight">@color/red_9A031E</item>
+        <item name="colorControlHighlight">@color/color_primary</item>
         <!-- Ok Cancel Color-->
-        <item name="android:textColor">@color/red_9A031E</item>
+        <item name="android:textColor">@color/color_primary</item>
     </style>
 
     <style name="filterDialogTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="NoBorderEditTextBold">
+        <item name="android:background">@null</item>
+        <item name="android:paddingTop">@dimen/_16sdp</item>
+        <item name="android:paddingStart">@dimen/_16sdp</item>
+        <item name="android:paddingEnd">@dimen/_16sdp</item>
+        <item name="fontFamily">@font/semibold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="NoBorderEditText">
+        <item name="android:background">@null</item>
+        <item name="android:padding">@dimen/_16sdp</item>
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

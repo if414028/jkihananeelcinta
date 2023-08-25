@@ -91,9 +91,9 @@ class UserCredentialInputFragment : Fragment() {
 
     fun validateSection() {
         viewModel.setIsSectionValid(
-            binding.etEmail.text.isNotEmpty()
-                    && binding.etUsername.text.isNotEmpty()
-                    && binding.etPassword.text.isNotEmpty()
+            binding.etEmail.text!!.isNotEmpty()
+                    && binding.etUsername.text!!.isNotEmpty()
+                    && binding.etPassword.text!!.isNotEmpty()
                     && binding.etPasswordConfirmation.text.toString() == binding.etPassword.text.toString()
         )
     }

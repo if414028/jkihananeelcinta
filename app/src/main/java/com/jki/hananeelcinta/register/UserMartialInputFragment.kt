@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -42,6 +43,7 @@ class UserMartialInputFragment : Fragment() {
 
         setupMarriedStatusRadioButton()
         setupFamilyStatusRadioButton()
+        validateEachField()
 
         return binding.root
     }
@@ -83,5 +85,31 @@ class UserMartialInputFragment : Fragment() {
             binding.etMotherName.text.toString(),
             getFamilyStatusInformation()
         )
+    }
+
+    fun validateSection() {
+        viewModel.setIsSectionValid(
+            binding.etFatherName.text.toString().isNotEmpty()
+                    && binding.etMotherName.text.toString().isNotEmpty()
+        )
+    }
+
+    private fun validateEachField() {
+        var isFatherNameValid = false
+        var isMotherNameValid = false
+        binding.etFatherName.addTextChangedListener {
+            isFatherNameValid = it.toString().isNotEmpty()
+            if (isFatherNameValid)
+                binding.tvFatherNameErrorMessage.visibility = View.GONE
+            else binding.tvFatherNameErrorMessage.visibility = View.VISIBLE
+            viewModel.setIsSectionValid(isFatherNameValid && isMotherNameValid)
+        }
+        binding.etMotherName.addTextChangedListener {
+            isMotherNameValid = it.toString().isNotEmpty()
+            if (isMotherNameValid)
+                binding.tvMotherNameErrorMessage.visibility = View.GONE
+            else binding.tvMotherNameErrorMessage.visibility = View.VISIBLE
+            viewModel.setIsSectionValid(isFatherNameValid && isMotherNameValid)
+        }
     }
 }

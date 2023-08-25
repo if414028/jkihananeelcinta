@@ -9,6 +9,7 @@
         tools:context=".camera.CameraActivity">
 
         <com.otaliastudios.cameraview.CameraView
+            android:id="@+id/camera"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:cameraFacing="front"
@@ -42,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".50" />
+            app:layout_constraintGuide_percent=".75" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

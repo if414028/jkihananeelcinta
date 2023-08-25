@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,15 +28,16 @@
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_primary" />
 
                 <TextView
-                    style="@style/Manrope.Bold"
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mezbah_keluarga"
-                    android:textColor="@color/red_9A031E"
-                    android:textSize="@dimen/_14ssp"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btn_back"
@@ -64,19 +64,20 @@
             android:background="@color/white_background"
             android:gravity="center"
             android:orientation="vertical"
+            android:padding="@dimen/_32sdp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appbar">
 
             <ImageView
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_warning" />
+                android:src="@drawable/page_not_found" />
 
             <TextView
-                style="@style/Manrope.ExtraBold"
+                style="@style/Sanfransisco.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/oops"
@@ -84,7 +85,7 @@
                 android:textSize="@dimen/_18ssp" />
 
             <TextView
-                style="@style/Manrope.Reguler"
+                style="@style/Sanfransisco.Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_32sdp"

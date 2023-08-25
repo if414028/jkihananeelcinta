@@ -8,12 +8,12 @@
 
         <TextView
             android:id="@+id/tv_login_title"
-            style="@style/Manrope.Black"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/app_initial"
-            android:textColor="@color/red_9A031E"
+            android:textColor="@color/color_primary"
             android:textSize="@dimen/_32ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_login_desc"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
@@ -54,13 +54,13 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_login_desc">
 
                     <TextView
-                        style="@style/Manrope.SemiBold"
+                        style="@style/Sanfransisco.SemiBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/selfie" />
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
@@ -81,7 +81,7 @@
                         android:layout_marginTop="@dimen/_24sdp"
                         android:layout_marginBottom="@dimen/_16sdp"
                         android:src="@drawable/grey_circle"
-                        app:civ_border_color="@color/red_9A031E"
+                        app:civ_border_color="@color/color_primary"
                         app:civ_border_width="@dimen/_2sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                         android:id="@+id/btn_take_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/red_9A031E"
+                        android:backgroundTint="@color/color_primary"
                         android:src="@drawable/ic_add"
                         app:elevation="@dimen/_6sdp"
                         app:layout_constraintBottom_toBottomOf="@id/iv_selfie"

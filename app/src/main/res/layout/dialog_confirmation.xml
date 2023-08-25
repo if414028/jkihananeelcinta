@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/tv_dialog_main_text"
-            style="@style/Manrope.Bold"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/tv_dialog_secondary_text"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -46,17 +46,17 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_negative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_weight="1"
-                android:textColor="@color/red_9A031E"
+                android:textColor="@color/color_primary"
                 android:background="@drawable/hancin_red_stroke_ripple_primary_button"
                 android:text="@string/OK" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_positive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

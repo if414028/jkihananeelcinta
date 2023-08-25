@@ -8,12 +8,12 @@
 
         <TextView
             android:id="@+id/tv_login_title"
-            style="@style/Manrope.Black"
+            style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/app_initial"
-            android:textColor="@color/red_9A031E"
+            android:textColor="@color/color_primary"
             android:textSize="@dimen/_32ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_login_desc"
-            style="@style/Manrope.Reguler"
+            style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
@@ -54,7 +54,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/marital_status" />
@@ -85,23 +85,35 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/father_name" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_father_name"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/edittext_background_grey_border"
                         android:hint="@string/father_name_hint"
+                        android:inputType="textPersonName"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:id="@+id/tv_father_name_error_message"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/father_name_error_message"
+                        android:textColor="@color/red_C2576A"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="@dimen/_50sdp"
@@ -121,23 +133,35 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/mother_name" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_mother_name"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/edittext_background_grey_border"
                         android:hint="@string/mother_name_hint"
+                        android:inputType="textPersonName"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp" />
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:id="@+id/tv_mother_name_error_message"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/mother_name_error_message"
+                        android:textColor="@color/red_C2576A"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="@dimen/_50sdp"
@@ -157,7 +181,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/status_in_family" />
@@ -166,8 +190,7 @@
                         android:id="@+id/rb_status__in_family"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="@dimen/_4sdp">
 
                     </RadioGroup>
 

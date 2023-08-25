@@ -1,6 +1,9 @@
 package com.jki.hananeelcinta.register
 
 import android.app.Application
+import android.content.Context
+import android.graphics.Bitmap
+import androidx.core.net.toUri
 import androidx.lifecycle.AndroidViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -10,21 +13,28 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.jki.hananeelcinta.model.User
+import com.jki.hananeelcinta.util.ProfilePictureUploader
 import com.jki.hananeelcinta.util.SingleLiveEvent
 import com.jki.hananeelcinta.util.UserConfiguration
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
     private var database: DatabaseReference = Firebase.database.getReference("users")
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val profilePictureUploader = ProfilePictureUploader()
 
     private var user: User = User()
+    var capturedImageFile: File? = null
 
     var isSectionValid: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    var isSuccessCreateNewUser: SingleLiveEvent<Void> = SingleLiveEvent()
+    var isSuccessCreateNewUser: SingleLiveEvent<String> = SingleLiveEvent()
     var isFailCreateNewUser: SingleLiveEvent<String> = SingleLiveEvent()
-    var isUserAlreadyRegistered: SingleLiveEvent<Void> = SingleLiveEvent()
+    var isUserAlreadyRegistered: SingleLiveEvent<String> = SingleLiveEvent()
+    var isEnableToSubmit: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     fun setUserCredential(username: String, email: String, password: String, rePassword: String) {
         user.username = username
@@ -100,13 +110,17 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         isSectionValid.postValue(isValid)
     }
 
+    fun setIsEnableToSubmit(isValid: Boolean) {
+        isEnableToSubmit.postValue(isValid)
+    }
+
     fun signUpUser() {
         firebaseAuth.fetchSignInMethodsForEmail(user.email).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val signInMethods = task.result?.signInMethods
                 if (!signInMethods.isNullOrEmpty()) {
                     //User already registered
-                    isUserAlreadyRegistered.callFromBackgroundThread()
+                    isUserAlreadyRegistered.postValue("User already registered")
                 } else {
                     // User is not registered, proceed with account creation
                     createUserWithEmailAndPassword()
@@ -115,8 +129,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
             }
         }
-
-
     }
 
     private fun createUserWithEmailAndPassword() {
@@ -126,7 +138,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                     user.id = firebaseAuth.currentUser!!.uid
                     writeUserData()
                 } else {
-                    isFailCreateNewUser.callFromBackgroundThread()
+                    isFailCreateNewUser.postValue(it.exception?.localizedMessage)
                 }
             }
     }
@@ -134,13 +146,14 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     private fun writeUserData() {
         //avoid write password in database, password only saved in authentication
         user.password = ""
+        user.role = "jemaat"
 
         database.child(user.id)
             .setValue(user).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     UserConfiguration.getInstance().setUserId(user.id)
                     UserConfiguration.getInstance().setUserData(user)
-                    isSuccessCreateNewUser.callFromBackgroundThread()
+                    uploadProfilePicture()
                 } else {
                     val exception = task.exception
                     if (exception != null) {
@@ -148,5 +161,19 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                     }
                 }
             }
+    }
+
+    private fun uploadProfilePicture() {
+        if (capturedImageFile != null) {
+            profilePictureUploader.uploadProfilePicture(capturedImageFile!!.toUri()) { imageUrl, error ->
+                if (error != null) {
+                    isFailCreateNewUser.postValue(error)
+                } else {
+                    isSuccessCreateNewUser.postValue("Success")
+                }
+            }
+        } else {
+            isFailCreateNewUser.postValue("Fail to upload profile picture")
+        }
     }
 }

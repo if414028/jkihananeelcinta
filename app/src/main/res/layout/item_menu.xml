@@ -14,7 +14,6 @@
             android:layout_marginBottom="@dimen/_8sdp"
             app:cardCornerRadius="@dimen/_4sdp"
             app:cardElevation="@dimen/_4sdp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +36,11 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_light"
-                    app:tint="@color/red_9A031E" />
+                    app:tint="@color/color_primary" />
 
                 <TextView
                     android:id="@+id/tv_menu"
-                    style="@style/Manrope.SemiBold"
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"

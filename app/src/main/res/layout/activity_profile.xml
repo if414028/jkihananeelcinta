@@ -25,7 +25,7 @@
             android:id="@+id/background"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_107sdp"
-            android:background="@color/quinacridone_magenta"
+            android:background="@color/color_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/tvName"
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{username}"
@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/tvFrontliner"
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
@@ -78,6 +78,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/iv_profile"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:elevation="@dimen/_4sdp"
@@ -110,7 +111,7 @@
                 app:cardBackgroundColor="@color/true_white">
 
                 <TextView
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_help"
@@ -134,7 +135,7 @@
                 app:cardBackgroundColor="@color/true_white">
 
                 <TextView
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_info"
@@ -158,16 +159,16 @@
                 app:cardBackgroundColor="@color/true_white">
 
                 <TextView
-                    style="@style/Manrope.Reguler"
+                    style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_exit"
                     android:drawablePadding="@dimen/_8sdp"
-                    android:drawableTint="@color/red_9A031E"
+                    android:drawableTint="@color/color_primary"
                     android:gravity="center_vertical"
                     android:padding="@dimen/_8sdp"
                     android:text="@string/sign_out"
-                    android:textColor="@color/red_9A031E" />
+                    android:textColor="@color/color_primary" />
 
             </com.google.android.material.card.MaterialCardView>
 

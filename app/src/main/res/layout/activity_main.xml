@@ -29,7 +29,7 @@
 
                     <TextView
                         android:id="@+id/tv_hi"
-                        style="@style/Manrope.Reguler"
+                        style="@style/Sanfransisco.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hi,"
@@ -39,22 +39,28 @@
 
                     <TextView
                         android:id="@+id/tv_username"
-                        style="@style/Manrope.ExtraBold"
-                        android:layout_width="wrap_content"
+                        style="@style/Sanfransisco.Bold"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        tools:text="Hananeel!"
+                        android:layout_marginEnd="@dimen/_16sdp"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/iv_profile"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_hi" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_hi"
+                        tools:text="Hananeel!" />
 
-                    <ImageView
+                    <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/iv_profile"
-                        android:layout_width="@dimen/_48sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:adjustViewBounds="true"
+                        android:elevation="@dimen/_4sdp"
                         android:src="@drawable/hancin_logo"
+                        app:civ_border_color="@color/color_primary"
+                        app:civ_border_width="4dp"
+                        app:civ_circle_color="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16sdp"
-                    app:cardBackgroundColor="@color/quinacridone_magenta"
+                    app:cardBackgroundColor="@color/color_primary"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardElevation="@dimen/_4sdp">
 
@@ -76,36 +82,65 @@
                         android:padding="@dimen/_16sdp">
 
                         <TextView
-                            style="@style/Manrope.ExtraBold"
+                            android:id="@+id/pastor_message_title"
+                            style="@style/Sanfransisco.SemiBold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Renungan Minggu Ini"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp" />
 
                         <TextView
-                            style="@style/Manrope.Reguler"
+                            android:id="@+id/pastor_message_text"
+                            style="@style/Sanfransisco.Regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:ellipsize="end"
+                            android:maxLength="200"
                             android:text="@string/verse_of_the_day_sample"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp" />
 
                         <TextView
                             android:id="@+id/btn_weekly_reflection_detail"
-                            style="@style/Manrope.ExtraBold"
+                            style="@style/Sanfransisco.SemiBold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
                             android:text="@string/more"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_11ssp" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    style="@style/Manrope.ExtraBold"
+                    style="@style/Sanfransisco.SemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:text="@string/info"
+                    android:textSize="@dimen/_14ssp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_150sdp" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18sdp"

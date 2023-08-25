@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -48,6 +49,7 @@ class UserBaptismInputFragment : Fragment() {
         setupWaterBaptismRadioButton()
         setupHolySpiritBaptismRadioButton()
         setupDatePicker()
+        validateEachField()
 
         return binding.root
     }
@@ -120,5 +122,51 @@ class UserBaptismInputFragment : Fragment() {
             binding.etChurchOrigin.text.toString(),
             binding.etReasonForMovingChurch.text.toString()
         )
+    }
+
+    fun validateSection() {
+        viewModel.setIsSectionValid(
+            validateWaterBaptism()
+                    && binding.etChurchOrigin.text.toString().isNotEmpty()
+                    && binding.etReasonForMovingChurch.text.toString().isNotEmpty()
+        )
+    }
+
+    private fun validateWaterBaptism(): Boolean {
+        return if (isUserHasWaterBaptism()) {
+            (binding.etBatpismChurch.text.toString().isNotEmpty()
+                    && binding.etBaptismTime.text.toString().isNotEmpty())
+        } else {
+            true
+        }
+    }
+
+    private fun validateEachField() {
+        var isWaterBaptismValid = validateWaterBaptism()
+        var isChurchOriginValid = false
+        var isReasonMovingChurchValid = false
+
+        binding.rbBaptismInformation.setOnCheckedChangeListener { radioGroup, i ->
+            isWaterBaptismValid = validateWaterBaptism()
+            viewModel.setIsSectionValid(isWaterBaptismValid && isChurchOriginValid && isReasonMovingChurchValid)
+        }
+        binding.etChurchOrigin.addTextChangedListener {
+            isChurchOriginValid = it.toString().isNotEmpty()
+            if (isChurchOriginValid)
+                binding.tvChruchOriginErrorMessage.visibility = View.GONE
+            else binding.tvChruchOriginErrorMessage.visibility = View.VISIBLE
+            viewModel.setIsSectionValid(isWaterBaptismValid && isChurchOriginValid && isReasonMovingChurchValid)
+        }
+        binding.etReasonForMovingChurch.addTextChangedListener {
+            isReasonMovingChurchValid = it.toString().isNotEmpty()
+            if (isReasonMovingChurchValid)
+                binding.tvReasonMovingChurchErrorMessage.visibility = View.GONE
+            else binding.tvReasonMovingChurchErrorMessage.visibility = View.VISIBLE
+            viewModel.setIsSectionValid(isWaterBaptismValid && isChurchOriginValid && isReasonMovingChurchValid)
+        }
+    }
+
+    private fun isUserHasWaterBaptism(): Boolean {
+        return getWaterBaptismInformation() == "true"
     }
 }

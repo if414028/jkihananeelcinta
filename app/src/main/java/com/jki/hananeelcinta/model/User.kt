@@ -27,7 +27,8 @@ data class User(
     var fatherFullName: String,
     var motherFullName: String,
     var statusInFamily: String,
-    var photoImageUrl: String
+    var photoImageUrl: String,
+    var role: String
 ) {
     constructor() : this(
         "",
@@ -53,6 +54,7 @@ data class User(
         "",
         "",
         false,
+        "",
         "",
         "",
         "",

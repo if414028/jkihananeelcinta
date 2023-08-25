@@ -1,4 +1,4 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/red_C2576A"><!-- ripple color -->
+    android:color="@color/color_primary"><!-- ripple color -->
     <item android:drawable="@drawable/hancin_red_stroke_primary_button" /> <!-- normal color -->
 </ripple>

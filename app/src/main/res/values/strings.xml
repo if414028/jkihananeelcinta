@@ -60,11 +60,15 @@
     <string name="phone_number_error_message">Nomor handphone tidak boleh kosong</string>
     <string name="address_error_message">Alamat tidak boleh kosong</string>
     <string name="selfie_error_message">Foto diri tidak boleh kosong</string>
+    <string name="mother_name_error_message">Nama Ibu tidak boleh kosong</string>
+    <string name="father_name_error_message">Nama Ayah tidak boleh kosong</string>
+    <string name="church_origin_error_message">Asal gereja tidak boleh kosong</string>
+    <string name="reason_moving_church_error_message">Alasan pindah gereja tidak boleh kosong</string>
 
     <string name="user_registration">Pendaftaran Jemaat Baru</string>
 
-    <string name="success_user_registration_title">Pendaftaran Jemaat Baru Berhasil</string>
-    <string name="success_user_registration_desc">Selamat datang di JKI HanCin \n Datamu berhasil kami simpan</string>
+    <string name="success_user_registration_title">Yeay! Data kamu berhasil disimpan</string>
+    <string name="success_user_registration_desc">Selamat datang di JKI Hananeel Cinta</string>
 
     <string name="OK">OK!</string>
     <string name="dialog_general_cancel">Apakah Anda yakin ingin keluar?</string>
@@ -80,7 +84,7 @@
 
     <string name="menu">Menu</string>
 
-    <string name="reflection">Reflection</string>
+    <string name="reflection">Renungan</string>
 
     <string name="help">Minta Bantuan</string>
     <string name="about">Tentang Aplikasi</string>
@@ -108,4 +112,17 @@
 
     <string name="oops">Oops...</string>
     <string name="network_error">Gagal mendapatkan data, coba periksa jaringan kamu.</string>
+
+    <string name="offering">Persembahan</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="create_pastor_messages">Buat Renungan</string>
+
+    <string name="info">Pengumuman</string>
+    <string name="title">Judul</string>
+    <string name="messages_hint">Apa yang ingin anda sampaikan?</string>
+
+    <string name="success_create_pastor_messages">Renungan Berhasil Disimpan</string>
+    <string name="success_create_pastor_message_desc">Jemaat Akan Senang Membaca Renungan Minggu Ini</string>
+    <string name="green_room">Green Room</string>
 </resources>

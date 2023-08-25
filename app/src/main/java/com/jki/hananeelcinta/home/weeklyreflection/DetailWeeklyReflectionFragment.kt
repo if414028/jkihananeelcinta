@@ -9,13 +9,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.FragmentDetailWeeklyReflectionBinding
+import com.jki.hananeelcinta.model.PastorMessage
 
 class DetailWeeklyReflectionFragment : DialogFragment() {
 
     private lateinit var binding: FragmentDetailWeeklyReflectionBinding
+    private lateinit var detailMessage: PastorMessage
 
     companion object {
         fun newInstance() = DetailWeeklyReflectionFragment()
+        const val DETAIL_MESSAGE = "detailMessage"
     }
 
     private lateinit var viewModel: DetailWeeklyReflectionViewModel
@@ -49,7 +52,23 @@ class DetailWeeklyReflectionFragment : DialogFragment() {
             false
         )
 
+        getArgument()
+
         return binding.root
     }
 
+    private fun getArgument() {
+        val args = arguments
+        if (args != null) {
+            detailMessage = args.getParcelable(DETAIL_MESSAGE)!!
+            setupLayout()
+        }
+    }
+
+    private fun setupLayout() {
+        binding.btnBack.setOnClickListener { dismiss() }
+        binding.tvTitle.text = detailMessage.title
+        binding.tvWriter.text = "By His Grace \n" + detailMessage.writer
+        binding.tvMessage.text = detailMessage.messages
+    }
 }
