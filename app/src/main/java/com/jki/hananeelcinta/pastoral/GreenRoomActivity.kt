@@ -13,6 +13,7 @@ import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityGreenRoomBinding
 import com.jki.hananeelcinta.pastoral.congregation.CongregationListActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.CreatePastorMessagesActivity
+import com.jki.hananeelcinta.pastoral.pastormessages.PastorMessagesListActivity
 import com.jki.hananeelcinta.pastoral.pastors.PastorListActivity
 
 class GreenRoomActivity : AppCompatActivity() {
@@ -38,7 +39,7 @@ class GreenRoomActivity : AppCompatActivity() {
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.btnCreateWeeklyReflection.setOnClickListener {
-            val intent = Intent(applicationContext, CreatePastorMessagesActivity::class.java)
+            val intent = Intent(applicationContext, PastorMessagesListActivity::class.java)
             startActivity(intent)
         }
         binding.btnCongregationList.setOnClickListener {

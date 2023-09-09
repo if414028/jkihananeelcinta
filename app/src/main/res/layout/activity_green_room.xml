@@ -224,10 +224,8 @@
                                 style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:drawableEnd="@drawable/ic_add"
-                                android:drawableTint="@color/color_primary"
                                 android:gravity="center_vertical"
-                                android:text="Buat Renungan Mingguan"
+                                android:text="@string/list_pastor_message"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12ssp" />
 

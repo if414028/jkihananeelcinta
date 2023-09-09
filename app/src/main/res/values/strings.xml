@@ -125,4 +125,6 @@
     <string name="success_create_pastor_messages">Renungan Berhasil Disimpan</string>
     <string name="success_create_pastor_message_desc">Jemaat Akan Senang Membaca Renungan Minggu Ini</string>
     <string name="green_room">Green Room</string>
+
+    <string name="list_pastor_message">Daftar Renungan</string>
 </resources>
