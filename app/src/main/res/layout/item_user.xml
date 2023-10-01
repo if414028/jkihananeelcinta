@@ -7,8 +7,8 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/iv_profile"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -16,47 +16,64 @@
             android:src="@drawable/hancin_logo"
             app:civ_border_color="@color/color_primary"
             app:civ_circle_color="@color/black"
+            app:civ_border_width="@dimen/_2sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
+            android:orientation="vertical"
             app:cardCornerRadius="@dimen/_8sdp"
             app:cardElevation="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/iv_profile"
+            app:layout_constraintStart_toEndOf="@id/iv_profile"
             app:layout_constraintTop_toTopOf="@id/iv_profile">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_43sdp"
-                android:orientation="vertical"
-                android:padding="@dimen/_8sdp">
+                android:orientation="horizontal"
+                android:weightSum="5">
 
                 <TextView
+                    android:id="@+id/tv_user_name"
                     style="@style/Sanfransisco.SemiBold"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
                     android:text="JKI Hananeel Cinta"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
+                    android:id="@+id/tv_date_of_birth"
                     style="@style/Sanfransisco.Regular"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="+62 8123 3456 780"
-                    android:textSize="@dimen/_10ssp" />
-
+                    android:layout_weight="2"
+                    android:text="30 July 1996"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tv_user_phone"
+                style="@style/Sanfransisco.Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="+62 8123 3456 780"
+                android:textSize="@dimen/_10ssp" />
+
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

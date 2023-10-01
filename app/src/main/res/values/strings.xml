@@ -127,4 +127,7 @@
     <string name="green_room">Green Room</string>
 
     <string name="list_pastor_message">Daftar Renungan</string>
+
+    <string name="list_congregation">Daftar Jemaat</string>
+    <string name="search_congregation_hint">Cari nama jemaat...</string>
 </resources>

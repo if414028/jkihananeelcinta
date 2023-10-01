@@ -51,8 +51,7 @@ class LoginActivity : AppCompatActivity() {
         if (isVisible) {
             binding.loading.visibility = View.VISIBLE
             binding.lottieAnimation.playAnimation()
-        }
-        else {
+        } else {
             binding.lottieAnimation.cancelAnimation()
             binding.loading.visibility = View.GONE
         }
@@ -74,8 +73,8 @@ class LoginActivity : AppCompatActivity() {
                 if (it.isSuccessful) {
                     firebaseAuth.currentUser?.let { userId -> saveUserData(userId.uid) }
                 } else {
+                    showLoading(false)
                     if (it.exception is FirebaseAuthInvalidCredentialsException) {
-                        showLoading(false)
                         when ((it.exception as FirebaseAuthInvalidCredentialsException).errorCode) {
                             "ERROR_USER_NOT_FOUND" -> Toast.makeText(
                                 this,
@@ -140,5 +139,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

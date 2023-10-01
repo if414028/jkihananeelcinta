@@ -16,6 +16,7 @@
     <color name="lavender_pink">#f4b8dd</color>
     <color name="vista_blue">#8093f1</color>
     <color name="color_primary">#800020</color>
+    <color name="color_primary_transparent">#18180020</color>
 
     <color name="transparentWhite">#66ffffff</color>
     <color name="transparentWhiteButton">#e6ffffff</color>
