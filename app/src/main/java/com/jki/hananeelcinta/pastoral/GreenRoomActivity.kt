@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityGreenRoomBinding
+import com.jki.hananeelcinta.pastoral.announcement.AnnouncementListActivity
 import com.jki.hananeelcinta.pastoral.congregation.CongregationListActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.CreatePastorMessagesActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.PastorMessagesListActivity
@@ -38,7 +39,7 @@ class GreenRoomActivity : AppCompatActivity() {
 
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
-        binding.btnCreateWeeklyReflection.setOnClickListener {
+        binding.btnWeeklyReflectionList.setOnClickListener {
             val intent = Intent(applicationContext, PastorMessagesListActivity::class.java)
             startActivity(intent)
         }
@@ -48,6 +49,10 @@ class GreenRoomActivity : AppCompatActivity() {
         }
         binding.btnPastorList.setOnClickListener {
             val intent = Intent(applicationContext, PastorListActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnAnnouncementList.setOnClickListener {
+            val intent = Intent(applicationContext, AnnouncementListActivity::class.java)
             startActivity(intent)
         }
     }

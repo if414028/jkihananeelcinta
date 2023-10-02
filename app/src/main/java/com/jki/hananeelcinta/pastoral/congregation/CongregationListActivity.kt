@@ -1,5 +1,6 @@
 package com.jki.hananeelcinta.pastoral.congregation
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -65,6 +66,13 @@ class CongregationListActivity : AppCompatActivity() {
                 itemBinding.tvUserProfession.text = item?.job
                 itemBinding.tvDateOfBirth.text = countUserAge(item?.dateOfBirth)
                 getProfileImage(item.id, itemBinding.ivProfile)
+
+                itemBinding.root.setOnClickListener {
+                    val intent =
+                        Intent(applicationContext, CongregationDetailActivity::class.java)
+                    intent.putExtra(CongregationDetailActivity.USER_ID_ARG, item.id)
+                    startActivity(intent)
+                }
             }, object : SimpleFilterRecyclerAdapter.OnSearchListener<User> {
                 override fun onSearchRules(model: User?, searchedText: String?): User? {
                     if (searchedText?.let {

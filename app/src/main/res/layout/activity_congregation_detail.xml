@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="model"
+            type="com.jki.hananeelcinta.model.User" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -8,11 +26,12 @@
         android:layout_height="match_parent"
         tools:context=".pastoral.congregation.CongregationDetailActivity">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/true_white"
+            app:cardElevation="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +56,7 @@
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/list_congregation"
+                    android:text="Detail Informasi Jemaat"
                     android:textColor="@color/color_primary"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +66,465 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:elevation="@dimen/_4sdp"
+                    android:src="@drawable/ic_no_profile_image"
+                    app:civ_border_color="@color/white"
+                    app:civ_circle_color="@color/black" />
+
+                <TextView
+                    style="@style/Sanfransisco.SemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="@{model.fullName}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    style="@style/Sanfransisco.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.email}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_12ssp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_8sdp">
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/id_number"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(model.idNumber)}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="123345567890" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/gender"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.gender}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Laki-laki" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/place_of_birth"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.placeOfBirth}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Jakarta" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/date_of_birth"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.dateOfBirth}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="30 July 1996" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/phone_number"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                style="@style/Sanfransisco.SemiBold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="9"
+                                android:text="@{model.phoneNumber}"
+                                android:textSize="@dimen/_12ssp"
+                                tools:text="+62 822 9450 2677" />
+
+                            <ImageView
+                                android:id="@+id/btn_whatsapp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_whatsapp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/address"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.address}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Jl. Akasia 2 No 4, Cengkareng Timur, Jakarta Barat, 11730" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_8sdp">
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/blood_type"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.bloodType}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="O" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/education"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.lastEducation}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="S3" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/work"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.job}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Software Engineer" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_8sdp">
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/baptis"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.waterBaptism ? `Sudah` : `Belum`}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Sudah" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/baptis_place"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.waterBaptisteryChurch}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="JKI Hananeel Cinta" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/baptis_holy_spirit"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.holySpiritBaptism ? `Sudah` : `Belum` }"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Sudah" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/church_origin"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.churchOrigin}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="JKI Hananeel Cinta" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/reason_moving_church"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.reasonToMovingChurch}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="-" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_8sdp">
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/marital_status"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.married ? `Sudah Menikah` : `Belum Menikah`}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Sudah Menikah" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/father_name"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.fatherFullName}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Alm. Selyan Napitupulu" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/mother_name"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.motherFullName}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Moira Sianturi" />
+
+                        <TextView
+                            style="@style/Sanfransisco.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@string/status_in_family"
+                            android:textColor="@color/greyAAAAAA"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            style="@style/Sanfransisco.SemiBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{model.statusInFamily}"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="Anak" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <include
+            layout="@layout/layout_profile_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default = visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+        <include
+            layout="@layout/layout_error_get_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

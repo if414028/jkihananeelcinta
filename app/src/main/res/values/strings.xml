@@ -111,7 +111,7 @@
     <string name="mk_message">Shalom, Boleh saya mengetahui informasi lebih lanjut mengenai MK di rumah %1s ?</string>
 
     <string name="oops">Oops...</string>
-    <string name="network_error">Gagal mendapatkan data, coba periksa jaringan kamu.</string>
+    <string name="network_error">Ada yang gak beres, coba hubungi admin.</string>
 
     <string name="offering">Persembahan</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
@@ -132,4 +132,6 @@
     <string name="search_congregation_hint">Cari nama jemaat...</string>
     <string name="congregation_not_found_title">Nama Jemaat Tidak Ditemukan</string>
     <string name="congregation_not_found_sub_title">Mungkin jemaat yang kamu cari belum terdaftar.</string>
+
+    <string name="announcement_list">Daftar Pengumuman</string>
 </resources>
