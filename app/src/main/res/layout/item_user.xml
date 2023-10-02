@@ -13,7 +13,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:elevation="@dimen/_6sdp"
-            android:src="@drawable/hancin_logo"
+            android:src="@drawable/ic_no_profile_image"
             app:civ_border_color="@color/color_primary"
             app:civ_circle_color="@color/black"
             app:civ_border_width="@dimen/_2sdp"
@@ -64,7 +64,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_user_phone"
+                android:id="@+id/tv_user_profession"
                 style="@style/Sanfransisco.Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

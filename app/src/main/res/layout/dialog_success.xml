@@ -9,11 +9,11 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_animation"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="success.json"
-            app:lottie_loop="true"
             android:layout_width="@dimen/_125sdp"
-            android:layout_height="@dimen/_125sdp" />
+            android:layout_height="@dimen/_125sdp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="success_animation.lottie"
+            app:lottie_loop="true" />
 
         <TextView
             android:id="@+id/tv_dialog_main_text"
@@ -48,10 +48,10 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_positive"
+                style="@style/HancinSubmitButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="@style/HancinSubmitButton"
                 android:text="@string/OK"
                 android:textColor="@color/white" />
 

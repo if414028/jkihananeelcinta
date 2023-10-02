@@ -2,6 +2,7 @@ package com.jki.hananeelcinta.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -57,12 +58,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun showSuccessAnimation() {
+        binding.successAnimation.visibility = View.VISIBLE
+        binding.lottieSuccessAnimation.playAnimation()
+    }
+
     private fun signIn() {
         showLoading(true)
         val email = binding.etUsername.text.toString()
         val password = binding.etPassword.text.toString()
 
         if (email.isBlank() || password.isBlank()) {
+            showLoading(false)
             Toast.makeText(this, "Username atau Password tidak boleh kosong", Toast.LENGTH_SHORT)
                 .show()
             return
@@ -121,10 +128,14 @@ class LoginActivity : AppCompatActivity() {
                         val user = snapshot.getValue(User::class.java)
                         user?.let {
                             showLoading(false)
-                            UserConfiguration.getInstance().setUserId(userId)
-                            UserConfiguration.getInstance().setUserData(it)
-                            val intent = Intent(applicationContext, MainActivity::class.java)
-                            startActivity(intent)
+                            showSuccessAnimation()
+
+                            Handler().postDelayed({
+                                UserConfiguration.getInstance().setUserId(userId)
+                                UserConfiguration.getInstance().setUserData(it)
+                                val intent = Intent(applicationContext, MainActivity::class.java)
+                                startActivity(intent)
+                            }, 1000)
                         }
                     }
                 }

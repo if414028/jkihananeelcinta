@@ -9,7 +9,10 @@ class ProfilePictureUploader {
 
     private val storageRef: StorageReference = FirebaseStorage.getInstance().reference
 
-    fun uploadProfilePicture(imageUri: Uri, onComplete: (imageUrl: String?, error: String?) -> Unit) {
+    fun uploadProfilePicture(
+        imageUri: Uri,
+        onComplete: (imageUrl: String?, error: String?) -> Unit
+    ) {
         val user = FirebaseAuth.getInstance().currentUser
         user?.let { currentUser ->
             val profilePicturesRef = storageRef.child("${currentUser.uid}/profile-pictures")

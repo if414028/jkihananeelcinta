@@ -65,7 +65,7 @@ class ProfileActivity : AppCompatActivity() {
 
                     Glide.with(applicationContext)
                         .load(imageUrl)
-                        .placeholder(R.drawable.hancin_logo)
+                        .placeholder(R.drawable.ic_no_profile_image)
                         .apply(requestOptions)
                         .into(binding.ivProfile)
                 }

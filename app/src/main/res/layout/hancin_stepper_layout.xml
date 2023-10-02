@@ -27,15 +27,17 @@
                     android:id="@+id/lottie_animation"
                     android:layout_width="@dimen/_160sdp"
                     android:layout_height="@dimen/_160sdp"
-                    app:lottie_fileName="loading.json"
                     app:lottie_autoPlay="true"
+                    app:lottie_fileName="loading_animation.lottie"
                     app:lottie_loop="true" />
 
                 <TextView
+                    style="@style/Sanfransisco.SemiBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:text="@string/text_pleaseWait" />
+                    android:text="@string/text_pleaseWait"
+                    android:textColor="@color/greyAAAAAA" />
 
             </LinearLayout>
 

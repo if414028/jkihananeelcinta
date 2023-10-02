@@ -82,7 +82,7 @@
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:elevation="@dimen/_4sdp"
-            android:src="@drawable/hancin_logo"
+            android:src="@drawable/ic_no_profile_image"
             app:civ_border_color="@color/white"
             app:civ_circle_color="@color/black"
             app:layout_constraintBottom_toTopOf="@id/ly_info"

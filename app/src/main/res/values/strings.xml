@@ -130,4 +130,6 @@
 
     <string name="list_congregation">Daftar Jemaat</string>
     <string name="search_congregation_hint">Cari nama jemaat...</string>
+    <string name="congregation_not_found_title">Nama Jemaat Tidak Ditemukan</string>
+    <string name="congregation_not_found_sub_title">Mungkin jemaat yang kamu cari belum terdaftar.</string>
 </resources>

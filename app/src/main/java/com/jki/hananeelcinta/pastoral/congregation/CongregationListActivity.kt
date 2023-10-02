@@ -1,20 +1,19 @@
 package com.jki.hananeelcinta.pastoral.congregation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.jki.hananeelcinta.R
@@ -22,8 +21,9 @@ import com.jki.hananeelcinta.databinding.ActivityCongregationListBinding
 import com.jki.hananeelcinta.databinding.ItemUserBinding
 import com.jki.hananeelcinta.model.User
 import com.jki.hananeelcinta.util.SimpleFilterRecyclerAdapter
-import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class CongregationListActivity : AppCompatActivity() {
 
@@ -47,6 +47,10 @@ class CongregationListActivity : AppCompatActivity() {
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         initRecyclerView()
+        binding.etSearch.addTextChangedListener {
+            val searchedText = it.toString()
+            adapter.filter(searchedText)
+        }
     }
 
     private fun initRecyclerView() {
@@ -58,23 +62,40 @@ class CongregationListActivity : AppCompatActivity() {
             { holder, item ->
                 val itemBinding: ItemUserBinding = holder?.layoutBinding as ItemUserBinding
                 itemBinding.tvUserName.text = item?.fullName
-                itemBinding.tvUserPhone.text = item?.phoneNumber
-                itemBinding.tvDateOfBirth.text = item?.dateOfBirth
+                itemBinding.tvUserProfession.text = item?.job
+                itemBinding.tvDateOfBirth.text = countUserAge(item?.dateOfBirth)
                 getProfileImage(item.id, itemBinding.ivProfile)
             }, object : SimpleFilterRecyclerAdapter.OnSearchListener<User> {
-                override fun onSearchRules(model: User?, searchedText: String?): User {
-                    TODO("Not yet implemented")
+                override fun onSearchRules(model: User?, searchedText: String?): User? {
+                    if (searchedText?.let {
+                            model?.fullName.toString().lowercase(Locale.getDefault())
+                                .contains(it)
+                        } == true || searchedText?.let {
+                            model?.username.toString().lowercase(Locale.getDefault())
+                                .contains(it)
+                        } == true) {
+                        showUserNotFoundLayout(false)
+                        return model!!
+                    }
+                    return null
                 }
 
                 override fun onSearch(model: ArrayList<User>?) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onSearchEmpty(searchedText: String?) {
-                    TODO("Not yet implemented")
+                    showUserNotFoundLayout(true)
                 }
             })
         binding.rvCongregation.adapter = adapter
+    }
+
+    private fun showUserNotFoundLayout(show: Boolean) {
+        binding.lyUserNotFound.tvTitle.text =
+            resources.getString(R.string.congregation_not_found_title)
+        binding.lyUserNotFound.tvInfo.text =
+            resources.getString(R.string.congregation_not_found_sub_title)
+        binding.isUserNotFound = show
     }
 
     private fun getUserList() {
@@ -110,10 +131,25 @@ class CongregationListActivity : AppCompatActivity() {
 
                 Glide.with(applicationContext)
                     .load(imageUrl)
-                    .placeholder(R.drawable.hancin_logo)
+                    .placeholder(R.drawable.ic_no_profile_image)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .apply(requestOptions)
                     .into(ivProfile)
             }
         }
+    }
+
+    private fun countUserAge(dateOfBirth: String?): String {
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
+        val dob = dateOfBirth?.let { dateFormat.parse(it) }
+        val today = Date()
+
+        var age = today.year - (dob?.year ?: 0)
+        if (today.before(dob)) {
+            age--
+        }
+
+        return "$age Tahun"
     }
 }
