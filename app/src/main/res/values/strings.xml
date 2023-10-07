@@ -134,4 +134,6 @@
     <string name="congregation_not_found_sub_title">Mungkin jemaat yang kamu cari belum terdaftar.</string>
 
     <string name="announcement_list">Daftar Pengumuman</string>
+    <string name="create_announcement">Buat Pengumuman</string>
+    <string name="add_image_text">Ketuk untuk menambahkan gambar</string>
 </resources>

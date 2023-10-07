@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_announcement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_no_image"
+                app:layout_constraintBottom_toTopOf="@id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/Sanfransisco.SemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toTopOf="@id/tv_subtitle"
+                app:layout_constraintEnd_toStartOf="@id/tv_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_announcement"
+                tools:text="Judul Pengumuman" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/Sanfransisco.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:textColor="@color/greyAAAAAA"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/iv_announcement"
+                tools:text="12 Sept 2023" />
+
+            <TextView
+                android:id="@+id/tv_subtitle"
+                style="@style/Sanfransisco.Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:textColor="@color/greyAAAAAA"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Sample deskripsi pengumuman" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
