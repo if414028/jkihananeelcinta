@@ -1,31 +1,24 @@
 package com.jki.hananeelcinta.register
 
 import android.app.Application
-import android.content.Context
-import android.graphics.Bitmap
 import androidx.core.net.toUri
 import androidx.lifecycle.AndroidViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.jki.hananeelcinta.model.User
-import com.jki.hananeelcinta.util.ProfilePictureUploader
+import com.jki.hananeelcinta.util.PictureUploader
 import com.jki.hananeelcinta.util.SingleLiveEvent
 import com.jki.hananeelcinta.util.UserConfiguration
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
     private var database: DatabaseReference = Firebase.database.getReference("users")
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val profilePictureUploader = ProfilePictureUploader()
+    private val profilePictureUploader = PictureUploader()
 
     private var user: User = User()
     var capturedImageFile: File? = null

@@ -136,4 +136,13 @@
     <string name="announcement_list">Daftar Pengumuman</string>
     <string name="create_announcement">Buat Pengumuman</string>
     <string name="add_image_text">Ketuk untuk menambahkan gambar</string>
+    <string name="announcement_title">Judul Pengumuman</string>
+    <string name="announcement_value">Isi Pengumuman</string>
+    <string name="announcement_url">Link (Optional)</string>
+    <string name="announcement_title_error">Judul tidak boleh kosong.</string>
+    <string name="announcement_value_error">Isi pengumuman tidak boleh kosong.</string>
+    <string name="success_submit_announcement_title">Pengumuman Berhasil Dikirim</string>
+    <string name="success_submit_announcement_sub_title">Jemaat Akan Segera Mendapatkan Pengumuman.</string>
+    <string name="announcement_not_found_title">Pengumuman Tidak Ditemukan</string>
+    <string name="announcement_not_found_info">Coba cari dengan kata kunci lain.</string>
 </resources>
