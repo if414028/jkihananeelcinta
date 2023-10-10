@@ -73,7 +73,7 @@ class AnnouncementListActivity : AppCompatActivity() {
                 itemBinding.tvSubtitle.text = item?.desc
                 itemBinding.tvDate.text = item?.date?.let { convertTimestampToReadableDate(it) }
                 if (item?.imageUrl != null) {
-                    showAnnouncementImage(item.imageUrl, itemBinding.ivAnnouncement)
+                    showAnnouncementImage(item.imageUrl!!, itemBinding.ivAnnouncement)
                 }
             }, object : SimpleFilterRecyclerAdapter.OnSearchListener<Announcement> {
                 override fun onSearchRules(
@@ -123,7 +123,7 @@ class AnnouncementListActivity : AppCompatActivity() {
 
         Glide.with(applicationContext)
             .load(imageUrl)
-            .placeholder(R.drawable.ic_no_profile_image)
+            .placeholder(R.drawable.ic_image_placeholder)
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .apply(requestOptions)

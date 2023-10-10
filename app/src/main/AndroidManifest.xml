@@ -30,6 +30,9 @@
         android:theme="@style/Theme.JKIHananeelCinta"
         tools:targetApi="31">
         <activity
+            android:name=".pastoral.announcement.DetailAnnouncementActivity"
+            android:exported="false" />
+        <activity
             android:name=".pastoral.announcement.CreateAnnouncementActivity"
             android:exported="false" />
         <activity

@@ -7,9 +7,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jki.hananeelcinta.R
+import com.jki.hananeelcinta.model.Announcement
 
-class ImageSliderAdapter(private val imageUrls: List<String>) :
+class ImageSliderAdapter(private val imageUrls: List<Announcement>) :
     RecyclerView.Adapter<ImageSliderAdapter.ImageSlideViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(announcement: Announcement)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageSlideViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,7 +30,11 @@ class ImageSliderAdapter(private val imageUrls: List<String>) :
 
     override fun onBindViewHolder(holder: ImageSlideViewHolder, position: Int) {
         val imageUrl = imageUrls[position]
-        holder.bind(imageUrl)
+        imageUrl.imageUrl?.let { holder.bind(it) }
+
+        holder.itemView.setOnClickListener {
+            itemClickListener?.onItemClick(imageUrl)
+        }
     }
 
     override fun getItemCount(): Int = imageUrls.size

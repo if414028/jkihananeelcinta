@@ -23,8 +23,10 @@ import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityMainBinding
 import com.jki.hananeelcinta.databinding.ItemMenuBinding
 import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
+import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.PastorMessage
 import com.jki.hananeelcinta.pastoral.GreenRoomActivity
+import com.jki.hananeelcinta.pastoral.announcement.DetailAnnouncementActivity
 import com.jki.hananeelcinta.profile.ProfileActivity
 import com.jki.hananeelcinta.reflection.ReflectionActivity
 import com.jki.hananeelcinta.services.ServicesActivity
@@ -33,7 +35,7 @@ import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
 import com.jki.hananeelcinta.util.UserConfiguration
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -45,16 +47,13 @@ class MainActivity : AppCompatActivity() {
     private val storageRef: StorageReference = FirebaseStorage.getInstance().reference
     val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
     val pastorMessagesReference: DatabaseReference = databaseReference.child("pastorMessages")
+    val announcementReference: DatabaseReference = databaseReference.child("announcement")
 
     private lateinit var pastorMessage: PastorMessage
+    private var announcementList: ArrayList<Announcement> = arrayListOf()
 
     private lateinit var viewPager: ViewPager2
     private lateinit var imageSliderAdapter: ImageSliderAdapter
-    val imageUrls = listOf(
-        "https://firebasestorage.googleapis.com/v0/b/jki-hananeel-cinta.appspot.com/o/info%2Fseven_devine_thunder.png?alt=media&token=4d1018d5-c714-4690-9d78-867a775ed0e7",
-        "https://firebasestorage.googleapis.com/v0/b/jki-hananeel-cinta.appspot.com/o/info%2Fsunday_service.png?alt=media&token=0070dae1-68a3-4fa3-afe0-c93dbbb3d8aa",
-        "https://firebasestorage.googleapis.com/v0/b/jki-hananeel-cinta.appspot.com/o/info%2Fsamson_dabbas.png?alt=media&token=00aee252-d361-4460-89f4-141b3f26d5d9"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,12 +61,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setupLayout()
-
-        viewPager = binding.slider
-        imageSliderAdapter = ImageSliderAdapter(imageUrls)
-        viewPager.adapter = imageSliderAdapter
-
-        startAutoScroll()
+        getAnnouncements()
     }
 
     private fun setupLayout() {
@@ -123,10 +117,16 @@ class MainActivity : AppCompatActivity() {
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
 
         moduleList.add(servicesModule)
-        moduleList.add(greenRoomModule)
         moduleList.add(eventModule)
         moduleList.add(churchServiceScheduleModule)
         moduleList.add(givingModule)
+
+        //admin menu
+        if (UserConfiguration.getInstance().getUserData()?.role != null
+            && UserConfiguration.getInstance().getUserData()?.role.equals("admin")
+        ) {
+            moduleList.add(greenRoomModule)
+        }
     }
 
     override fun onBackPressed() {
@@ -189,11 +189,37 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun getAnnouncements() {
+        val query: Query = announcementReference.limitToLast(5)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (announcementSnapshot in snapshot.children) {
+                        val model = announcementSnapshot.getValue(Announcement::class.java)
+                        if (model != null) {
+                            announcementList.add(model)
+                        }
+                    }
+                    viewPager = binding.slider
+                    imageSliderAdapter =
+                        ImageSliderAdapter(announcementList.sortedByDescending { it.date })
+                    imageSliderAdapter.setOnItemClickListener(this@MainActivity)
+                    viewPager.adapter = imageSliderAdapter
+                    startAutoScroll()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
     private val autoScrollHandler = Handler()
     private val autoScrollRunnable = object : Runnable {
         override fun run() {
             val currentItem = viewPager.currentItem
-            val nextItem = (currentItem + 1) % imageUrls.size
+            val nextItem = (currentItem + 1) % announcementList.size
             viewPager.setCurrentItem(nextItem, true)
             autoScrollHandler.postDelayed(this, 8000)
         }
@@ -210,5 +236,11 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         autoScrollHandler.removeCallbacks(autoScrollRunnable)
+    }
+
+    override fun onItemClick(announcement: Announcement) {
+        val intent = Intent(this, DetailAnnouncementActivity::class.java)
+        intent.putExtra("announcement", announcement)
+        startActivity(intent)
     }
 }
