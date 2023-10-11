@@ -110,12 +110,14 @@ class CongregationListActivity : AppCompatActivity() {
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    val tempList: ArrayList<User> = arrayListOf()
                     for (dataSnapshot in snapshot.children) {
                         var user = dataSnapshot.getValue(User::class.java)
                         if (user != null) {
-                            userList.add(user)
+                            tempList.add(user)
                         }
                     }
+                    userList = tempList
                     adapter.mainData = userList
                 }
             }

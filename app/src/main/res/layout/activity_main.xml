@@ -19,13 +19,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="@dimen/_16sdp">
+                android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_24sdp">
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_16sdp">
 
                     <TextView
                         android:id="@+id/tv_hi"
@@ -72,7 +73,9 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
                     app:cardBackgroundColor="@color/color_primary"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardElevation="@dimen/_4sdp">
@@ -123,30 +126,23 @@
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/info"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
-                <com.google.android.material.card.MaterialCardView
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardElevation="@dimen/_4sdp">
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/slider"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_150sdp" />
-
-                </com.google.android.material.card.MaterialCardView>
+                    android:layout_height="@dimen/_180sdp" />
 
                 <TextView
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/menu"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
@@ -155,6 +151,7 @@
                     android:id="@+id/rv_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3"
                     tools:listitem="@layout/item_menu" />

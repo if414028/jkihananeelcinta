@@ -76,13 +76,17 @@ class CreateAnnouncementActivity : AppCompatActivity() {
         model.desc = binding.etAnnouncementValue.text.toString()
         model.date = System.currentTimeMillis()
         model.infoUrl = binding.etAnnoucementLink.text.toString()
+        model.contactPersonName = binding.etContactPersonName.text.toString()
+        model.contactPerson = binding.etContactPerson.text.toString()
 
         databaseReference.child(model.date.toString()).setValue(model)
             .addOnSuccessListener {
+                showLoading(false)
                 showSuccessDialog()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Gagal Mengirim Data", Toast.LENGTH_LONG)
+                showLoading(false)
+                Toast.makeText(this, "Gagal Mengirim Data", Toast.LENGTH_LONG).show()
             }
     }
 
@@ -100,9 +104,11 @@ class CreateAnnouncementActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
+        showLoading(true)
         if (selectedImageUri != null) {
             announcementPictureUploader.uploadAnnouncementPicture(selectedImageUri!!) { imageUrl, error ->
                 if (error != null) {
+                    showLoading(false)
                     Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                 } else {
                     if (imageUrl != null) {
@@ -113,6 +119,16 @@ class CreateAnnouncementActivity : AppCompatActivity() {
             }
         } else {
             submit()
+        }
+    }
+
+    private fun showLoading(isVisible: Boolean) {
+        if (isVisible) {
+            binding.loading.visibility = View.VISIBLE
+            binding.lottieAnimation.playAnimation()
+        } else {
+            binding.lottieAnimation.cancelAnimation()
+            binding.loading.visibility = View.GONE
         }
     }
 

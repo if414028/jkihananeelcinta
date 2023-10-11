@@ -17,9 +17,9 @@ import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragmen
 import com.jki.hananeelcinta.model.PastorMessage
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
 import java.text.SimpleDateFormat
-import java.util.ArrayList
 import java.util.Date
 import java.util.Locale
+import kotlin.collections.ArrayList
 
 class PastorMessagesListActivity : AppCompatActivity() {
 
@@ -93,12 +93,14 @@ class PastorMessagesListActivity : AppCompatActivity() {
         pastorMessageRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    val tempList: ArrayList<PastorMessage> = arrayListOf()
                     for (dataSnapshot in snapshot.children) {
                         val pm = dataSnapshot.getValue(PastorMessage::class.java)
                         if (pm != null) {
-                            pastorMessageList.add(pm)
+                            tempList.add(pm)
                         }
                     }
+                    pastorMessageList = tempList
                     adapter.mainData = pastorMessageList.sortedByDescending { it.date }
                     binding.isError = false
                 }
