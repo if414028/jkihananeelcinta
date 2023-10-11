@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/tv_day"
-                style="@style/Sanfransisco.Regular"
+                style="@style/Sanfransisco.Light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jumat"
@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/tv_time"
-                style="@style/Sanfransisco.Bold"
+                style="@style/Sanfransisco.SemiBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19:00 WIB"
@@ -70,11 +70,11 @@
 
             <TextView
                 android:id="@+id/tv_location"
-                style="@style/Sanfransisco.Bold"
+                style="@style/Sanfransisco.SemiBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hancin"
-                android:textColor="@color/yellowC79C52"
+                android:textColor="@color/color_accent"
                 android:textSize="@dimen/_14ssp" />
 
             <TextView

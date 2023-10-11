@@ -48,6 +48,7 @@
                     android:singleLine="true"
                     android:text="Reflections"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_9ssp" />
 
             </LinearLayout>

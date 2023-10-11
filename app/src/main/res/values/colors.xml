@@ -18,6 +18,9 @@
     <color name="color_primary">#800020</color>
     <color name="color_primary_transparent">#18180020</color>
 
+    <color name="color_secondary">#662549</color>
+    <color name="color_accent">#F39F5A</color>
+
     <color name="transparentWhite">#66ffffff</color>
     <color name="transparentWhiteButton">#e6ffffff</color>
     <color name="greyAAAAAA">#AAAAAA</color>

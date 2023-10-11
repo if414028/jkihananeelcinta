@@ -33,6 +33,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hi,"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +44,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_16sdp"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/iv_profile"
@@ -52,14 +54,14 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/iv_profile"
-                        android:layout_width="@dimen/_55sdp"
-                        android:layout_height="@dimen/_55sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:adjustViewBounds="true"
                         android:elevation="@dimen/_4sdp"
                         android:src="@drawable/ic_no_profile_image"
                         app:civ_border_color="@color/color_primary"
-                        app:civ_border_width="4dp"
+                        app:civ_border_width="@dimen/_3sdp"
                         app:civ_circle_color="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18sdp"
                     android:text="@string/info"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -145,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18sdp"
                     android:text="@string/menu"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
                 <androidx.recyclerview.widget.RecyclerView
