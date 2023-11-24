@@ -30,6 +30,15 @@
         android:theme="@style/Theme.JKIHananeelCinta"
         tools:targetApi="31">
         <activity
+            android:name=".prayerrequest.PrayerRequestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".prayerrequest.CreatePrayerRequestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".prayerrequest.PrayerRequestListActivity"
+            android:exported="false" />
+        <activity
             android:name=".pastoral.announcement.DetailAnnouncementActivity"
             android:exported="false" />
         <activity

@@ -44,7 +44,7 @@ class CreatePastorMessagesActivity : AppCompatActivity() {
                 showSuccessDialog()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Gagal Mengirim Data", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Gagal Mengirim Data", Toast.LENGTH_LONG).show()
             }
     }
 

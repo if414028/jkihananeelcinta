@@ -145,4 +145,19 @@
     <string name="success_submit_announcement_sub_title">Jemaat Akan Segera Mendapatkan Pengumuman.</string>
     <string name="announcement_not_found_title">Pengumuman Tidak Ditemukan</string>
     <string name="announcement_not_found_info">Coba cari dengan kata kunci lain.</string>
+
+    <string name="prayer_request">Permintaan Doa</string>
+    <string name="create_prayer_request">Buat Permintaan Doa</string>
+    <string name="prayer_request_type">Jenis Permintaan Doa</string>
+    <string name="visitation">Kunjungan</string>
+    <string name="prayer_help">Bantuan Doa</string>
+    <string name="counseling">Konseling</string>
+    <string name="request_desc">Deskripsi Permintaan Doa</string>
+
+    <string name="success_create_prayer_request">Permintaan Doa Berhasil Disimpan</string>
+    <string name="success_create_prayer_request_desc">Permintaan doa anda akan segera ditangani oleh pendoa.</string>
+    <string name="pray_request_list">Daftar Doa</string>
+
+    <string name="pray_request_not_found_title">Permintaan Doa Tidak Ditemukan</string>
+    <string name="pray_request_not_found_desc">Coba cari dengan kata kunci lain.</string>
 </resources>

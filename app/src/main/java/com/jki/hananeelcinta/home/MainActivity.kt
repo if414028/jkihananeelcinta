@@ -27,6 +27,8 @@ import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.PastorMessage
 import com.jki.hananeelcinta.pastoral.GreenRoomActivity
 import com.jki.hananeelcinta.pastoral.announcement.DetailAnnouncementActivity
+import com.jki.hananeelcinta.prayerrequest.CreatePrayerRequestActivity
+import com.jki.hananeelcinta.prayerrequest.PrayerRequestListActivity
 import com.jki.hananeelcinta.profile.ProfileActivity
 import com.jki.hananeelcinta.reflection.ReflectionActivity
 import com.jki.hananeelcinta.services.ServicesActivity
@@ -95,6 +97,12 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     resources.getString(R.string.green_room) ->
                         Intent(applicationContext, GreenRoomActivity::class.java)
 
+                    resources.getString(R.string.prayer_request) ->
+                        Intent(applicationContext, CreatePrayerRequestActivity::class.java)
+
+                    resources.getString(R.string.pray_request_list) ->
+                        Intent(applicationContext, PrayerRequestListActivity::class.java)
+
                     else -> Intent(applicationContext, ReflectionActivity::class.java)
                 }
                 startActivity(intent)
@@ -111,21 +119,21 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
             ModuleView(resources.getString(R.string.green_room), R.drawable.meeting)
         val eventModule =
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
-        val churchServiceScheduleModule =
-            ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
-        val givingModule =
-            ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
+        val prayerRequestModule =
+            ModuleView(resources.getString(R.string.prayer_request), R.drawable.ic_pray)
+        val prayRequestListModule =
+            ModuleView(resources.getString(R.string.pray_request_list), R.drawable.ic_pray)
 
         moduleList.add(servicesModule)
+        moduleList.add(prayerRequestModule)
         moduleList.add(eventModule)
-        moduleList.add(churchServiceScheduleModule)
-        moduleList.add(givingModule)
 
         //admin menu
         if (UserConfiguration.getInstance().getUserData()?.role != null
             && UserConfiguration.getInstance().getUserData()?.role.equals("admin")
         ) {
             moduleList.add(greenRoomModule)
+            moduleList.add(prayRequestListModule)
         }
     }
 
