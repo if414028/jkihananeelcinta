@@ -202,12 +202,14 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    val tempList: ArrayList<Announcement> = arrayListOf()
                     for (announcementSnapshot in snapshot.children) {
                         val model = announcementSnapshot.getValue(Announcement::class.java)
                         if (model != null) {
-                            announcementList.add(model)
+                            tempList.add(model)
                         }
                     }
+                    announcementList = tempList
                     viewPager = binding.slider
                     imageSliderAdapter =
                         ImageSliderAdapter(announcementList.sortedByDescending { it.date })

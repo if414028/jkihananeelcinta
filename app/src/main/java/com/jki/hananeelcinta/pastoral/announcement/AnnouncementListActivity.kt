@@ -75,6 +75,11 @@ class AnnouncementListActivity : AppCompatActivity() {
                 if (item?.imageUrl != null) {
                     showAnnouncementImage(item.imageUrl!!, itemBinding.ivAnnouncement)
                 }
+                itemBinding.root.setOnClickListener {
+                    val intent = Intent(this, DetailAnnouncementActivity::class.java)
+                    intent.putExtra("announcement", item)
+                    startActivity(intent)
+                }
             }, object : SimpleFilterRecyclerAdapter.OnSearchListener<Announcement> {
                 override fun onSearchRules(
                     model: Announcement?,
@@ -134,12 +139,14 @@ class AnnouncementListActivity : AppCompatActivity() {
         announcementRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    val tempList: ArrayList<Announcement> = arrayListOf()
                     for (dataSnapshot in snapshot.children) {
-                        var announcement = dataSnapshot.getValue(Announcement::class.java)
+                        val announcement = dataSnapshot.getValue(Announcement::class.java)
                         if (announcement != null) {
-                            announcementList.add(announcement)
+                            tempList.add(announcement)
                         }
                     }
+                    announcementList = tempList
                     adapter.mainData = announcementList.sortedByDescending { it.date }
                 }
             }

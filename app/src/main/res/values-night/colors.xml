@@ -11,4 +11,5 @@
     <color name="color_primary">#F39F5A</color>
     <color name="greyAAAAAA">#9E9E9E</color>
     <color name="color_accent">#E5989B</color>
+    <color name="color_link">#96c9dc</color>
 </resources>

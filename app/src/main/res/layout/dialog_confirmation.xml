@@ -20,7 +20,9 @@
             style="@style/Sanfransisco.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:text="@string/success_user_registration_title"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -31,7 +33,9 @@
             style="@style/Sanfransisco.Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:text="@string/success_user_registration_desc"
             android:textAlignment="center"
             android:textColor="@color/greyAAAAAA" />
@@ -52,9 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_weight="1"
-                android:textColor="@color/color_primary"
                 android:background="@drawable/hancin_red_stroke_ripple_primary_button"
-                android:text="@string/OK" />
+                android:text="@string/OK"
+                android:textColor="@color/color_primary" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_positive"

@@ -9,7 +9,9 @@ data class Announcement(
     var date: Long = 0L,
     var desc: String? = "",
     var infoUrl: String? = "",
-    var imageUrl: String? = ""
+    var imageUrl: String? = "",
+    var contactPerson: String? = "",
+    var contactPersonName: String? = ""
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -18,11 +20,13 @@ data class Announcement(
         parcel.readLong(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString()
     ) {
     }
 
-    constructor() : this(0, "", 0L, "", "", "")
+    constructor() : this(0, "", 0L, "", "", "", "", "")
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -31,6 +35,8 @@ data class Announcement(
         parcel.writeString(desc)
         parcel.writeString(infoUrl)
         parcel.writeString(imageUrl)
+        parcel.writeString(contactPerson)
+        parcel.writeString(contactPersonName)
     }
 
     override fun describeContents(): Int {

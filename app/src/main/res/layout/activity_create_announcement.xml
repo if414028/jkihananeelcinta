@@ -61,12 +61,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_8sdp">
+                android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardElevation="@dimen/_4sdp">
 
@@ -104,7 +106,9 @@
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/announcement_title" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -112,7 +116,9 @@
                     style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:background="@drawable/edittext_background_grey_border"
                     android:hint="@string/announcement_title"
                     android:inputType="text"
@@ -136,7 +142,9 @@
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/announcement_value" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -144,7 +152,9 @@
                     style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:background="@drawable/edittext_background_grey_border"
                     android:gravity="top|start"
                     android:hint="@string/announcement_value"
@@ -172,7 +182,9 @@
                     style="@style/Sanfransisco.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/announcement_url" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -180,16 +192,70 @@
                     style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:background="@drawable/edittext_background_grey_border"
-                    android:hint="@string/announcement_url"
-                    android:inputType="text"
+                    android:hint="@string/link_example"
+                    android:inputType="textWebEditText"
                     android:paddingLeft="@dimen/_16sdp"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingRight="@dimen/_16sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:singleLine="true" />
 
+                <TextView
+                    style="@style/Sanfransisco.SemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:text="@string/contact_name" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_contact_person_name"
+                    style="@style/Sanfransisco.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:background="@drawable/edittext_background_grey_border"
+                    android:hint="@string/contact_person_name_example"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:singleLine="true" />
+
+                <TextView
+                    style="@style/Sanfransisco.SemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:text="@string/contact" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_contact_person"
+                    style="@style/Sanfransisco.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:background="@drawable/edittext_background_grey_border"
+                    android:hint="@string/contact_person_example"
+                    android:inputType="phone"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:singleLine="true" />
             </LinearLayout>
 
         </ScrollView>
@@ -199,8 +265,9 @@
             style="@style/HancinSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_21sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:backgroundTint="@color/color_primary"
             android:elevation="@dimen/_4sdp"
             android:padding="@dimen/_12sdp"
@@ -212,6 +279,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ly_scroll" />
+
+        <LinearLayout
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/transparentBlack"
+            android:elevation="@dimen/_5sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="wrap_content"
+                app:lottie_fileName="loading_animation.lottie"
+                app:lottie_loop="true" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,6 +20,7 @@
 
     <color name="color_secondary">#662549</color>
     <color name="color_accent">#F39F5A</color>
+    <color name="color_link">#61a0af</color>
 
     <color name="transparentWhite">#66ffffff</color>
     <color name="transparentWhiteButton">#e6ffffff</color>
