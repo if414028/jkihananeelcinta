@@ -3,6 +3,7 @@ package com.jki.hananeelcinta.pastoral.pastormessages
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,9 @@ import com.jki.hananeelcinta.databinding.ActivityPastorMessagesListBinding
 import com.jki.hananeelcinta.databinding.ItemPastorMessageBinding
 import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
 import com.jki.hananeelcinta.model.PastorMessage
+import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
+import com.jki.hananeelcinta.util.UserConfiguration
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -33,6 +36,8 @@ class PastorMessagesListActivity : AppCompatActivity() {
 
     private lateinit var weeklyReflectionFragment: DetailWeeklyReflectionFragment
 
+    private val isAdmin = UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pastor_messages_list)
@@ -42,10 +47,13 @@ class PastorMessagesListActivity : AppCompatActivity() {
     }
 
     private fun setupLayout() {
-        binding.fabCreatePastorMessage.setOnClickListener {
-            val intent = Intent(this, CreatePastorMessagesActivity::class.java)
-            startActivity(intent)
-        }
+        if (isAdmin) {
+            binding.fabCreatePastorMessage.visibility = View.VISIBLE
+            binding.fabCreatePastorMessage.setOnClickListener {
+                val intent = Intent(this, CreatePastorMessagesActivity::class.java)
+                startActivity(intent)
+            }
+        } else binding.fabCreatePastorMessage.visibility = View.GONE
         binding.btnBack.setOnClickListener { onBackPressed() }
         initRecyclerView()
     }
@@ -84,7 +92,7 @@ class PastorMessagesListActivity : AppCompatActivity() {
     }
 
     private fun getReadableDate(timeMilis: Long): String {
-        val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm:ss", Locale.getDefault())
+        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val currentDate = Date(timeMilis)
         return sdf.format(currentDate)
     }

@@ -64,7 +64,7 @@ class CreatePrayerRequestActivity : AppCompatActivity() {
 
         prayRequest.id = System.currentTimeMillis().toString()
 
-        databaseReference.child(prayRequest.id).setValue(prayRequest)
+        databaseReference.child(prayRequest.id!!).setValue(prayRequest)
             .addOnSuccessListener {
                 showSuccessDialog()
             }

@@ -52,6 +52,7 @@
                     android:paddingEnd="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_2sdp"
                     android:text="Open"
+                    android:id="@+id/tv_status"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp" />
 

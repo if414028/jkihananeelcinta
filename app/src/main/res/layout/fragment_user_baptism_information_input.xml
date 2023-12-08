@@ -137,7 +137,6 @@
                         android:drawableEnd="@drawable/ic_baseline_today_24"
                         android:editable="false"
                         android:hint="@string/baptism_time_hint"
-                        android:inputType="number"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingRight="@dimen/_16sdp"

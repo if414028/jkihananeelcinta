@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityGreenRoomBinding
+import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.pastoral.announcement.AnnouncementListActivity
 import com.jki.hananeelcinta.pastoral.congregation.CongregationListActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.CreatePastorMessagesActivity
@@ -58,7 +59,7 @@ class GreenRoomActivity : AppCompatActivity() {
     }
 
     private fun getTotalCongregation() {
-        userRef.orderByChild("role").equalTo("jemaat")
+        userRef.orderByChild("role").equalTo(Role.JEMAAT.role)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {

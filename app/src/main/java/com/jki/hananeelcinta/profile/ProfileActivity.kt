@@ -35,7 +35,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun setupLayout() {
         if (userData != null) {
             binding.username = userData.fullName
-            binding.nij = userData.id
+            binding.nij = "NIJ: ${userData.nij}"
             getProfileImage()
         }
         binding.btnSignOut.setOnClickListener { signOut() }

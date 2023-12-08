@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityDetailAnnouncementBinding
 import com.jki.hananeelcinta.model.Announcement
+import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.util.UIHelper
 import com.jki.hananeelcinta.util.UserConfiguration
 import java.text.SimpleDateFormat
@@ -26,6 +27,9 @@ class DetailAnnouncementActivity : AppCompatActivity() {
     private var model = Announcement()
 
     private var databaseReference = FirebaseDatabase.getInstance().getReference("announcement")
+
+    private val isAdmin =
+        UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +95,7 @@ class DetailAnnouncementActivity : AppCompatActivity() {
                 .into(binding.ivAnnouncement)
         }
 
-        if (UserConfiguration.getInstance().getUserData()?.role.equals("admin")) {
+        if (isAdmin) {
             binding.btnDelete.visibility = View.VISIBLE
             binding.btnDelete.setOnClickListener {
                 UIHelper.getInstance().displayConfirmation(

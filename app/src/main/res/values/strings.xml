@@ -163,6 +163,7 @@
     <string name="prayer_help">Bantuan Doa</string>
     <string name="counseling">Konseling</string>
     <string name="request_desc">Deskripsi Permintaan Doa</string>
+    <string name="finish_pray_rrequest">Selesaikan Permintaan Doa</string>
 
     <string name="success_create_prayer_request">Permintaan Doa Berhasil Disimpan</string>
     <string name="success_create_prayer_request_desc">Permintaan doa anda akan segera ditangani oleh pendoa.</string>
@@ -170,4 +171,16 @@
 
     <string name="pray_request_not_found_title">Permintaan Doa Tidak Ditemukan</string>
     <string name="pray_request_not_found_desc">Coba cari dengan kata kunci lain.</string>
+
+    <string name="handle_pray_request">Tangani Permintaan Doa</string>
+
+    <string name="success_handle_pray_request">Permintaan Doa Sekarang Ditangani Oleh Anda</string>
+    <string name="success_handle_pray_request_desc">Silahkan hubungi jemaaat untuk melanjutkan pelayanan doa.</string>
+
+    <string name="pray_request_result">Hasil Doa</string>
+    <string name="done">Selesai</string>
+
+    <string name="done_handle_pray_request">Selamat anda sudah selesai menangani permintaan doa.</string>
+
+    <string name="reflection_list">Daftar Renungan</string>
 </resources>

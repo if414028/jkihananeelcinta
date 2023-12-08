@@ -25,8 +25,10 @@ import com.jki.hananeelcinta.databinding.ItemMenuBinding
 import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
 import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.PastorMessage
+import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.pastoral.GreenRoomActivity
 import com.jki.hananeelcinta.pastoral.announcement.DetailAnnouncementActivity
+import com.jki.hananeelcinta.pastoral.pastormessages.PastorMessagesListActivity
 import com.jki.hananeelcinta.prayerrequest.CreatePrayerRequestActivity
 import com.jki.hananeelcinta.prayerrequest.PrayerRequestListActivity
 import com.jki.hananeelcinta.profile.ProfileActivity
@@ -56,6 +58,9 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
     private lateinit var viewPager: ViewPager2
     private lateinit var imageSliderAdapter: ImageSliderAdapter
+
+    private val isAdmin =
+        UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,12 +103,12 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                         Intent(applicationContext, GreenRoomActivity::class.java)
 
                     resources.getString(R.string.prayer_request) ->
-                        Intent(applicationContext, CreatePrayerRequestActivity::class.java)
-
-                    resources.getString(R.string.pray_request_list) ->
                         Intent(applicationContext, PrayerRequestListActivity::class.java)
 
-                    else -> Intent(applicationContext, ReflectionActivity::class.java)
+                    resources.getString(R.string.reflection) ->
+                        Intent(applicationContext, PastorMessagesListActivity::class.java)
+
+                    else -> Intent(applicationContext, MainActivity::class.java)
                 }
                 startActivity(intent)
             }
@@ -121,8 +126,6 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
         val prayerRequestModule =
             ModuleView(resources.getString(R.string.prayer_request), R.drawable.ic_pray)
-        val prayRequestListModule =
-            ModuleView(resources.getString(R.string.pray_request_list), R.drawable.ic_pray)
 
         moduleList.add(servicesModule)
         moduleList.add(prayerRequestModule)
@@ -130,10 +133,9 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
         //admin menu
         if (UserConfiguration.getInstance().getUserData()?.role != null
-            && UserConfiguration.getInstance().getUserData()?.role.equals("admin")
+            && isAdmin
         ) {
             moduleList.add(greenRoomModule)
-            moduleList.add(prayRequestListModule)
         }
     }
 

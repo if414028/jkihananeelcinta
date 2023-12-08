@@ -28,7 +28,8 @@ data class User(
     var motherFullName: String,
     var statusInFamily: String,
     var photoImageUrl: String,
-    var role: String
+    var role: String,
+    var nij: String
 ) {
     constructor() : this(
         "",
@@ -58,6 +59,7 @@ data class User(
         "",
         "",
         "",
+        "",
         ""
     )
 }
@@ -83,6 +85,15 @@ enum class Education(val education: String) {
     S2("S2"),
     S3("S3"),
     OTHER("Lainnya")
+}
+
+enum class Role(val role: String) {
+    SUPERUSER("SuperUser"),
+    JEMAAT("Jemaat"),
+    PASTORAL("Pastoral"),
+    PENDOA("Pendoa"),
+    PENGERJA("Pengerja"),
+    SEKRETARIAT("Sekretariat")
 }
 
 enum class Job(val job: String) {

@@ -97,7 +97,7 @@ class UserBaptismInputFragment : Fragment() {
         binding.etBaptismTime.setOnClickListener {
             context?.let { context ->
                 DatePickerDialog(
-                    context, R.style.HancinDatePickerStyle,
+                    context,
                     dateListener,
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
