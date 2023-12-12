@@ -29,7 +29,8 @@ class PrayerRequestDetailActivity : AppCompatActivity() {
     private val prayRequestDatabaseReference = database.getReference("prayerRequest")
     private val userDatabaseReference = database.getReference("users")
 
-    private var isAdmin = UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
+    private var isAdmin =
+        UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
 
     private var prayRequest = PrayerRequest()
 
