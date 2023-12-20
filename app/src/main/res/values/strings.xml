@@ -183,4 +183,14 @@
     <string name="done_handle_pray_request">Selamat anda sudah selesai menangani permintaan doa.</string>
 
     <string name="reflection_list">Daftar Renungan</string>
+
+    <string name="offering_verses">Berilah kepada Tuhan kemuliaan nama-Nya,
+    bawalah persembahan dan masuklah menghadap Dia!
+    Sujudlah menyembah kepada Tuhan dengan berhiaskan kekudusan. \n\n Gemetarlah di hadapan-Nya hai segenap bumi;
+    sungguh tegak dunia, tidak bergoyang. \n\n Biarlah langit bersukacita dan bumi bersorak-sorak,
+    biarlah orang berkata di antara bangsa-bangsa: ”Tuhan itu Raja!”</string>
+
+    <string name="offering_verse_address">1 Tawarikh 16:29-31</string>
+    <string name="offering_desc">Bagi Bapak/Ibu yang rindu untuk memberikan Persembahan dan Perpuluhan, dapat transfer ke nomor rekening berikut ini:</string>
+    <string name="bank_account">003-313-3313</string>
 </resources>

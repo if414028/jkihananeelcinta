@@ -26,6 +26,7 @@ import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragmen
 import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.PastorMessage
 import com.jki.hananeelcinta.model.Role
+import com.jki.hananeelcinta.offering.OfferingActivity
 import com.jki.hananeelcinta.pastoral.GreenRoomActivity
 import com.jki.hananeelcinta.pastoral.announcement.DetailAnnouncementActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.PastorMessagesListActivity
@@ -108,6 +109,9 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     resources.getString(R.string.reflection) ->
                         Intent(applicationContext, PastorMessagesListActivity::class.java)
 
+                    resources.getString(R.string.offering) ->
+                        Intent(applicationContext, OfferingActivity::class.java)
+
                     else -> Intent(applicationContext, MainActivity::class.java)
                 }
                 startActivity(intent)
@@ -126,10 +130,13 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
         val prayerRequestModule =
             ModuleView(resources.getString(R.string.prayer_request), R.drawable.ic_pray)
+        val offeringModule =
+            ModuleView(resources.getString(R.string.offering), R.drawable.ic_give)
 
         moduleList.add(servicesModule)
         moduleList.add(prayerRequestModule)
         moduleList.add(eventModule)
+        moduleList.add(offeringModule)
 
         //admin menu
         if (UserConfiguration.getInstance().getUserData()?.role != null
