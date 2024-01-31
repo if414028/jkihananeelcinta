@@ -16,7 +16,6 @@ import com.jki.hananeelcinta.util.PictureUploader
 import com.jki.hananeelcinta.util.SingleLiveEvent
 import com.jki.hananeelcinta.util.UserConfiguration
 import java.io.File
-import java.lang.StringBuilder
 
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
@@ -42,15 +41,13 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     fun setUserInformation(
         fullName: String,
-        idNumber: String,
         gender: String,
         placeOfBirth: String,
         dateOfBirth: String,
         phoneNumber: String
     ) {
-        if (!fullName.isBlank() && !idNumber.isBlank() && !gender.isBlank() && !placeOfBirth.isBlank() && !dateOfBirth.isBlank() && !phoneNumber.isBlank()) {
+        if (fullName.isNotBlank() && gender.isNotBlank() && placeOfBirth.isNotBlank() && dateOfBirth.isNotBlank() && phoneNumber.isNotBlank()) {
             user.fullName = fullName
-            user.idNumber = idNumber.toLong()
             user.gender = gender
             user.placeOfBirth = placeOfBirth
             user.dateOfBirth = dateOfBirth
@@ -59,7 +56,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun setUserAddress(address: String) {
-        if (!address.isBlank()) {
+        if (address.isNotBlank()) {
             user.address = address
         }
     }
@@ -88,13 +85,9 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     fun setUserMartialStatus(
         married: String,
-        fatherFullName: String,
-        motherFullName: String,
         statusInFamily: String
     ) {
         user.married = married == "Sudah Menikah"
-        user.fatherFullName = fatherFullName
-        user.motherFullName = motherFullName
         user.statusInFamily = statusInFamily
     }
 

@@ -134,7 +134,7 @@
                             style="@style/Sanfransisco.SemiBold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(model.idNumber)}"
+                            android:text="@{String.valueOf(model.nij)}"
                             android:textSize="@dimen/_12ssp"
                             tools:text="123345567890" />
 

@@ -1,7 +1,11 @@
 package com.jki.hananeelcinta.offering
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.jki.hananeelcinta.R
@@ -21,6 +25,18 @@ class OfferingActivity : AppCompatActivity() {
 
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
+        binding.btnCopyBankAccount.setOnClickListener {
+            copyBankAccount("bankAccount", resources.getString(R.string.bank_account_plain))
+        }
+    }
+
+    private fun copyBankAccount(label: String, text: String) {
+        val clipboardManager =
+            applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText(label, text)
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(applicationContext, "Nomor rekening berhasil disalin.", Toast.LENGTH_SHORT)
+            .show()
     }
 
 }

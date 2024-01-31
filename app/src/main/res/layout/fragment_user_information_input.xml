@@ -94,53 +94,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ly_id_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/Sanfransisco.Regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/id_number" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_id_number"
-                        style="@style/Sanfransisco.Regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:background="@drawable/edittext_background_grey_border"
-                        android:hint="@string/id_number"
-                        android:inputType="number"
-                        android:paddingLeft="@dimen/_16sdp"
-                        android:paddingTop="@dimen/_12sdp"
-                        android:paddingRight="@dimen/_16sdp"
-                        android:paddingBottom="@dimen/_12sdp"
-                        android:singleLine="true" />
-
-                    <TextView
-                        android:id="@+id/tv_id_number_error_message"
-                        style="@style/Sanfransisco.Regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:text="@string/id_number_error_message"
-                        android:textColor="@color/red_C2576A"
-                        android:visibility="gone" />
-
-                    <View
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="0.5dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_16sdp"
-                        android:background="@color/greyAAAAAA" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/ly_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.RadioButton
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -56,7 +55,7 @@ class UserInformationInputFragment : Fragment() {
     private fun setupGenderRadioButton() {
         enumValues<Gender>().forEach {
             val rbGender = RadioButton(context)
-            rbGender.setText(it.gender)
+            rbGender.text = it.gender
             binding.rbGender.addView(rbGender)
         }
         (binding.rbGender.getChildAt(0) as RadioButton).isChecked = true
@@ -100,17 +99,25 @@ class UserInformationInputFragment : Fragment() {
     fun setUserInformation() {
         viewModel.setUserInformation(
             binding.etName.text.toString(),
-            binding.etIdNumber.text.toString(),
             getSelectedGender(),
             binding.etPlaceOfBirth.text.toString(),
             binding.etDateOfBirth.text.toString(),
-            binding.etPhoneNumber.text.toString()
+            getFormattedPhoneNumber(binding.etPhoneNumber.text.toString())
         )
+    }
+
+    private fun getFormattedPhoneNumber(phoneNumber: String): String {
+        return if (phoneNumber.startsWith("+62")) {
+            phoneNumber
+        } else if (phoneNumber.startsWith("0")) {
+            "+62${phoneNumber.substring(1)}"
+        } else {
+            phoneNumber
+        }
     }
 
     private fun validateEachField() {
         var isNameValid = false
-        var isIdNumberValid = false
         var isPlaceOfBirthValid = false
         var isDateOfBirthValid = false
         var isPhoneNumberValid = false
@@ -119,43 +126,34 @@ class UserInformationInputFragment : Fragment() {
             if (isNameValid)
                 binding.tvNameErrorMessage.visibility = View.GONE
             else binding.tvNameErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
-        }
-        binding.etIdNumber.addTextChangedListener {
-            isIdNumberValid = it.toString().isNotEmpty() && it.toString().length == 16
-            if (isIdNumberValid)
-                binding.tvIdNumberErrorMessage.visibility = View.GONE
-            else binding.tvIdNumberErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
+            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
         }
         binding.etPlaceOfBirth.addTextChangedListener {
             isPlaceOfBirthValid = it.toString().isNotEmpty()
             if (isPlaceOfBirthValid)
                 binding.tvPlaceOfBirthErrorMessage.visibility = View.GONE
             else binding.tvPlaceOfBirthErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
+            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
         }
         binding.etDateOfBirth.addTextChangedListener {
             isDateOfBirthValid = it.toString().isNotEmpty()
             if (isDateOfBirthValid)
                 binding.tvDateOfBirthErrorMessage.visibility = View.GONE
             else binding.tvPlaceOfBirthErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
+            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
         }
         binding.etPhoneNumber.addTextChangedListener {
             isPhoneNumberValid = it.toString().isNotEmpty()
             if (isPhoneNumberValid)
                 binding.tvPhoneNumberErrorMessage.visibility = View.GONE
             else binding.tvPhoneNumberErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isIdNumberValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
+            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
         }
     }
 
     fun validateSection() {
         viewModel.setIsSectionValid(
             binding.etName.text.toString().isNotEmpty()
-                    && binding.etIdNumber.text.toString().isNotEmpty()
-                    && binding.etIdNumber.text.toString().length == 16
                     && binding.etPlaceOfBirth.text.toString().isNotEmpty()
                     && binding.etPlaceOfBirth.text.toString().isNotEmpty()
                     && binding.etDateOfBirth.text.toString().isNotEmpty()

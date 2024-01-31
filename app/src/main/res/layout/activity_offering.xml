@@ -112,6 +112,7 @@
                     <ImageView
                         android:layout_width="@dimen/_90sdp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
                         android:layout_weight="4"
                         android:adjustViewBounds="true"
                         android:src="@drawable/bca_logo" />
@@ -126,7 +127,7 @@
                         android:textSize="@dimen/_20ssp" />
 
                     <ImageView
-                        android:id="@+id/ic_copy_bank_account"
+                        android:id="@+id/btn_copy_bank_account"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"

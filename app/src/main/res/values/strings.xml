@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JKI Hananeel Cinta</string>
+    <string name="app_name">My Hananeel Cinta</string>
     <string name="app_initial">JKI HanCin</string>
 
     <string name="login">Masuk</string>
@@ -124,7 +124,7 @@
 
     <string name="success_create_pastor_messages">Renungan Berhasil Disimpan</string>
     <string name="success_create_pastor_message_desc">Jemaat Akan Senang Membaca Renungan Minggu Ini</string>
-    <string name="green_room">Green Room</string>
+    <string name="green_room">Admin</string>
 
     <string name="list_pastor_message">Daftar Renungan</string>
 
@@ -193,4 +193,5 @@
     <string name="offering_verse_address">1 Tawarikh 16:29-31</string>
     <string name="offering_desc">Bagi Bapak/Ibu yang rindu untuk memberikan Persembahan dan Perpuluhan, dapat transfer ke nomor rekening berikut ini:</string>
     <string name="bank_account">003-313-3313</string>
+    <string name="bank_account_plain">0033133313</string>
 </resources>
