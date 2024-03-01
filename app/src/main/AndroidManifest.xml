@@ -30,6 +30,9 @@
         android:theme="@style/Theme.JKIHananeelCinta"
         tools:targetApi="31">
         <activity
+            android:name=".login.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".prayerrequest.FinishHandlePrayRequestActivity"
             android:exported="false" />
         <activity

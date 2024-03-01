@@ -50,17 +50,48 @@
                 android:singleLine="true"
                 android:textSize="@dimen/_11ssp" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_password"
-                style="@style/Sanfransisco.Regular"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_21sdp"
-                android:background="@drawable/edittext_background_grey"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:padding="@dimen/_12sdp"
-                android:singleLine="true"
+                android:layout_marginTop="@dimen/_21sdp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_password"
+                    style="@style/Sanfransisco.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background_grey"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_50sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="asdfdafadsfdasfdsfadsfdsfadsfsafdasfdsfadfdafdsf" />
+
+                <ImageView
+                    android:id="@+id/btn_toggle_password"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@id/et_password"
+                    android:layout_alignBottom="@id/et_password"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:adjustViewBounds="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_eye_closed" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_forgot_password"
+                style="@style/Sanfransisco.SemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/forgot_password"
+                android:textAlignment="textEnd"
+                android:textColor="@color/color_primary"
                 android:textSize="@dimen/_11ssp" />
 
             <androidx.appcompat.widget.AppCompatButton
