@@ -87,7 +87,6 @@
                 style="@style/Sanfransisco.SemiBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/forgot_password"
                 android:textAlignment="textEnd"

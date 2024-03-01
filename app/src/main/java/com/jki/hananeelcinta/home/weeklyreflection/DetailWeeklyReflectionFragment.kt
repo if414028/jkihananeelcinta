@@ -5,16 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import com.google.firebase.database.FirebaseDatabase
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.FragmentDetailWeeklyReflectionBinding
 import com.jki.hananeelcinta.model.PastorMessage
+import com.jki.hananeelcinta.model.Role
+import com.jki.hananeelcinta.util.UIHelper
+import com.jki.hananeelcinta.util.UserConfiguration
 
 class DetailWeeklyReflectionFragment : DialogFragment() {
 
     private lateinit var binding: FragmentDetailWeeklyReflectionBinding
     private lateinit var detailMessage: PastorMessage
+
+    private val isAdmin =
+        UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
+    private var databaseReference = FirebaseDatabase.getInstance().getReference("pastorMessages")
 
     companion object {
         fun newInstance() = DetailWeeklyReflectionFragment()
@@ -70,5 +79,45 @@ class DetailWeeklyReflectionFragment : DialogFragment() {
         binding.tvTitle.text = detailMessage.title
         binding.tvWriter.text = "By His Grace \n" + detailMessage.writer
         binding.tvMessage.text = detailMessage.messages
+        if (isAdmin) {
+            binding.btnDelete.visibility = View.VISIBLE
+            binding.btnDelete.setOnClickListener {
+                UIHelper.getInstance().displayConfirmation(
+                    resources.getString(R.string.confirm_delete_pastor_message),
+                    resources.getString(R.string.confirm_delete_pastor_message_desc),
+                    activity,
+                    { },
+                    {
+                        deleteReflection()
+                    },
+                    resources.getString(R.string.text_confirmation_no),
+                    resources.getString(R.string.text_confirmation_yes_),
+                    R.drawable.question,
+                    true
+                )
+            }
+        } else {
+            binding.btnDelete.visibility = View.GONE
+        }
+    }
+
+    private fun deleteReflection() {
+        databaseReference.child(detailMessage.date.toString()).removeValue()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    UIHelper.getInstance().displaySuccessDialog(
+                        resources.getString(R.string.success_delete_pastor_message),
+                        null,
+                        activity,
+                        {
+                            dismiss()
+                        },
+                        resources.getString(R.string.OK),
+                        false,
+                    )
+                } else {
+                    Toast.makeText(context, "Gagal menghapus renungan.", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

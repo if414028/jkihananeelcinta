@@ -1,10 +1,12 @@
 package com.jki.hananeelcinta.splash
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
@@ -12,9 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.jki.hananeelcinta.home.MainActivity
+import com.jki.hananeelcinta.BuildConfig
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivitySplashBinding
+import com.jki.hananeelcinta.home.MainActivity
 import com.jki.hananeelcinta.login.LoginActivity
 import com.jki.hananeelcinta.model.User
 import com.jki.hananeelcinta.util.UserConfiguration
@@ -38,6 +41,7 @@ class SplashActivity : AppCompatActivity() {
             },
             5000
         )
+        binding.tvVersion.text = "Version " + getVersionName()
     }
 
     private fun checkAuthStatus() {
@@ -73,5 +77,20 @@ class SplashActivity : AppCompatActivity() {
                 }
             )
         }
+    }
+
+    private fun getVersionName(): String? {
+        try {
+            return getPackageInfo(this)?.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return BuildConfig.VERSION_NAME
+    }
+
+    @Throws(PackageManager.NameNotFoundException::class)
+    private fun getPackageInfo(context: Context): PackageInfo? {
+        val packageName = context.packageName
+        return context.packageManager.getPackageInfo(packageName, 0)
     }
 }

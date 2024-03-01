@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Hananeel Cinta</string>
     <string name="app_initial">JKI HanCin</string>
+    <string name="app_version">V 1.0.0</string>
 
     <string name="login">Masuk</string>
     <string name="welcome">Selamat datang di JKI Hananeel Cinta</string>
@@ -202,4 +203,8 @@
 
     <string name="reset_password_message">Link reset password telah terkirim</string>
     <string name="reset_password_message_desc">Mohon periksa email kamu untuk melanjutkan reset password</string>
+
+    <string name="success_delete_pastor_message">Renungan berhasil dihapus.</string>
+    <string name="confirm_delete_pastor_message">Apakah anda yakin mau menghapus renungan ini?</string>
+    <string name="confirm_delete_pastor_message_desc">Renungan yang telah dihapus tidak dapat dikembalikan lagi.</string>
 </resources>
