@@ -48,6 +48,7 @@
     <string name="mother_name_hint">Nama Lengkap Ibu</string>
     <string name="status_in_family">Status Dalam Keluarga</string>
     <string name="selfie">Foto Diri</string>
+    <string name="nij">Nomor Induk Jemaat</string>
 
     <string name="email_error_message">Email tidak boleh kosong</string>
     <string name="username_error_message">Username tidak boleh kosong</string>
@@ -148,9 +149,9 @@
     <string name="announcement_not_found_title">Pengumuman Tidak Ditemukan</string>
     <string name="announcement_not_found_info">Coba cari dengan kata kunci lain.</string>
     <string name="announcement_detail">Detail Pengumuman</string>
-    <string name="contact_name">Nama Contact Person (Optional)</string>
+    <string name="contact_name">Contact Person (Optional)</string>
     <string name="contact_person_name_example">E.g. Angel, Maria</string>
-    <string name="contact">Contact Person (Optional)</string>
+    <string name="contact">Contact Number (Optional)</string>
     <string name="contact_person_example">E.g. +628 123 4567 890</string>
     <string name="announcement_message">Shalom, Boleh saya mengetahui informasi lebih lanjut mengenai pengumuman %1s ?</string>
     <string name="confirm_delete_announcement">Apakah anda yakin mau menghapus pengumuman ini?</string>

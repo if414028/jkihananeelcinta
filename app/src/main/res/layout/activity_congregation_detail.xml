@@ -126,7 +126,7 @@
                             style="@style/Sanfransisco.Regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/id_number"
+                            android:text="@string/nij"
                             android:textColor="@color/greyAAAAAA"
                             android:textSize="@dimen/_10ssp" />
 
@@ -510,7 +510,7 @@
             layout="@layout/layout_profile_loading"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default = visible}"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default = gone}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
