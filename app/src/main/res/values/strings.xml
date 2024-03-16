@@ -208,4 +208,6 @@
     <string name="success_delete_pastor_message">Renungan berhasil dihapus.</string>
     <string name="confirm_delete_pastor_message">Apakah anda yakin mau menghapus renungan ini?</string>
     <string name="confirm_delete_pastor_message_desc">Renungan yang telah dihapus tidak dapat dikembalikan lagi.</string>
+
+    <string name="profile">Profile</string>
 </resources>

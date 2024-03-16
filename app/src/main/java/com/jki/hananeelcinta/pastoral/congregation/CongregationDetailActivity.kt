@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -17,6 +18,7 @@ import com.google.firebase.storage.StorageReference
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityCongregationDetailBinding
 import com.jki.hananeelcinta.model.User
+import com.jki.hananeelcinta.util.UserConfiguration
 
 class CongregationDetailActivity : AppCompatActivity() {
 
@@ -30,6 +32,8 @@ class CongregationDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCongregationDetailBinding
     private lateinit var userId: String
+
+    val userData = UserConfiguration.getInstance().getUserData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,7 @@ class CongregationDetailActivity : AppCompatActivity() {
 
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
+        setupBtnEditProfile()
     }
 
     private fun getDetailUserData() {
@@ -77,11 +82,14 @@ class CongregationDetailActivity : AppCompatActivity() {
     }
 
     private fun setupWhatsappButton(phoneNumber: String) {
-        binding.btnWhatsapp.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data =
-                Uri.parse("https://api.whatsapp.com/send?phone=${phoneNumber}")
-            startActivity(intent)
+        if (userData?.id.equals(userId)) {
+            binding.btnWhatsapp.visibility = View.VISIBLE
+            binding.btnWhatsapp.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://api.whatsapp.com/send?phone=${phoneNumber}")
+                startActivity(intent)
+            }
         }
     }
 
@@ -102,6 +110,18 @@ class CongregationDetailActivity : AppCompatActivity() {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .apply(requestOptions)
                     .into(binding.ivProfile)
+            }
+        }
+    }
+
+    private fun setupBtnEditProfile() {
+        if (userData?.id.equals(userId)) {
+            binding.btnEditProfile.visibility = View.VISIBLE
+            binding.btnEditProfile.setOnClickListener {
+                val intent =
+                    Intent(applicationContext, EditCongregationActivity::class.java)
+                intent.putExtra(EditCongregationActivity.USER_ID_ARG, userData?.id)
+                startActivity(intent)
             }
         }
     }

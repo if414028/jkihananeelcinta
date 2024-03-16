@@ -13,6 +13,7 @@ import com.google.firebase.storage.StorageReference
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityProfileBinding
 import com.jki.hananeelcinta.login.LoginActivity
+import com.jki.hananeelcinta.pastoral.congregation.CongregationDetailActivity
 import com.jki.hananeelcinta.util.UserConfiguration
 
 class ProfileActivity : AppCompatActivity() {
@@ -39,6 +40,14 @@ class ProfileActivity : AppCompatActivity() {
             getProfileImage()
         }
         binding.btnSignOut.setOnClickListener { signOut() }
+        binding.btnProfile.setOnClickListener { detailProfile() }
+    }
+
+    private fun detailProfile() {
+        val intent =
+            Intent(applicationContext, CongregationDetailActivity::class.java)
+        intent.putExtra(CongregationDetailActivity.USER_ID_ARG, userData?.id)
+        startActivity(intent)
     }
 
     private fun signOut() {
