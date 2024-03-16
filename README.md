@@ -38,4 +38,4 @@ Pastikan untuk menjelaskan dengan jelas perubahan yang Anda buat. Setiap kontrib
 
 ### Pengembang
 
-- Reynaldo Napitupulu - Penulis Utama - voldarex.napitupulu@gmail.com
+- Reynaldo Napitupulu - Developer - voldarex.napitupulu@gmail.com
