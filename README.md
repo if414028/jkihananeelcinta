@@ -1,41 +1,41 @@
-# Aplikasi Gereja Resmi JKI Hananeel Cinta
+# Official JKI Hananeel Cinta Church Application
 
-![Logo Gereja](https://media.canva.com/1/image-resize/1/550_550_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9PUFBZQS9NQUZ6ZWJPUFBZQS8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAAC7FmVyilAnMedJIwwDRXzQ13QOQNDnNDGD9bbJWxDeR&exp=1710625331&x-canva-quality=thumbnail_large&csig=AAAAAAAAAAAAAAAAAAAAAHOt7fJ0COqPYnQ71idFwPVvqjSazw5qlL7Jxi63SujP)
+![Church Logo](https://media.canva.com/1/image-resize/1/550_550_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9PUFBZQS9NQUZ6ZWJPUFBZQS8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAAC7FmVyilAnMedJIwwDRXzQ13QOQNDnNDGD9bbJWxDeR&exp=1710625331&x-canva-quality=thumbnail_large&csig=AAAAAAAAAAAAAAAAAAAAAHOt7fJ0COqPYnQ71idFwPVvqjSazw5qlL7Jxi63SujP)
 
-Aplikasi Android resmi untuk Gereja Kristus Indonesia (JKI) Hananeel Cinta. Aplikasi ini menyediakan berbagai fitur untuk memfasilitasi komunikasi, informasi, dan kegiatan bagi anggota gereja.
+The official Android application for JKI Hananeel Cinta Church. This application provides various features to facilitate communication, information, and activities for church members.
 
-## Fitur
+## Features
 
-- **Jadwal Ibadah**: Akses jadwal ibadah mingguan dan acara khusus gereja.
-- **Pengumuman**: Terima pengumuman terbaru dari pimpinan gereja.
-- **Khotbah**: Dengarkan atau tonton khotbah mingguan secara langsung dari aplikasi.
-- **Kegiatan**: Lihat daftar kegiatan dan acara gereja.
-- **Berita**: Dapatkan berita terbaru tentang gereja dan kegiatan komunitas.
-- **Kontak**: Hubungi staf gereja atau pimpinan dengan mudah melalui informasi kontak yang tersedia.
+- **Worship Schedule**: Access weekly worship schedules and special church events.
+- **Announcements**: Receive the latest announcements from church leadership.
+- **Sermons**: Listen to or watch weekly sermons directly from the application.
+- **Activities**: View a list of church activities and events.
+- **News**: Get the latest news about the church and community activities.
+- **Contact**: Easily contact church staff or leadership through provided contact information.
 
-## Persyaratan Instalasi
+## Installation Requirements
 
-- Sistem Operasi: Android 6.0 (Marshmallow) atau yang lebih baru.
-- Koneksi internet yang stabil untuk akses konten online.
-- Memiliki akun gereja untuk akses penuh ke fitur aplikasi.
+- Operating System: Android 6.0 (Marshmallow) or newer.
+- Stable internet connection for accessing online content.
+- Have a church account for full access to the application features.
 
-## Pengembangan
+## Development
 
-Proyek ini dikembangkan menggunakan bahasa pemrograman Kotlin.
+This project is developed using the Kotlin programming language.
 
-### Kontribusi
+### Contributions
 
-Kami menyambut kontribusi dari komunitas! Jika Anda ingin berkontribusi pada proyek ini, silakan ikuti langkah-langkah berikut:
+We welcome contributions from the community! If you would like to contribute to this project, please follow these steps:
 
-1. Fork repositori ini.
-2. Buat cabang (branch) fitur baru (`git checkout -b fitur-baru`).
-3. Lakukan perubahan yang diperlukan.
-4. Commit perubahan Anda (`git commit -am 'Menambahkan fitur baru'`).
-5. Push ke cabang (`git push origin fitur-baru`).
-6. Buat permintaan tarik (pull request) baru.
+1. Fork this repository.
+2. Create a new feature branch (`git checkout -b new-feature`).
+3. Make the necessary changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin new-feature`).
+6. Create a new pull request.
 
-Pastikan untuk menjelaskan dengan jelas perubahan yang Anda buat. Setiap kontribusi sangat dihargai.
+Be sure to clearly explain the changes you have made. Any contribution is highly appreciated.
 
-### Pengembang
+### Developers
 
-- Reynaldo Napitupulu - Developer - voldarex.napitupulu@gmail.com
+- Reynaldo Napitupulu - Lead Developer - voldarex.napitupulu@gmail.com
