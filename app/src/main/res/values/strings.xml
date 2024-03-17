@@ -210,4 +210,5 @@
     <string name="confirm_delete_pastor_message_desc">Renungan yang telah dihapus tidak dapat dikembalikan lagi.</string>
 
     <string name="profile">Profile</string>
+    <string name="edit">Ubah</string>
 </resources>

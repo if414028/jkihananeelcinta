@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         getAnnouncements()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getProfileImage()
+    }
+
     private fun setupLayout() {
         setupModuleView()
         setupMenuRecyclerView()

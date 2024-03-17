@@ -33,7 +33,7 @@ class CongregationDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCongregationDetailBinding
     private lateinit var userId: String
 
-    val userData = UserConfiguration.getInstance().getUserData()
+    private val userData = UserConfiguration.getInstance().getUserData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,11 @@ class CongregationDetailActivity : AppCompatActivity() {
 
         getAdditionalData()
         setupLayout()
+        getDetailUserData()
+    }
+
+    override fun onResume() {
+        super.onResume()
         getDetailUserData()
     }
 
@@ -123,6 +128,6 @@ class CongregationDetailActivity : AppCompatActivity() {
                 intent.putExtra(EditCongregationActivity.USER_ID_ARG, userData?.id)
                 startActivity(intent)
             }
-        }
+        } else binding.btnEditProfile.visibility = View.GONE
     }
 }

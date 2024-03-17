@@ -13,8 +13,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.database.FirebaseDatabase
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityDetailAnnouncementBinding
+import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
 import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.Role
+import com.jki.hananeelcinta.util.ImageViewerFragment
 import com.jki.hananeelcinta.util.UIHelper
 import com.jki.hananeelcinta.util.UserConfiguration
 import java.text.SimpleDateFormat
@@ -30,6 +32,8 @@ class DetailAnnouncementActivity : AppCompatActivity() {
 
     private val isAdmin =
         UserConfiguration.getInstance().getUserData()?.role.equals(Role.SUPERUSER.role)
+
+    private lateinit var imageViewerFragment: ImageViewerFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +64,21 @@ class DetailAnnouncementActivity : AppCompatActivity() {
         binding.tvAnnouncementTime.text = convertTimestampToReadableDate(model.date)
         binding.tvDetailAnnouncement.text = model.desc
         binding.tvDetailAnnouncement.movementMethod = LinkMovementMethod.getInstance()
+
+        binding.ivAnnouncement.setOnClickListener {
+            imageViewerFragment = ImageViewerFragment.newInstance()
+            val bundle = Bundle().apply {
+                putString(
+                    ImageViewerFragment.IMAGE_URL,
+                    model.imageUrl
+                )
+            }
+            imageViewerFragment.arguments = bundle
+            imageViewerFragment.show(
+                supportFragmentManager,
+                "image_viewer"
+            )
+        }
 
         if (model.infoUrl?.isNotEmpty() == true) {
             binding.tvLinkTitle.visibility = View.VISIBLE

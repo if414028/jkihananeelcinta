@@ -33,6 +33,11 @@ class ProfileActivity : AppCompatActivity() {
         setupLayout()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getProfileImage()
+    }
+
     private fun setupLayout() {
         if (userData != null) {
             binding.username = userData.fullName
