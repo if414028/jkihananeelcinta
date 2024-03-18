@@ -2,6 +2,7 @@ package com.jki.hananeelcinta.pastoral.congregation
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -145,8 +147,11 @@ class EditCongregationActivity : AppCompatActivity() {
 
     private fun setupGenderRadioButton() {
         enumValues<Gender>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbGender = RadioButton(applicationContext)
             rbGender.text = it.gender
+            rbGender.setTextColor(resources.getColor(R.color.black))
+            rbGender.buttonTintList = ColorStateList.valueOf(color)
             binding.rbGender.addView(rbGender)
         }
         (binding.rbGender.getChildAt(findSelectedGender(userData?.gender)) as RadioButton).isChecked =
@@ -174,9 +179,9 @@ class EditCongregationActivity : AppCompatActivity() {
             }
 
         binding.etDateOfBirth.setOnClickListener {
-            applicationContext?.let { context ->
+            applicationContext?.let {
                 DatePickerDialog(
-                    context,
+                    this,
                     dateListener,
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
@@ -194,8 +199,11 @@ class EditCongregationActivity : AppCompatActivity() {
 
     private fun setupBloodTypeRadioButton() {
         enumValues<BloodType>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbBloodType = RadioButton(applicationContext)
             rbBloodType.text = it.bloodType
+            rbBloodType.setTextColor(resources.getColor(R.color.black))
+            rbBloodType.buttonTintList = ColorStateList.valueOf(color)
             binding.rbBloodType.addView(rbBloodType)
         }
         (binding.rbBloodType.getChildAt(findSelectedBloodType(userData?.bloodType)) as RadioButton).isChecked =
@@ -209,15 +217,23 @@ class EditCongregationActivity : AppCompatActivity() {
 
     private fun setupLastEducationRadioButton() {
         enumValues<Education>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbEducation = RadioButton(applicationContext)
             rbEducation.text = it.education
+            rbEducation.setTextColor(resources.getColor(R.color.black))
+            rbEducation.buttonTintList = ColorStateList.valueOf(color)
             binding.rbLastEducation.addView(rbEducation)
         }
         (binding.rbLastEducation.getChildAt(findSelectedLastEducation(userData?.lastEducation)) as RadioButton).isChecked =
             true
-        if (findSelectedLastEducation(userData?.lastEducation) == -1) binding.etLastEducation.setText(
-            userData?.lastEducation
-        )
+        if (findSelectedLastEducation(userData?.lastEducation) == Education.values().lastIndex) {
+            val selectedEdu = userData?.lastEducation
+            if (selectedEdu != null) {
+                binding.etLastEducation.setText(
+                    selectedEdu.substring(selectedEdu.indexOf(" - ") + 3)
+                )
+            }
+        }
     }
 
     private fun findSelectedLastEducation(currentLastEducation: String?): Int {
@@ -233,14 +249,22 @@ class EditCongregationActivity : AppCompatActivity() {
 
     private fun setupJobRadioButton() {
         enumValues<Job>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbJob = RadioButton(applicationContext)
             rbJob.text = it.job
+            rbJob.setTextColor(resources.getColor(R.color.black))
+            rbJob.buttonTintList = ColorStateList.valueOf(color)
             binding.rbWork.addView(rbJob)
         }
         (binding.rbWork.getChildAt(findSelectedJob(userData?.job)) as RadioButton).isChecked = true
-        if (findSelectedJob(userData?.job) == -1) binding.etWork.setText(
-            userData?.job
-        )
+        if (findSelectedJob(userData?.job) == Job.values().lastIndex) {
+            val selectedJob = userData?.job
+            if (selectedJob != null) {
+                binding.etWork.setText(
+                    selectedJob.substring(selectedJob.indexOf(" - ") + 3)
+                )
+            }
+        }
     }
 
     private fun findSelectedJob(currentJob: String?): Int {
@@ -255,9 +279,12 @@ class EditCongregationActivity : AppCompatActivity() {
     }
 
     private fun setupWaterBaptismRadioButton() {
+        val color = ContextCompat.getColor(this, R.color.color_primary)
         enumValues<YesNoQuestion>().forEach {
             val rbWaterBaptism = RadioButton(applicationContext)
             rbWaterBaptism.text = it.yesNoQuestion
+            rbWaterBaptism.setTextColor(resources.getColor(R.color.black))
+            rbWaterBaptism.buttonTintList = ColorStateList.valueOf(color)
             binding.rbBaptismInformation.addView(rbWaterBaptism)
         }
         (binding.rbBaptismInformation.getChildAt(findSelectedWaterBaptismInformation(userData?.waterBaptism)) as RadioButton).isChecked =
@@ -272,8 +299,11 @@ class EditCongregationActivity : AppCompatActivity() {
 
     private fun setupHolySpiritBaptismRadioButton() {
         enumValues<YesNoQuestion>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbHSBaptism = RadioButton(applicationContext)
             rbHSBaptism.text = it.yesNoQuestion
+            rbHSBaptism.setTextColor(resources.getColor(R.color.black))
+            rbHSBaptism.buttonTintList = ColorStateList.valueOf(color)
             binding.rbHolySpiritBaptismInformation.addView(rbHSBaptism)
         }
         (binding.rbHolySpiritBaptismInformation.getChildAt(
@@ -360,6 +390,7 @@ class EditCongregationActivity : AppCompatActivity() {
         userData?.job = getSelectedJob()
         userData?.waterBaptism = getWaterBaptismInformation()
         userData?.holySpiritBaptism = getHSBaptismInformation()
+        userData?.reasonToMovingChurch = binding.etReasonForMovingChurch.text.toString()
 
         userRef.child(userId).setValue(userData)
             .addOnSuccessListener {

@@ -196,6 +196,7 @@
     <string name="offering_desc">Bagi Bapak/Ibu yang rindu untuk memberikan Persembahan dan Perpuluhan, dapat transfer ke nomor rekening berikut ini:</string>
     <string name="bank_account">003-313-3313</string>
     <string name="bank_account_plain">0033133313</string>
+    <string name="bank_account_name">Atas nama : JKI Hananeel</string>
 
     <string name="forgot_password">Lupa password?</string>
     <string name="reset_password">Reset Password</string>
