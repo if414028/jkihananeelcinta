@@ -70,6 +70,17 @@
                 android:textSize="@dimen/_16ssp" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_writer"
+                style="@style/NoBorderEditTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/writer_name"
+                android:inputType="textShortMessage"
+                android:textColor="@color/black"
+                android:textColorHint="@color/greyAAAAAA"
+                android:textSize="@dimen/_12ssp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_messages"
                 style="@style/NoBorderEditText"
                 android:layout_width="match_parent"

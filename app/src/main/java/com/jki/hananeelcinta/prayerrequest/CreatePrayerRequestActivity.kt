@@ -1,9 +1,11 @@
 package com.jki.hananeelcinta.prayerrequest
 
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -40,8 +42,11 @@ class CreatePrayerRequestActivity : AppCompatActivity() {
 
     private fun setupRequestType() {
         enumValues<PrayType>().forEach {
+            val color = ContextCompat.getColor(this, R.color.color_primary)
             val rbPrayType = RadioButton(applicationContext)
             rbPrayType.text = it.type
+            rbPrayType.setTextColor(resources.getColor(R.color.black))
+            rbPrayType.buttonTintList = ColorStateList.valueOf(color)
             binding.rbPrayerType.addView(rbPrayType)
         }
         (binding.rbPrayerType.getChildAt(0) as RadioButton).isChecked = true

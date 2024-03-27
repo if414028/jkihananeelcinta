@@ -37,7 +37,7 @@ class CreatePastorMessagesActivity : AppCompatActivity() {
         pastorMessage.date = System.currentTimeMillis()
         pastorMessage.title = binding.etTitle.text.toString()
         pastorMessage.messages = binding.etMessages.text.toString()
-        pastorMessage.writer = UserConfiguration.getInstance().getUserData()?.fullName.toString()
+        pastorMessage.writer = binding.etWriter.text.toString()
 
         databaseReference.child(pastorMessage.date.toString()).setValue(pastorMessage)
             .addOnSuccessListener {

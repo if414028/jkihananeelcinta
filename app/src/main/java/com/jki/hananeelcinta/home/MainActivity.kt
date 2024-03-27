@@ -114,6 +114,10 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     resources.getString(R.string.offering) ->
                         Intent(applicationContext, OfferingActivity::class.java)
 
+                    resources.getString(R.string.prayer_request) ->
+                        Intent(applicationContext, PrayerRequestListActivity::class.java)
+
+
                     else -> Intent(applicationContext, MainActivity::class.java)
                 }
                 startActivity(intent)
@@ -132,8 +136,11 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
             ModuleView(resources.getString(R.string.reflection), R.drawable.ic_light)
         val offeringModule =
             ModuleView(resources.getString(R.string.offering), R.drawable.ic_give)
+        val prayerRequestModule =
+            ModuleView(resources.getString(R.string.prayer_request), R.drawable.ic_pray)
 
         moduleList.add(servicesModule)
+        moduleList.add(prayerRequestModule)
         moduleList.add(eventModule)
         moduleList.add(offeringModule)
 

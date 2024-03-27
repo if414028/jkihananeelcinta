@@ -122,6 +122,7 @@
 
     <string name="info">Pengumuman</string>
     <string name="title">Judul</string>
+    <string name="writer_name">Nama Penulis</string>
     <string name="messages_hint">Apa yang ingin anda sampaikan?</string>
 
     <string name="success_create_pastor_messages">Renungan Berhasil Disimpan</string>
