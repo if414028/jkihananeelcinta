@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_16sdp">
+
+        <TextView
+            android:id="@+id/tv_login_title"
+            style="@style/Sanfransisco.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:text="@string/app_initial"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_32ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_login_desc"
+            style="@style/Sanfransisco.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="@string/user_registration"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_desc">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ly_father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/father_name" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_father_name"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/edittext_background_grey_border"
+                        android:hint="@string/father_name_hint"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@color/greyAAAAAA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_wife"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wife_name" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_wife_name"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/edittext_background_grey_border"
+                        android:hint="@string/wife_name_hint"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@color/greyAAAAAA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_husband_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/husband_name" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_husband_name"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/edittext_background_grey_border"
+                        android:hint="@string/husband_name_hint"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@color/greyAAAAAA" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_mother_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mother_name" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_mother_name"
+                        style="@style/Sanfransisco.Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/edittext_background_grey_border"
+                        android:hint="@string/mother_name_hint"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@color/greyAAAAAA" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_siblings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_input" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_children"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_input" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

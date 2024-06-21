@@ -24,7 +24,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val profilePictureUploader = PictureUploader()
 
-    private var user: User = User()
+    var user: User = User()
     var capturedImageFile: File? = null
 
     var isSectionValid: SingleLiveEvent<Boolean> = SingleLiveEvent()
