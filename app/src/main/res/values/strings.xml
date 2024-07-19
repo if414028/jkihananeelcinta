@@ -42,14 +42,20 @@
     <string name="baptis_holy_spirit">Sudah Baptis Roh Kudus?</string>
     <string name="reason_moving_church">Alasan Pindah Gereja</string>
     <string name="marital_status">Status Pernikahan</string>
-    <string name="father_name">Nama Lengkap Orang Tua (Ayah)</string>
+    <string name="father_name">Nama Lengkap Ayah</string>
     <string name="father_name_hint">Nama Lengkap Ayah</string>
-    <string name="mother_name">Nama Lengkap Orang Tua (Ibu)</string>
+    <string name="mother_name">Nama Lengkap Ibu</string>
     <string name="mother_name_hint">Nama Lengkap Ibu</string>
     <string name="status_in_family">Status Dalam Keluarga</string>
     <string name="selfie">Foto Diri</string>
     <string name="nij">Nomor Induk Jemaat</string>
     <string name="head_of_family_name">Nama Kepala Keluarga</string>">
+    <string name="siblings_name">Nama Saudara Kandung</string>
+    <string name="siblings_name_hint">Nama Lengkap Saudara Kandung</string>
+    <string name="wife_name">Nama Istri</string>
+    <string name="wife_name_hint">Nama Lengkap Istri</string>
+    <string name="husband_name">Nama Suami</string>
+    <string name="husband_name_hint">Nama Lengkap Suami</string>
 
     <string name="email_error_message">Email tidak boleh kosong</string>
     <string name="username_error_message">Username tidak boleh kosong</string>
