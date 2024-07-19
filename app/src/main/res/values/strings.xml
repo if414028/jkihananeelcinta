@@ -56,6 +56,8 @@
     <string name="wife_name_hint">Nama Lengkap Istri</string>
     <string name="husband_name">Nama Suami</string>
     <string name="husband_name_hint">Nama Lengkap Suami</string>
+    <string name="children_name">Nama Anak-anak</string>
+    <string name="child_name">Nama Lengkap Anak</string>
 
     <string name="email_error_message">Email tidak boleh kosong</string>
     <string name="username_error_message">Username tidak boleh kosong</string>

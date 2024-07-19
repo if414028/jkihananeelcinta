@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var userEducationInputFragment: UserEducationInputFragment
     private lateinit var userBaptismInputFragment: UserBaptismInputFragment
     private lateinit var userMartialInputFragment: UserMartialInputFragment
-    private lateinit var userFamilyMemberFragment: UserFamilyMemberFragment
+    private lateinit var userFamilyMemberFragment: UserFamilyMemberInputFragment
     private lateinit var userSelfieInputFragment: UserSelfieInputFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +81,8 @@ class RegisterActivity : AppCompatActivity() {
                         userMartialInputFragment.setMartialStatusInformation()
                     }
 
-                    is UserFamilyMemberFragment -> {
-                        userFamilyMemberFragment.setHeadOfFamilyId()
+                    is UserFamilyMemberInputFragment -> {
+                        userFamilyMemberFragment.setFamilyMemberData()
                     }
 
                     is UserSelfieInputFragment -> {
@@ -117,6 +117,11 @@ class RegisterActivity : AppCompatActivity() {
                         userMartialInputFragment.validateSection()
                     }
 
+                    is UserFamilyMemberInputFragment -> {
+                        userFamilyMemberFragment.initLayout()
+                        stepperLayout.setStepperButtonEnabled(true)
+                    }
+
                     is UserSelfieInputFragment -> {
                         stepperLayout.setSubmitButtonText(resources.getString(R.string.register))
                         userSelfieInputFragment.validateSection()
@@ -131,7 +136,7 @@ class RegisterActivity : AppCompatActivity() {
         userEducationInputFragment = UserEducationInputFragment.newInstance()
         userBaptismInputFragment = UserBaptismInputFragment.newInstance()
         userMartialInputFragment = UserMartialInputFragment.newInstance()
-        userFamilyMemberFragment = UserFamilyMemberFragment.newInstance()
+        userFamilyMemberFragment = UserFamilyMemberInputFragment.newInstance()
         userSelfieInputFragment = UserSelfieInputFragment.newInstance()
 
         stepperAdapter = HancinStepperAdapter(supportFragmentManager)

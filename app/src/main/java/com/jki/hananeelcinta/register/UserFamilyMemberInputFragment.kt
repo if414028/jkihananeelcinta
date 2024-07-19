@@ -1,16 +1,23 @@
 package com.jki.hananeelcinta.register
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.FragmentUserFamilyMemberInputBinding
+import com.jki.hananeelcinta.databinding.ItemNameBinding
 import com.jki.hananeelcinta.model.FamilyStatus
 import com.jki.hananeelcinta.model.PastorMessage
+import com.jki.hananeelcinta.util.SimpleFilterRecyclerAdapter
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
 
 class UserFamilyMemberInputFragment : Fragment() {
@@ -55,32 +62,144 @@ class UserFamilyMemberInputFragment : Fragment() {
     }
 
     private fun setupChildrenRecyclerView() {
+        binding.rvChildren.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        childrenAdapter =
+            SimpleRecyclerAdapter(arrayListOf(), R.layout.item_name) { holder, item ->
+                val itemBinding: ItemNameBinding = holder?.layoutBinding as ItemNameBinding
+                itemBinding.etName.hint =
+                    requireActivity().resources.getString(R.string.siblings_name)
+                itemBinding.etName.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-    }
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-    private fun initLayout() {
-        when (familyStatus) {
-            FamilyStatus.HEAD_OF_FAMILY.name -> {
-                binding.lyWife.visibility = View.VISIBLE
-                binding.rvChildren.visibility = View.VISIBLE
+                    override fun afterTextChanged(text: Editable?) {
+                        if (text != null) {
+                            childrenList[holder.layoutPosition] = text.toString()
+                        }
+                    }
+
+                })
             }
+        childrenList.add("")
+        binding.rvChildren.adapter = childrenAdapter
+        childrenAdapter.mainData = childrenList
 
-            FamilyStatus.WIFE.name -> {
-                binding.lyHusbandName.visibility = View.VISIBLE
-                binding.rvChildren.visibility = View.VISIBLE
-            }
-
-            FamilyStatus.CHILD.name -> {
-                binding.rvSiblings.visibility = View.VISIBLE
-            }
-
-            FamilyStatus.WIDOW.name -> {
-                binding.rvChildren.visibility = View.VISIBLE
-            }
-
-            FamilyStatus.WIDOWER.name -> {
-                binding.rvChildren.visibility = View.VISIBLE
+        binding.btnAddChild.setOnClickListener {
+            if (childrenAdapter.mainData.size < 11) {
+                addChildrenField()
             }
         }
+    }
+
+    private fun addChildrenField() {
+        childrenList.add("")
+        childrenAdapter.notifyItemInserted(childrenList.size + 1)
+    }
+
+    private fun setupSiblingsRecyclerView() {
+        binding.rvSiblings.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        siblingsAdapter =
+            SimpleRecyclerAdapter(arrayListOf(), R.layout.item_name) { holder, _ ->
+                val itemBinding: ItemNameBinding = holder?.layoutBinding as ItemNameBinding
+                itemBinding.etName.hint =
+                    requireActivity().resources.getString(R.string.siblings_name)
+                itemBinding.etName.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                    override fun afterTextChanged(text: Editable?) {
+                        if (text != null) {
+                            siblingsList[holder.layoutPosition] = text.toString()
+                        }
+                    }
+
+                })
+            }
+        siblingsList.add("")
+        binding.rvSiblings.adapter = siblingsAdapter
+        siblingsAdapter.mainData = siblingsList
+
+        binding.btnAddSibling.setOnClickListener {
+            addSiblingsField()
+        }
+    }
+
+    private fun addSiblingsField() {
+        siblingsList.add("")
+        siblingsAdapter.notifyItemInserted(siblingsList.size + 1)
+    }
+
+    fun initLayout() {
+        when (viewModel.user.statusInFamily) {
+            FamilyStatus.HEAD_OF_FAMILY.familyStatus -> {
+                binding.lyWife.visibility = View.VISIBLE
+                binding.lyChildren.visibility = View.VISIBLE
+                setupChildrenRecyclerView()
+            }
+
+            FamilyStatus.WIFE.familyStatus -> {
+                binding.lyHusband.visibility = View.VISIBLE
+                binding.lyChildren.visibility = View.VISIBLE
+                setupChildrenRecyclerView()
+            }
+
+            FamilyStatus.CHILD.familyStatus -> {
+                binding.lySiblings.visibility = View.VISIBLE
+                setupSiblingsRecyclerView()
+            }
+
+            FamilyStatus.WIDOW.familyStatus -> {
+                binding.lyChildren.visibility = View.VISIBLE
+                setupChildrenRecyclerView()
+            }
+
+            FamilyStatus.WIDOWER.familyStatus -> {
+                binding.lyChildren.visibility = View.VISIBLE
+                setupChildrenRecyclerView()
+            }
+        }
+    }
+
+    private fun getChildrenName(): String {
+        val childrenName = StringBuilder()
+        for (name in childrenList) {
+            if (name.isNotEmpty() && name.isNotBlank()) {
+                childrenName.append(name)
+                childrenName.append(",")
+            }
+        }
+        if (childrenName.isNotEmpty() && childrenName.isNotBlank()) {
+            childrenName.deleteCharAt(childrenName.length - 1)
+        }
+
+        return childrenName.toString()
+    }
+
+    private fun getSiblingsName(): String {
+        val siblingsName = StringBuilder()
+        for (name in siblingsList) {
+            if (name.isNotEmpty() && name.isNotBlank()) {
+                siblingsName.append(name)
+                siblingsName.append(",")
+            }
+        }
+        if (siblingsName.isNotEmpty() && siblingsName.isNotBlank()) {
+            siblingsName.deleteCharAt(siblingsName.length - 1)
+        }
+
+        return siblingsName.toString()
+    }
+
+    fun setFamilyMemberData() {
+        viewModel.setFamilyMemberData(
+            binding.etWifeName.text.toString(),
+            binding.etHusbandName.text.toString(),
+            getChildrenName(),
+            getSiblingsName()
+        )
     }
 }

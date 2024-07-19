@@ -104,6 +104,29 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun setFamilyMemberData(
+        wifeName: String,
+        husbandName: String,
+        childrenName: String,
+        siblingsName: String
+    ) {
+        if (wifeName.isNotEmpty() && wifeName.isNotEmpty()) {
+            user.wifeName = wifeName
+        }
+
+        if (husbandName.isNotEmpty() && husbandName.isNotEmpty()) {
+            user.husbandName = husbandName
+        }
+
+        if (childrenName.isNotEmpty() && childrenName.isNotEmpty()) {
+            user.childrenName = childrenName
+        }
+
+        if (siblingsName.isNotEmpty() && siblingsName.isNotEmpty()) {
+            user.siblingsName = siblingsName
+        }
+    }
+
     fun setIsSectionValid(isValid: Boolean) {
         isSectionValid.postValue(isValid)
     }
@@ -194,7 +217,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         if (capturedImageFile != null) {
             profilePictureUploader.uploadProfilePicture(capturedImageFile!!.toUri()) { imageUrl, error ->
                 if (error != null) {
-                    isFailCreateNewUser.postValue(error)
+                    isFailCreateNewUser.postValue(error!!)
                 } else {
                     isSuccessCreateNewUser.postValue("Success")
                 }
