@@ -33,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var userEducationInputFragment: UserEducationInputFragment
     private lateinit var userBaptismInputFragment: UserBaptismInputFragment
     private lateinit var userMartialInputFragment: UserMartialInputFragment
+    private lateinit var userFamilyMemberFragment: UserFamilyMemberFragment
     private lateinit var userSelfieInputFragment: UserSelfieInputFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +79,10 @@ class RegisterActivity : AppCompatActivity() {
 
                     is UserMartialInputFragment -> {
                         userMartialInputFragment.setMartialStatusInformation()
+                    }
+
+                    is UserFamilyMemberFragment -> {
+                        userFamilyMemberFragment.setHeadOfFamilyId()
                     }
 
                     is UserSelfieInputFragment -> {
@@ -126,6 +131,7 @@ class RegisterActivity : AppCompatActivity() {
         userEducationInputFragment = UserEducationInputFragment.newInstance()
         userBaptismInputFragment = UserBaptismInputFragment.newInstance()
         userMartialInputFragment = UserMartialInputFragment.newInstance()
+        userFamilyMemberFragment = UserFamilyMemberFragment.newInstance()
         userSelfieInputFragment = UserSelfieInputFragment.newInstance()
 
         stepperAdapter = HancinStepperAdapter(supportFragmentManager)
@@ -135,6 +141,7 @@ class RegisterActivity : AppCompatActivity() {
         stepperAdapter.put(userEducationInputFragment)
         stepperAdapter.put(userBaptismInputFragment)
         stepperAdapter.put(userMartialInputFragment)
+        stepperAdapter.put(userFamilyMemberFragment)
         stepperAdapter.put(userSelfieInputFragment)
 
         stepperLayout.adapter = stepperAdapter
