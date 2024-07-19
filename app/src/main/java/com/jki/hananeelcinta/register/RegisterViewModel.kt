@@ -1,6 +1,7 @@
 package com.jki.hananeelcinta.register
 
 import android.app.Application
+import android.content.Intent
 import androidx.core.net.toUri
 import androidx.lifecycle.AndroidViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -10,6 +11,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.jki.hananeelcinta.home.MainActivity
 import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.model.User
 import com.jki.hananeelcinta.util.PictureUploader
@@ -91,6 +94,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         user.statusInFamily = statusInFamily
     }
 
+    fun setHeadOfFamilyId(headOfFamilyId: String) {
+        user.headOfFamilyId = headOfFamilyId
+    }
+
     fun setUserSelfieImagePath(imagePath: String) {
         if (!imagePath.isBlank()) {
             user.photoImageUrl = imagePath
@@ -128,7 +135,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                 val userCount = snapshot.childrenCount
                 user.nij = "HC-%05d".format(userCount)
 
-                writeUserData()
+                getFCMToken()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -136,6 +143,19 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
             }
 
         })
+    }
+
+    private fun getFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val token = it.result
+                user.fcmToken = token
+                writeUserData()
+
+            }
+        }.addOnFailureListener {
+            isFailCreateNewUser.postValue("Gagal generate token")
+        }
     }
 
     private fun createUserWithEmailAndPassword() {

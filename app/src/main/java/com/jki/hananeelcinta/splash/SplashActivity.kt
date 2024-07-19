@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.jki.hananeelcinta.BuildConfig
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivitySplashBinding
@@ -64,8 +65,13 @@ class SplashActivity : AppCompatActivity() {
                             user?.let { userData ->
                                 UserConfiguration.getInstance().setUserId(userId)
                                 UserConfiguration.getInstance().setUserData(userData)
-                                val intent = Intent(applicationContext, MainActivity::class.java)
-                                startActivity(intent)
+
+                                if (user.fcmToken.isEmpty()) {
+                                    getFCMToken(userData)
+                                } else {
+                                    val intent = Intent(applicationContext, MainActivity::class.java)
+                                    startActivity(intent)
+                                }
                             }
                         }
                     }
@@ -76,6 +82,18 @@ class SplashActivity : AppCompatActivity() {
                     }
                 }
             )
+        }
+    }
+
+    private fun getFCMToken(userData: User) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val token = it.result
+                userData.fcmToken = token
+                UserConfiguration.getInstance().setUserData(userData)
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

@@ -49,6 +49,7 @@
     <string name="status_in_family">Status Dalam Keluarga</string>
     <string name="selfie">Foto Diri</string>
     <string name="nij">Nomor Induk Jemaat</string>
+    <string name="head_of_family_name">Nama Kepala Keluarga</string>">
 
     <string name="email_error_message">Email tidak boleh kosong</string>
     <string name="username_error_message">Username tidak boleh kosong</string>
