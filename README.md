@@ -1,6 +1,6 @@
 # Official JKI Hananeel Cinta Church Application
 
-![Church Logo](https://media.canva.com/1/image-resize/1/550_550_100_PNG_F/czM6Ly9tZWRpYS1wcml2YXRlLmNhbnZhLmNvbS9PUFBZQS9NQUZ6ZWJPUFBZQS8xL3AucG5n?osig=AAAAAAAAAAAAAAAAAAAAAC7FmVyilAnMedJIwwDRXzQ13QOQNDnNDGD9bbJWxDeR&exp=1710625331&x-canva-quality=thumbnail_large&csig=AAAAAAAAAAAAAAAAAAAAAHOt7fJ0COqPYnQ71idFwPVvqjSazw5qlL7Jxi63SujP)
+![Church Logo](https://hananeelcinta.id/wp-content/uploads/2022/08/HanCin-web-logo-2.png)
 
 The official Android application for JKI Hananeel Cinta Church. This application provides various features to facilitate communication, information, and activities for church members.
 
