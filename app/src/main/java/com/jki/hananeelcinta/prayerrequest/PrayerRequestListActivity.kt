@@ -151,12 +151,14 @@ class PrayerRequestListActivity : AppCompatActivity() {
             databaseReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
+                        val tempList: ArrayList<PrayerRequest> = arrayListOf()
                         for (dataSnapshot in snapshot.children) {
                             var prayRequest = dataSnapshot.getValue(PrayerRequest::class.java)
                             if (prayRequest != null) {
-                                prayRequestList.add(prayRequest)
+                                tempList.add(prayRequest)
                             }
                         }
+                        prayRequestList = tempList
                         adapter.mainData = prayRequestList.sortedByDescending { it.id }
                     }
                 }
