@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
     override fun onResume() {
         super.onResume()
         getProfileImage()
+        getBirthdayCard()
     }
 
     private fun setupLayout() {
@@ -201,7 +202,8 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     val dateOfBirthFormatted =
                         dateOfBirthFormat?.let { df -> dateFormat.format(df) }
                     val todayDateFormatted = dateFormat.format(Date())
-                    if (dateOfBirthFormatted == "05-12") {
+                    Log.i("MainActivity", "today's date: $todayDateFormatted")
+                    if (dateOfBirthFormatted == todayDateFormatted) {
                         birthdayCard.visibility = View.VISIBLE
                     } else {
                         birthdayCard.visibility = View.GONE
