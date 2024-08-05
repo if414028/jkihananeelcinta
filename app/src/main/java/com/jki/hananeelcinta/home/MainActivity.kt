@@ -1,8 +1,11 @@
 package com.jki.hananeelcinta.home
 
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.card.MaterialCardView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,6 +44,9 @@ import com.jki.hananeelcinta.services.ServicesActivity
 import com.jki.hananeelcinta.util.ImageSliderAdapter
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
 import com.jki.hananeelcinta.util.UserConfiguration
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener {
@@ -89,6 +96,7 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         }
         binding.tvUsername.text = UserConfiguration.getInstance().getUserData()!!.fullName + "!"
         getProfileImage()
+        getBirthdayCard()
         getPastorMessages()
         setupImageSlider()
     }
@@ -177,6 +185,29 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                         .apply(requestOptions)
                         .into(binding.ivProfile)
                 }
+            }
+        }
+    }
+
+    private fun getBirthdayCard() {
+        val birthdayCard: MaterialCardView = findViewById(R.id.birthday_card)
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let { currentUser ->
+            databaseReference.child("users/${currentUser.uid}/dateOfBirth").get()
+                .addOnSuccessListener {
+                    val dateOfBirthFormat =
+                        SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(it.value.toString())
+                    val dateFormat = SimpleDateFormat("dd-MM", Locale.getDefault())
+                    val dateOfBirthFormatted =
+                        dateOfBirthFormat?.let { df -> dateFormat.format(df) }
+                    val todayDateFormatted = dateFormat.format(Date())
+                    if (dateOfBirthFormatted == "05-12") {
+                        birthdayCard.visibility = View.VISIBLE
+                    } else {
+                        birthdayCard.visibility = View.GONE
+                    }
+                }.addOnFailureListener {
+                Log.e("MainActivity", "Failed to retrieve DOB.")
             }
         }
     }
