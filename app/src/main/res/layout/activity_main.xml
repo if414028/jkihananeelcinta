@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/birthday_card_title"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_24ssp" />
 
                         <TextView
                             android:id="@+id/birthday_message"

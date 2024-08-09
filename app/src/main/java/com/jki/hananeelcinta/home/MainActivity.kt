@@ -202,15 +202,12 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     val dateOfBirthFormatted =
                         dateOfBirthFormat?.let { df -> dateFormat.format(df) }
                     val todayDateFormatted = dateFormat.format(Date())
-                    Log.i("MainActivity", "today's date: $todayDateFormatted")
                     if (dateOfBirthFormatted == todayDateFormatted) {
                         birthdayCard.visibility = View.VISIBLE
                     } else {
                         birthdayCard.visibility = View.GONE
                     }
-                }.addOnFailureListener {
-                Log.e("MainActivity", "Failed to retrieve DOB.")
-            }
+                }
         }
     }
 
