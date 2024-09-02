@@ -106,17 +106,6 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_20ssp" />
 
-                <TextView
-                    android:id="@+id/tv_announcement_time"
-                    style="@style/Sanfransisco.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:textColor="@color/greyAAAAAA"
-                    android:textSize="@dimen/_10ssp"
-                    tools:text="23 Oktober 2023" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"

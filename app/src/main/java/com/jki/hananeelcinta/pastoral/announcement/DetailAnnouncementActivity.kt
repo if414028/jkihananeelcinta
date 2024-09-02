@@ -13,7 +13,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.database.FirebaseDatabase
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityDetailAnnouncementBinding
-import com.jki.hananeelcinta.home.weeklyreflection.DetailWeeklyReflectionFragment
 import com.jki.hananeelcinta.model.Announcement
 import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.util.ImageViewerFragment
@@ -61,7 +60,6 @@ class DetailAnnouncementActivity : AppCompatActivity() {
     private fun setupLayout() {
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.tvAnnouncementTitle.text = model.title
-        binding.tvAnnouncementTime.text = convertTimestampToReadableDate(model.date)
         binding.tvDetailAnnouncement.text = model.desc
         binding.tvDetailAnnouncement.movementMethod = LinkMovementMethod.getInstance()
 
