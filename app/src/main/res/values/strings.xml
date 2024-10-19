@@ -208,6 +208,9 @@
     <string name="bank_account_plain">0033133313</string>
     <string name="bank_account_name">Atas nama : JKI Hananeel</string>
 
+    <string name="birthday_card_title">Selamat ulang tahun!</string>
+    <string name="birthday_card_desc">\"Dengan panjang umur akan Kukenyangkan dia, dan akan Kuperlihatkan kepadanya keselamatan dari pada-Ku.\" (Mazmur 91:16 TB)</string>
+
     <string name="forgot_password">Lupa password?</string>
     <string name="reset_password">Reset Password</string>
     <string name="back">Kembali</string>
