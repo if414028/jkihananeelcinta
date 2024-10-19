@@ -191,22 +191,20 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
     }
 
     private fun getBirthdayCard() {
-        val birthdayCard: MaterialCardView = findViewById(R.id.birthday_card)
         val user = FirebaseAuth.getInstance().currentUser
         user?.let { currentUser ->
             databaseReference.child("users/${currentUser.uid}/dateOfBirth").get()
                 .addOnSuccessListener {
                     val dateOfBirthFormat =
-                        SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(it.value.toString())
+                        SimpleDateFormat(
+                            "dd MMMM yyyy",
+                            Locale.getDefault()
+                        ).parse(it.value.toString())
                     val dateFormat = SimpleDateFormat("dd-MM", Locale.getDefault())
                     val dateOfBirthFormatted =
                         dateOfBirthFormat?.let { df -> dateFormat.format(df) }
                     val todayDateFormatted = dateFormat.format(Date())
-                    if (dateOfBirthFormatted == todayDateFormatted) {
-                        birthdayCard.visibility = View.VISIBLE
-                    } else {
-                        birthdayCard.visibility = View.GONE
-                    }
+                    binding.isBirthday = dateOfBirthFormatted == todayDateFormatted
                 }
         }
     }
