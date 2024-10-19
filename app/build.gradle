@@ -10,8 +10,8 @@ android {
         applicationId "com.jki.hananeelcinta"
         minSdk 21
         targetSdk 34
-        versionCode 1005
-        versionName "1.0.0.5"
+        versionCode 1006
+        versionName "1.0.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
