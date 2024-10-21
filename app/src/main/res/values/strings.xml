@@ -210,6 +210,7 @@
 
     <string name="birthday_card_title">Selamat ulang tahun!</string>
     <string name="birthday_card_desc">\"Dengan panjang umur akan Kukenyangkan dia, dan akan Kuperlihatkan kepadanya keselamatan dari pada-Ku.\" (Mazmur 91:16 TB)</string>
+    <string name="birthday">Ulang Tahun</string>
 
     <string name="forgot_password">Lupa password?</string>
     <string name="reset_password">Reset Password</string>

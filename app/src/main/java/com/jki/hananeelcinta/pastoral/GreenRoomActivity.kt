@@ -13,6 +13,7 @@ import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivityGreenRoomBinding
 import com.jki.hananeelcinta.model.Role
 import com.jki.hananeelcinta.pastoral.announcement.AnnouncementListActivity
+import com.jki.hananeelcinta.pastoral.birthday.BirthdayListActivity
 import com.jki.hananeelcinta.pastoral.congregation.CongregationListActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.CreatePastorMessagesActivity
 import com.jki.hananeelcinta.pastoral.pastormessages.PastorMessagesListActivity
@@ -54,6 +55,10 @@ class GreenRoomActivity : AppCompatActivity() {
         }
         binding.btnAnnouncementList.setOnClickListener {
             val intent = Intent(applicationContext, AnnouncementListActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnBirthdayList.setOnClickListener {
+            val intent = Intent(applicationContext, BirthdayListActivity::class.java)
             startActivity(intent)
         }
     }
