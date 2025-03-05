@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
-import com.jki.hananeelcinta.BuildConfig
 import com.jki.hananeelcinta.R
 import com.jki.hananeelcinta.databinding.ActivitySplashBinding
 import com.jki.hananeelcinta.home.MainActivity
@@ -98,12 +97,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun getVersionName(): String? {
-        try {
-            return getPackageInfo(this)?.versionName
+        return try {
+            val pInfo = packageManager.getPackageInfo(packageName, 0)
+            pInfo.versionName
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
+            null
         }
-        return BuildConfig.VERSION_NAME
     }
 
     @Throws(PackageManager.NameNotFoundException::class)
