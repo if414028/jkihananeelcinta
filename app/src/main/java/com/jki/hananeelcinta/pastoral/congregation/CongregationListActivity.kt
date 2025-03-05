@@ -107,6 +107,7 @@ class CongregationListActivity : AppCompatActivity() {
     }
 
     private fun getUserList() {
+        binding.isLoading = true
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -118,12 +119,18 @@ class CongregationListActivity : AppCompatActivity() {
                         }
                     }
                     userList = tempList
-                    adapter.mainData = userList
+                    binding.isLoading = false
+                    if (userList.isNotEmpty()) {
+                        adapter.mainData = userList
+                    } else {
+                        binding.isError = true
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                binding.isLoading = false
+                binding.isError = true
             }
 
         })

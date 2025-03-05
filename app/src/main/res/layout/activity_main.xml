@@ -14,9 +14,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="@color/white_background"
         android:layout_height="match_parent"
+        android:background="@color/white_background"
         tools:context=".home.MainActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/confetti_bg"
+            android:visibility="@{isBirthday ? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -67,7 +76,7 @@
                         android:id="@+id/iv_profile"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
-                        android:layout_marginRight="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
                         android:adjustViewBounds="true"
                         android:elevation="@dimen/_4sdp"
                         android:src="@drawable/ic_no_profile_image"
@@ -87,8 +96,7 @@
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:visibility="@{isBirthday ? View.VISIBLE : View.GONE, default = gone}"
+                    android:visibility="@{isBirthday ? View.VISIBLE : View.GONE, default = visible}"
                     app:cardBackgroundColor="@color/color_primary"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardElevation="@dimen/_4sdp">
@@ -96,7 +104,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_110sdp"
-                        android:background="@drawable/birthday_card_stars"
+                        android:background="@color/goldBF9B30"
                         android:orientation="vertical"
                         android:padding="@dimen/_16sdp">
 
@@ -129,9 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
-                    android:layout_marginTop="@{isBirthday ? @dimen/_8sdp : @dimen/_16sdp, default = @dimen/_16sdp}"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
-                    android:layout_marginBottom="@dimen/_16sdp"
                     app:cardBackgroundColor="@color/color_primary"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:cardElevation="@dimen/_4sdp">
@@ -183,6 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_16sdp"
                     android:text="@string/info"
                     android:textColor="@color/black"

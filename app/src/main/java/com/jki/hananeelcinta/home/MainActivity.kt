@@ -44,6 +44,7 @@ import com.jki.hananeelcinta.services.ServicesActivity
 import com.jki.hananeelcinta.util.ImageSliderAdapter
 import com.jki.hananeelcinta.util.SimpleRecyclerAdapter
 import com.jki.hananeelcinta.util.UserConfiguration
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -195,19 +196,25 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         user?.let { currentUser ->
             databaseReference.child("users/${currentUser.uid}/dateOfBirth").get()
                 .addOnSuccessListener {
-                    val dateOfBirthFormat =
-                        SimpleDateFormat(
-                            "dd MMMM yyyy",
-                            Locale.getDefault()
-                        ).parse(it.value.toString())
-                    val dateFormat = SimpleDateFormat("dd-MM", Locale.getDefault())
-                    val dateOfBirthFormatted =
-                        dateOfBirthFormat?.let { df -> dateFormat.format(df) }
-                    val todayDateFormatted = dateFormat.format(Date())
-                    binding.isBirthday = dateOfBirthFormatted == todayDateFormatted
+                    val dateString = it.value?.toString()
+                    if (!dateString.isNullOrEmpty()) {
+                        try {
+                            val dateOfBirthFormat = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID")).parse(dateString)
+                            val dateFormat = SimpleDateFormat("dd-MM", Locale.getDefault())
+                            val dateOfBirthFormatted = dateOfBirthFormat?.let { df -> dateFormat.format(df) }
+                            val todayDateFormatted = dateFormat.format(Date())
+                            binding.isBirthday = dateOfBirthFormatted == todayDateFormatted
+                        } catch (e: ParseException) {
+                            // Handle parsing error
+                            Log.e("getBirthdayCard", "ParseException: ${e.message}")
+                        }
+                    } else {
+                        Log.e("getBirthdayCard", "Date of birth is empty or null.")
+                    }
                 }
         }
     }
+
 
     private fun getPastorMessages() {
         val query: Query = pastorMessagesReference.limitToLast(1)

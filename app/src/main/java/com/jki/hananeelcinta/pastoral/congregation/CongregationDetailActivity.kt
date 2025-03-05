@@ -87,14 +87,12 @@ class CongregationDetailActivity : AppCompatActivity() {
     }
 
     private fun setupWhatsappButton(phoneNumber: String) {
-        if (userData?.id.equals(userId)) {
-            binding.btnWhatsapp.visibility = View.VISIBLE
-            binding.btnWhatsapp.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data =
-                    Uri.parse("https://api.whatsapp.com/send?phone=${phoneNumber}")
-                startActivity(intent)
-            }
+        binding.btnWhatsapp.visibility = View.VISIBLE
+        binding.btnWhatsapp.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data =
+                Uri.parse("https://api.whatsapp.com/send?phone=${phoneNumber}")
+            startActivity(intent)
         }
     }
 
