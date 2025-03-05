@@ -34,5 +34,8 @@
     <color name="redFD879D">#FD879D</color>
     <color name="green40BB74">#40BB74</color>
 
+    <color name="goldFFBF00">#FFBF00</color>
+    <color name="goldBF9B30">#BF9B30</color>
+
     <color name="black_transparent">#00000000</color>
 </resources>

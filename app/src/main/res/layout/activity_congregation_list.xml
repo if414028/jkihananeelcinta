@@ -9,6 +9,14 @@
             name="isUserNotFound"
             type="Boolean" />
 
+        <variable
+            name="isLoading"
+            type="Boolean" />
+        
+        <variable
+            name="isError"
+            type="Boolean" />
+
         <import type="android.view.View" />
     </data>
 
@@ -80,6 +88,47 @@
             app:layout_constraintTop_toBottomOf="@id/appbar"
             tools:listitem="@layout/item_user" />
 
+        <LinearLayout
+            android:id="@+id/ly_error"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_32sdp"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/page_not_found" />
+
+            <TextView
+                style="@style/Sanfransisco.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oops"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp" />
+
+            <TextView
+                style="@style/Sanfransisco.Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
+                android:text="@string/network_error"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
         <include
             android:id="@+id/ly_user_not_found"
             layout="@layout/layout_not_found"
@@ -87,7 +136,17 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{isUserNotFound ? View.VISIBLE : View.GONE, default = visible}"
+            android:visibility="@{isUserNotFound ? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+        <include
+            layout="@layout/layout_profile_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default = visible}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
