@@ -101,6 +101,8 @@ class PrayerRequestDetailActivity : AppCompatActivity() {
             when (prayRequest.status) {
                 Status.OPEN.name -> {
                     prayRequest.status = Status.IN_PROGRESS.toString()
+                    prayRequest.handlerId = UserConfiguration.getInstance().getUserId()
+                    prayRequest.handlerName = UserConfiguration.getInstance().getUserData()?.fullName
                     prayRequest.id?.let { it1 ->
                         prayRequestDatabaseReference.child(it1).setValue(prayRequest)
                             .addOnCompleteListener {
@@ -197,7 +199,7 @@ class PrayerRequestDetailActivity : AppCompatActivity() {
     }
 
     private fun getPrayerData() {
-        prayRequest.requesterId?.let {
+        prayRequest.handlerId?.let {
             userDatabaseReference.child(it)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {

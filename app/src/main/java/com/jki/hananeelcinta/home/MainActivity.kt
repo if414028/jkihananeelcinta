@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
         setupLayout()
         getAnnouncements()
+        checkFCMToken()
     }
 
     override fun onResume() {
@@ -275,6 +276,49 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
             }
         })
+    }
+
+    private fun checkFCMToken() {
+        if (UserConfiguration.getInstance().getUserData()?.fcmToken?.isNotEmpty() == true) {
+            subscribeToPastorMessageTopic()
+        } else {
+            fetchAndUpdateFCMToken(UserConfiguration.getInstance().getUserId()!!)
+        }
+    }
+
+    private fun fetchAndUpdateFCMToken(userId: String) {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.e("FCM", "Gagal mendapatkan token FCM", task.exception)
+                    return@addOnCompleteListener
+                }
+
+                val token = task.result ?: ""
+                Log.d("FCM", "FCM Token didapatkan: $token")
+
+                // Update token ke database
+                val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
+                userRef.child("fcmToken").setValue(token)
+                    .addOnSuccessListener {
+                        Log.d("FCM", "FCM Token berhasil diperbarui di database")
+                        subscribeToPastorMessageTopic()
+                    }
+                    .addOnFailureListener {
+                        Log.e("FCM", "Gagal memperbarui FCM Token di database", it)
+                    }
+            }
+    }
+
+    private fun subscribeToPastorMessageTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("pastor_message")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FCM", "Berhasil subscribe ke pastor_message")
+                } else {
+                    Log.e("FCM", "Gagal subscribe ke topic", task.exception)
+                }
+            }
     }
 
     private val autoScrollHandler = Handler()
