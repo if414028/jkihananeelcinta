@@ -1,12 +1,17 @@
 package com.jki.hananeelcinta.home
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.icu.util.Calendar
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -52,6 +57,10 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener {
 
+    companion object {
+        private const val REQUEST_NOTIFICATION_PERMISSION = 101
+    }
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var adapter: SimpleRecyclerAdapter<ModuleView>
@@ -78,14 +87,36 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportActionBar?.hide()
 
+        requestNotificationPermission()
+
         setupLayout()
         getAnnouncements()
+        checkFCMToken()
     }
 
     override fun onResume() {
         super.onResume()
         getProfileImage()
         getBirthdayCard()
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQUEST_NOTIFICATION_PERMISSION)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_NOTIFICATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("FCM", "Izin notifikasi diberikan")
+            } else {
+                Log.e("FCM", "Izin notifikasi ditolak")
+            }
+        }
     }
 
     private fun setupLayout() {
@@ -275,6 +306,49 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
             }
         })
+    }
+
+    private fun checkFCMToken() {
+        if (UserConfiguration.getInstance().getUserData()?.fcmToken?.isNotEmpty() == true) {
+            subscribeToPastorMessageTopic()
+        } else {
+            fetchAndUpdateFCMToken(UserConfiguration.getInstance().getUserId()!!)
+        }
+    }
+
+    private fun fetchAndUpdateFCMToken(userId: String) {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.e("FCM", "Gagal mendapatkan token FCM", task.exception)
+                    return@addOnCompleteListener
+                }
+
+                val token = task.result ?: ""
+                Log.d("FCM", "FCM Token didapatkan: $token")
+
+                // Update token ke database
+                val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
+                userRef.child("fcmToken").setValue(token)
+                    .addOnSuccessListener {
+                        Log.d("FCM", "FCM Token berhasil diperbarui di database")
+                        subscribeToPastorMessageTopic()
+                    }
+                    .addOnFailureListener {
+                        Log.e("FCM", "Gagal memperbarui FCM Token di database", it)
+                    }
+            }
+    }
+
+    private fun subscribeToPastorMessageTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("pastor_message")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FCM", "Berhasil subscribe ke pastor_message")
+                } else {
+                    Log.e("FCM", "Gagal subscribe ke topic", task.exception)
+                }
+            }
     }
 
     private val autoScrollHandler = Handler()
