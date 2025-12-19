@@ -1,4 +1,4 @@
-package com.jki.hananeelcinta
+package com.jki.myhananeelcinta
 
 import org.junit.Test
 

@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         tools:context=".register.RegisterActivity">
 
-        <com.jki.hananeelcinta.stepper.HancinStepperLayout
+        <com.jki.myhananeelcinta.stepper.HancinStepperLayout
             android:id="@+id/stepper_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

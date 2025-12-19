@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace "com.jki.hananeelcinta"
-    compileSdk 34
+    namespace "com.jki.myhananeelcinta"
+    compileSdk 36
     defaultConfig {
-        applicationId "com.jki.hananeelcinta"
+        applicationId "com.jki.myhananeelcinta"
         minSdk 21
-        targetSdk 34
-        versionCode 1009
-        versionName "1.0.0.9"
+        targetSdk 36
+        versionCode 2001
+        versionName "2.0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
