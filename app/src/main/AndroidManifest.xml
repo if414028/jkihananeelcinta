@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jki.hananeelcinta">
+    package="com.jki.myhananeelcinta">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".HancinApplication"
+        android:name="com.jki.myhananeelcinta.HancinApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -30,83 +30,83 @@
         android:theme="@style/Theme.JKIHananeelCinta"
         tools:targetApi="31">
         <activity
-            android:name=".pastoral.birthday.BirthdayListActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.birthday.BirthdayListActivity"
             android:exported="false" />
         <!-- Activities -->
         <activity
-            android:name=".pastoral.congregation.EditCongregationActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.congregation.EditCongregationActivity"
             android:exported="false" />
         <activity
-            android:name=".login.ForgotPasswordActivity"
+            android:name="com.jki.myhananeelcinta.login.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".prayerrequest.FinishHandlePrayRequestActivity"
+            android:name="com.jki.myhananeelcinta.prayerrequest.FinishHandlePrayRequestActivity"
             android:exported="false" />
         <activity
-            android:name=".prayerrequest.PrayerRequestDetailActivity"
+            android:name="com.jki.myhananeelcinta.prayerrequest.PrayerRequestDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".prayerrequest.CreatePrayerRequestActivity"
+            android:name="com.jki.myhananeelcinta.prayerrequest.CreatePrayerRequestActivity"
             android:exported="false" />
         <activity
-            android:name=".prayerrequest.PrayerRequestListActivity"
+            android:name="com.jki.myhananeelcinta.prayerrequest.PrayerRequestListActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.announcement.DetailAnnouncementActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.announcement.DetailAnnouncementActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.announcement.CreateAnnouncementActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.announcement.CreateAnnouncementActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.announcement.AnnouncementListActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.announcement.AnnouncementListActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.pastormessages.PastorMessagesListActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.pastormessages.PastorMessagesListActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.pastors.PastorDetailActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.pastors.PastorDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.pastors.PastorListActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.pastors.PastorListActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.congregation.CongregationDetailActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.congregation.CongregationDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.congregation.CongregationListActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.congregation.CongregationListActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.GreenRoomActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.GreenRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".pastoral.pastormessages.CreatePastorMessagesActivity"
+            android:name="com.jki.myhananeelcinta.pastoral.pastormessages.CreatePastorMessagesActivity"
             android:exported="false" />
         <activity
-            android:name=".offering.OfferingActivity"
+            android:name="com.jki.myhananeelcinta.offering.OfferingActivity"
             android:exported="false" />
         <activity
-            android:name=".services.MezbahKeluargaActivity"
+            android:name="com.jki.myhananeelcinta.services.MezbahKeluargaActivity"
             android:exported="false" />
         <activity
-            android:name=".services.ServicesActivity"
+            android:name="com.jki.myhananeelcinta.services.ServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name="com.jki.myhananeelcinta.profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".reflection.ReflectionActivity"
+            android:name="com.jki.myhananeelcinta.reflection.ReflectionActivity"
             android:exported="false" />
         <activity
-            android:name=".camera.CameraActivity"
+            android:name="com.jki.myhananeelcinta.camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".register.RegisterActivity"
+            android:name="com.jki.myhananeelcinta.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.jki.myhananeelcinta.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="com.jki.myhananeelcinta.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,10 +115,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".home.MainActivity"
+            android:name="com.jki.myhananeelcinta.home.MainActivity"
             android:exported="false" /> <!-- Services -->
         <service
-            android:name=".service.FCMNotificationService"
+            android:name="com.jki.myhananeelcinta.service.FCMNotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
