@@ -195,7 +195,7 @@
                                     style="@style/Sanfransisco.Bold"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Pastor"
+                                    android:text="Pastor / Admin"
                                     android:textColor="@color/color_primary"
                                     android:textSize="@dimen/_16ssp" />
 

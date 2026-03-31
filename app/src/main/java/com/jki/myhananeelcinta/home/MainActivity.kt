@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -86,6 +87,14 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
         setupLayout()
         getAnnouncements()
         checkFCMToken()
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Tutup semua activity
+                finishAffinity()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     override fun onResume() {

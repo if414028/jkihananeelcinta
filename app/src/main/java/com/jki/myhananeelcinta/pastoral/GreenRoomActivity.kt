@@ -49,8 +49,8 @@ class GreenRoomActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnPastorList.setOnClickListener {
-            val intent = Intent(applicationContext, PastorListActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(applicationContext, PastorListActivity::class.java)
+//            startActivity(intent)
         }
         binding.btnAnnouncementList.setOnClickListener {
             val intent = Intent(applicationContext, AnnouncementListActivity::class.java)
@@ -77,7 +77,7 @@ class GreenRoomActivity : AppCompatActivity() {
     }
 
     private fun getTotalPastor() {
-        userRef.orderByChild("role").equalTo("pastor")
+        userRef.orderByChild("role").equalTo("SuperUser")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
