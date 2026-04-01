@@ -1,8 +1,10 @@
 package com.jki.myhananeelcinta.profile
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -29,6 +31,19 @@ class ProfileActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
         supportActionBar?.hide()
+
+        val tvAbout = findViewById<TextView>(R.id.tvAbout)
+        tvAbout.setOnClickListener {
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("Tentang Aplikasi")
+                .setMessage("MyHananeelCinta\nDikembangkan oleh Tim JKI Hananeel Cinta")
+                .setPositiveButton("OK") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                .create()
+
+            dialog.show()
+        }
 
         setupLayout()
     }

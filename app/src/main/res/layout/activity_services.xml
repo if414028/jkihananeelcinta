@@ -412,7 +412,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
-                                android:text="Jumat"
+                                android:text="Sabtu"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 
@@ -420,7 +420,7 @@
                                 style="@style/Sanfransisco.Regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/hsn_malam"
+                                android:text="@string/youth_malam"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10ssp" />
 

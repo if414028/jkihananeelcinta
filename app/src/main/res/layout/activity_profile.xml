@@ -160,6 +160,7 @@
                 app:cardBackgroundColor="@color/true_white">
 
                 <TextView
+                    android:id="@+id/tvAbout"
                     style="@style/Sanfransisco.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

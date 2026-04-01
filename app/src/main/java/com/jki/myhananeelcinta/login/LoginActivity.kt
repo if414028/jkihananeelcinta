@@ -6,6 +6,7 @@ import android.os.Handler
 import android.text.InputType
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +39,14 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         setupLayout()
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Tutup semua activity
+                finishAffinity()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun setupLayout() {
