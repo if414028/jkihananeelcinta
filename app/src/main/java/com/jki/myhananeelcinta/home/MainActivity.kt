@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
     override fun onResume() {
         super.onResume()
+        updateLastOpen()
         getProfileImage()
         getBirthdayCard()
     }
@@ -245,6 +246,23 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     } else {
                         Log.e("getBirthdayCard", "Date of birth is empty or null.")
                     }
+                }
+        }
+    }
+
+    private fun updateLastOpen() {
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(it.uid)
+                .child("lastOpen")
+                .setValue(System.currentTimeMillis())
+                .addOnSuccessListener {
+                    Log.d("USER_ACTIVITY", "lastOpen updated")
+                }
+                .addOnFailureListener {
+                    Log.e("USER_ACTIVITY", "failed update lastOpen", it)
                 }
         }
     }
