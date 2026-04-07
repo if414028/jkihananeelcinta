@@ -253,11 +253,15 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
     private fun updateLastOpen() {
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
+            val updates = mapOf(
+                "lastOpen" to System.currentTimeMillis(),
+                "lastOpenPlatform" to "ANDROID"
+            )
+
             FirebaseDatabase.getInstance()
                 .getReference("users")
                 .child(it.uid)
-                .child("lastOpen")
-                .setValue(System.currentTimeMillis())
+                .updateChildren(updates)
                 .addOnSuccessListener {
                     Log.d("USER_ACTIVITY", "lastOpen updated")
                 }
@@ -368,6 +372,31 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
                     Log.d("FCM", "Berhasil subscribe ke pastor_message")
                 } else {
                     Log.e("FCM", "Gagal subscribe ke topic", task.exception)
+                }
+            }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("device_android")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FCM", "Berhasil subscribe ke device_android")
+                } else {
+                    Log.e("FCM", "Gagal subscribe ke topic", task.exception)
+                }
+            }
+
+        val email = UserConfiguration.getInstance().getUserData()?.email ?: return
+
+        val safeTopic = email
+            .replace("@", "_")
+            .replace(".", "_")
+            .lowercase()
+
+        FirebaseMessaging.getInstance().subscribeToTopic(safeTopic)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FCM", "Berhasil subscribe ke $safeTopic")
+                } else {
+                    Log.e("FCM", "Gagal subscribe topic", task.exception)
                 }
             }
     }
