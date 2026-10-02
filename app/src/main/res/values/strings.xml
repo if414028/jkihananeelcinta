@@ -227,4 +227,11 @@
 
     <string name="profile">Profile</string>
     <string name="edit">Ubah</string>
+    <string name="registration_nickname">Nama panggilan (opsional)</string>
+    <string name="registration_nickname_error_message">Nama panggilan maksimal 100 karakter.</string>
+    <string name="registration_password_error">Password minimal 6 karakter.</string>
+    <string name="registration_optional_birthplace">Tempat lahir (opsional)</string>
+    <string name="registration_optional_birthdate">Tanggal lahir (opsional)</string>
+    <string name="registration_optional_phone">Nomor telepon (opsional)</string>
+    <string name="registration_optional_address">Alamat (opsional)</string>
 </resources>

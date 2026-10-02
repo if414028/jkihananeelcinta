@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
-                    android:text="@string/address" />
+                    android:text="@string/registration_optional_address" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_address"
@@ -57,7 +57,7 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:background="@drawable/edittext_background_grey_border"
                     android:gravity="top|start"
-                    android:hint="@string/address"
+                    android:hint="@string/registration_optional_address"
                     android:inputType="textMultiLine"
                     android:lines="5"
                     android:maxLines="8"

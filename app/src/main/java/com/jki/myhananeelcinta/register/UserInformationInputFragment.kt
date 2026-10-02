@@ -85,7 +85,11 @@ class UserInformationInputFragment : Fragment() {
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)
-                ).show()
+                ).apply {
+                    datePicker.maxDate = Calendar.getInstance().apply {
+                        set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
+                    }.timeInMillis - 1
+                }.show()
             }
         }
     }
@@ -117,47 +121,18 @@ class UserInformationInputFragment : Fragment() {
     }
 
     private fun validateEachField() {
-        var isNameValid = false
-        var isPlaceOfBirthValid = false
-        var isDateOfBirthValid = false
-        var isPhoneNumberValid = false
-        binding.etName.addTextChangedListener {
-            isNameValid = it.toString().isNotEmpty()
-            if (isNameValid)
-                binding.tvNameErrorMessage.visibility = View.GONE
-            else binding.tvNameErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
-        }
-        binding.etPlaceOfBirth.addTextChangedListener {
-            isPlaceOfBirthValid = it.toString().isNotEmpty()
-            if (isPlaceOfBirthValid)
-                binding.tvPlaceOfBirthErrorMessage.visibility = View.GONE
-            else binding.tvPlaceOfBirthErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
-        }
-        binding.etDateOfBirth.addTextChangedListener {
-            isDateOfBirthValid = it.toString().isNotEmpty()
-            if (isDateOfBirthValid)
-                binding.tvDateOfBirthErrorMessage.visibility = View.GONE
-            else binding.tvPlaceOfBirthErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
-        }
-        binding.etPhoneNumber.addTextChangedListener {
-            isPhoneNumberValid = it.toString().isNotEmpty()
-            if (isPhoneNumberValid)
-                binding.tvPhoneNumberErrorMessage.visibility = View.GONE
-            else binding.tvPhoneNumberErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isNameValid && isPlaceOfBirthValid && isDateOfBirthValid && isPhoneNumberValid)
-        }
+        listOf(binding.etName, binding.etPlaceOfBirth, binding.etDateOfBirth, binding.etPhoneNumber)
+            .forEach { field -> field.addTextChangedListener { validateSection() } }
     }
 
     fun validateSection() {
-        viewModel.setIsSectionValid(
-            binding.etName.text.toString().isNotEmpty()
-                    && binding.etPlaceOfBirth.text.toString().isNotEmpty()
-                    && binding.etPlaceOfBirth.text.toString().isNotEmpty()
-                    && binding.etDateOfBirth.text.toString().isNotEmpty()
-                    && binding.etPhoneNumber.text.toString().isNotEmpty()
-        )
+        val nameValid = binding.etName.text.toString().trim().length in 1..255
+        val birthplaceValid = binding.etPlaceOfBirth.text.toString().trim().length <= 100
+        val phone = getFormattedPhoneNumber(binding.etPhoneNumber.text.toString().trim())
+        val phoneValid = phone.isEmpty() || (phone.length in 7..30 && phone.matches(Regex("[0-9+() .-]+")))
+        binding.tvNameErrorMessage.visibility = if (nameValid) View.GONE else View.VISIBLE
+        binding.tvPlaceOfBirthErrorMessage.visibility = if (birthplaceValid) View.GONE else View.VISIBLE
+        binding.tvPhoneNumberErrorMessage.visibility = if (phoneValid) View.GONE else View.VISIBLE
+        viewModel.setIsSectionValid(nameValid && birthplaceValid && phoneValid)
     }
 }

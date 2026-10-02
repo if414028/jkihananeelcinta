@@ -11,12 +11,18 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.jki.myhananeelcinta.R
+import com.jki.myhananeelcinta.util.UserConfiguration
 import com.jki.myhananeelcinta.home.MainActivity
 
 class FCMNotificationService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("FCM", "Token baru: $token")
+        // The CMS bridge has no device-token endpoint yet. Keep the token local.
+        val configuration = UserConfiguration.getInstance()
+        configuration.getUserData()?.let { user ->
+            user.fcmToken = token
+            configuration.setUserData(user)
+        }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

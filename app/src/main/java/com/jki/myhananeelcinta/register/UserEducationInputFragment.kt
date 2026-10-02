@@ -105,8 +105,8 @@ class UserEducationInputFragment : Fragment() {
 
     fun setUserEducation() {
         viewModel.setUserEducation(
-            getSelectedBloodType(),
-            getSelectedEducation(),
+            "",
+            "",
             getSelectedJob(),
         )
     }

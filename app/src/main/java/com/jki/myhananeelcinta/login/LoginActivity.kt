@@ -2,6 +2,7 @@ package com.jki.myhananeelcinta.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.os.Handler
 import android.text.InputType
 import android.view.View
@@ -12,15 +13,11 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.jki.myhananeelcinta.R
+import com.jki.myhananeelcinta.auth.CmsAuthRepository
 import com.jki.myhananeelcinta.R.*
 import com.jki.myhananeelcinta.databinding.ActivityLoginBinding
 import com.jki.myhananeelcinta.home.MainActivity
-import com.jki.myhananeelcinta.model.User
 import com.jki.myhananeelcinta.register.RegisterActivity
 import com.jki.myhananeelcinta.util.UserConfiguration
 
@@ -29,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    val database = FirebaseDatabase.getInstance()
-    val usersRef = database.getReference("users")
+    private var isSigningIn = false
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +78,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isVisible: Boolean) {
+        binding.btnLogin.isEnabled = !isVisible
+        binding.tvRegister.isEnabled = !isVisible
+        binding.tvForgotPassword.isEnabled = !isVisible
         if (isVisible) {
             binding.loading.visibility = View.VISIBLE
             binding.lottieAnimation.playAnimation()
@@ -96,92 +96,58 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        showLoading(true)
-        val email = binding.etUsername.text.toString()
+        if (isSigningIn) return
+        val email = binding.etUsername.text.toString().trim()
         val password = binding.etPassword.text.toString()
-
         if (email.isBlank() || password.isBlank()) {
-            showLoading(false)
-            Toast.makeText(this, "Username atau Password tidak boleh kosong", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(this, "Email atau password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             return
         }
-
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    firebaseAuth.currentUser?.let { userId -> saveUserData(userId.uid) }
-                } else {
-                    showLoading(false)
-                    if (it.exception is FirebaseAuthInvalidCredentialsException) {
-                        when ((it.exception as FirebaseAuthInvalidCredentialsException).errorCode) {
-                            "ERROR_USER_NOT_FOUND" -> Toast.makeText(
-                                this,
-                                "User tidak ditemukan",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            "ERROR_INVALID_EMAIL" -> Toast.makeText(
-                                this,
-                                "Format email salah",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            "ERROR_WRONG_PASSWORD" -> Toast.makeText(
-                                this,
-                                "Password Salah",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } else if (it.exception is FirebaseAuthInvalidUserException) {
-                        when ((it.exception as FirebaseAuthInvalidUserException).errorCode) {
-                            "ERROR_USER_NOT_FOUND" -> Toast.makeText(
-                                this,
-                                "User tidak ditemukan",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            "ERROR_INVALID_EMAIL" -> Toast.makeText(
-                                this,
-                                "Format email salah",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+        isSigningIn = true
+        showLoading(true)
+        UserConfiguration.getInstance().clearSession()
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                openCmsSession()
+            } else {
+                isSigningIn = false
+                showLoading(false)
+                val message = when (val error = task.exception) {
+                    is FirebaseAuthInvalidUserException -> "Akun tidak tersedia atau dinonaktifkan."
+                    is FirebaseAuthInvalidCredentialsException ->
+                        if (error.errorCode == "ERROR_INVALID_EMAIL") "Format email salah" else "Email atau password salah"
+                    else -> "Login Firebase gagal. Periksa koneksi lalu coba lagi."
                 }
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             }
+        }
     }
 
-    private fun saveUserData(userId: String) {
-        usersRef.child(userId).addListenerForSingleValueEvent(
-            object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        val user = snapshot.getValue(User::class.java)
-                        user?.let {
-                            showLoading(false)
-                            showSuccessAnimation()
+    private fun openCmsSession() {
+        val repository = CmsAuthRepository.getInstance(this)
+        repository.openSession { result ->
+            if (isFinishing || isDestroyed) return@openSession
+            isSigningIn = false
+            showLoading(false)
+            result.fold({ user ->
+                repository.saveSession(user)
+                showSuccessAnimation()
+                handler.postDelayed({
+                    startActivity(Intent(this, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
+                    finish()
+                }, 1000)
+            }, { error ->
+                repository.handleFailure(error)
+                Toast.makeText(this, error.message ?: "Gagal mengambil profil CMS.", Toast.LENGTH_LONG).show()
+            })
+        }
+    }
 
-                            Handler().postDelayed({
-                                UserConfiguration.getInstance().setUserId(userId)
-                                UserConfiguration.getInstance().setUserData(it)
-                                val intent = Intent(applicationContext, MainActivity::class.java)
-                                startActivity(intent)
-                            }, 1000)
-                        }
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    showLoading(false)
-                    Toast.makeText(
-                        applicationContext,
-                        "Gagal mendapatkan data user",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-        )
+    override fun onDestroy() {
+        handler.removeCallbacksAndMessages(null)
+        super.onDestroy()
     }
 
     override fun onBackPressed() {

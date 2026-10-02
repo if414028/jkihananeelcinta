@@ -55,46 +55,19 @@ class UserCredentialInputFragment : Fragment() {
     }
 
     private fun validateEachField() {
-        var isEmailValid = false
-        var isUsernameValid = false
-        var isPasswordValid = false
-        var isRePasswordValid = false
-        binding.etEmail.addTextChangedListener {
-            isEmailValid = it.toString().isNotEmpty()
-            if (isEmailValid)
-                binding.tvEmailErrorMessage.visibility = View.GONE
-            else binding.tvEmailErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid((isEmailValid && isUsernameValid && isPasswordValid && isRePasswordValid))
-        }
-        binding.etUsername.addTextChangedListener {
-            isUsernameValid = it.toString().isNotEmpty()
-            if (isUsernameValid)
-                binding.tvUsernameErrorMessage.visibility = View.GONE
-            else binding.tvUsernameErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid((isEmailValid && isUsernameValid && isPasswordValid && isRePasswordValid))
-        }
-        binding.etPassword.addTextChangedListener {
-            isPasswordValid = it.toString().isNotEmpty()
-            if (isPasswordValid)
-                binding.tvPasswordErrorMessage.visibility = View.GONE
-            else binding.tvPasswordErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid((isEmailValid && isUsernameValid && isPasswordValid && isRePasswordValid))
-        }
-        binding.etPasswordConfirmation.addTextChangedListener {
-            isRePasswordValid = it.toString() == binding.etPassword.text.toString()
-            if (isRePasswordValid)
-                binding.tvPasswordConfirmationErrorMessage.visibility = View.GONE
-            else binding.tvPasswordConfirmationErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid((isEmailValid && isUsernameValid && isPasswordValid && isRePasswordValid))
-        }
+        listOf(binding.etEmail, binding.etUsername, binding.etPassword, binding.etPasswordConfirmation)
+            .forEach { field -> field.addTextChangedListener { validateSection() } }
     }
 
     fun validateSection() {
-        viewModel.setIsSectionValid(
-            binding.etEmail.text!!.isNotEmpty()
-                    && binding.etUsername.text!!.isNotEmpty()
-                    && binding.etPassword.text!!.isNotEmpty()
-                    && binding.etPasswordConfirmation.text.toString() == binding.etPassword.text.toString()
-        )
+        val emailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString().trim()).matches()
+        val nicknameValid = binding.etUsername.text.toString().trim().length <= 100
+        val passwordValid = binding.etPassword.text.toString().length >= 6
+        val confirmationValid = binding.etPasswordConfirmation.text.toString() == binding.etPassword.text.toString()
+        binding.tvEmailErrorMessage.visibility = if (emailValid) View.GONE else View.VISIBLE
+        binding.tvUsernameErrorMessage.visibility = if (nicknameValid) View.GONE else View.VISIBLE
+        binding.tvPasswordErrorMessage.visibility = if (passwordValid) View.GONE else View.VISIBLE
+        binding.tvPasswordConfirmationErrorMessage.visibility = if (confirmationValid) View.GONE else View.VISIBLE
+        viewModel.setIsSectionValid(emailValid && nicknameValid && passwordValid && confirmationValid)
     }
 }

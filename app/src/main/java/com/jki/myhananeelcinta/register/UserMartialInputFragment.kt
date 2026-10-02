@@ -47,10 +47,12 @@ class UserMartialInputFragment : Fragment() {
     }
 
     private fun setupMarriedStatusRadioButton() {
-        enumValues<HasMarriedQuestion>().forEach {
-            val rbHasMarried = RadioButton(context)
-            rbHasMarried.text = it.hasMarriedQuestion
-            binding.rbMartialStatus.addView(rbHasMarried)
+        listOf("Belum Menikah" to "single", "Sudah Menikah" to "married",
+            "Ditinggal pasangan meninggal" to "widowed", "Bercerai" to "divorced").forEach { (label, value) ->
+            val radio = RadioButton(context)
+            radio.text = label
+            radio.tag = value
+            binding.rbMartialStatus.addView(radio)
         }
         (binding.rbMartialStatus.getChildAt(0) as RadioButton).isChecked = true
     }
@@ -58,7 +60,7 @@ class UserMartialInputFragment : Fragment() {
     private fun getMarriedStatusInformation(): String {
         val checkRadioButton =
             binding.root.findViewById<RadioButton>(binding.rbMartialStatus.checkedRadioButtonId)
-        return checkRadioButton.text.toString()
+        return checkRadioButton.tag.toString()
     }
 
     private fun setupFamilyStatusRadioButton() {
@@ -79,7 +81,7 @@ class UserMartialInputFragment : Fragment() {
     fun setMartialStatusInformation() {
         viewModel.setUserMartialStatus(
             getMarriedStatusInformation(),
-            getFamilyStatusInformation()
+            ""
         )
     }
 

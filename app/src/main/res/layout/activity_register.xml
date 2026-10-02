@@ -1,51 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".register.RegisterActivity">
-
-        <com.jki.myhananeelcinta.stepper.HancinStepperLayout
-            android:id="@+id/stepper_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie_animation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:lottie_autoPlay="true"
-                app:lottie_fileName="profile_loading_animation.lottie"
-                app:lottie_loop="true" />
-
-            <TextView
-                style="@style/Sanfransisco.SemiBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_32sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_32sdp"
-                android:text="@string/text_pleaseWait"
-                android:textAlignment="center"
-                android:textColor="@color/greyAAAAAA"
-                android:textSize="@dimen/_12ssp" />
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:background="@color/register_surface" android:id="@+id/register_root" android:layout_height="match_parent" android:layout_width="match_parent">
+        <LinearLayout app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintWidth_max="600dp" android:id="@+id/register_content" android:layout_height="0dp" android:layout_width="0dp" android:orientation="vertical">
+            <LinearLayout android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingEnd="12dp" android:paddingStart="12dp">
+                <androidx.appcompat.widget.AppCompatImageButton android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/reg_back" android:id="@+id/btn_back" android:layout_height="48dp" android:layout_width="48dp" android:padding="12dp" android:src="@drawable/ic_register_back" />
+                <TextView android:fontFamily="@font/semibold" app:fontFamily="@font/semibold" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="0dp" android:text="@string/reg_brand" android:textColor="@color/register_content" android:textSize="14sp" />
+                <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_login" android:text="@string/reg_login" />
+            </LinearLayout>
+            <androidx.core.widget.NestedScrollView android:clipToPadding="false" android:fillViewport="true" android:id="@+id/form_scroll" android:layout_height="0dp" android:layout_weight="1" android:layout_width="match_parent">
+                <LinearLayout android:id="@+id/form_content" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="24dp" android:paddingEnd="24dp" android:paddingStart="24dp" android:paddingTop="24dp">
+                    <TextView style="@style/Register.Body" android:accessibilityHeading="true" android:fontFamily="@font/bold" app:fontFamily="@font/bold" android:gravity="center" android:id="@+id/tv_title" android:textSize="34sp" />
+                    <TextView style="@style/Register.Body" android:gravity="center" android:id="@+id/tv_description" android:layout_marginTop="10dp" android:textColor="@color/register_secondary" />
+                    <TextView style="@style/Register.Secondary" android:gravity="center" android:id="@+id/tv_progress" android:layout_marginTop="24dp" />
+                    <com.google.android.material.progressindicator.LinearProgressIndicator app:indicatorColor="@color/register_accent" app:trackColor="@color/register_tint" app:trackCornerRadius="2dp" app:trackThickness="4dp" android:id="@+id/step_progress" android:layout_height="8dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:max="6" />
+                    <LinearLayout android:id="@+id/step_labels" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:layout_width="match_parent" android:orientation="horizontal">
+                        <TextView style="@style/Register.Secondary" android:gravity="center" android:id="@+id/tv_step_account" android:layout_weight="1" android:layout_width="0dp" android:text="@string/reg_step_account" />
+                        <TextView style="@style/Register.Secondary" android:gravity="center" android:id="@+id/tv_step_personal" android:layout_weight="1" android:layout_width="0dp" android:text="@string/reg_step_personal" />
+                        <TextView style="@style/Register.Secondary" android:gravity="center" android:id="@+id/tv_step_review" android:layout_weight="1" android:layout_width="0dp" android:text="@string/reg_step_review" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_account" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_email" android:id="@+id/til_email">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:autofillHints="emailAddress" android:id="@+id/et_email" android:inputType="textEmailAddress" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="password_toggle" app:helperText="@string/reg_password_hint" android:hint="@string/reg_password" android:id="@+id/til_password">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:autofillHints="newPassword" android:id="@+id/et_password" android:inputType="textPassword" android:saveEnabled="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="password_toggle" android:hint="@string/reg_confirmation" android:id="@+id/til_confirmation">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:autofillHints="newPassword" android:id="@+id/et_confirmation" android:imeOptions="actionDone" android:inputType="textPassword" android:saveEnabled="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_personal" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_name" android:id="@+id/til_name">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:autofillHints="personName" android:id="@+id/et_name" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView style="@style/Register.Label" android:id="@+id/tv_gender_label" android:text="@string/reg_gender" />
+                        <RadioGroup android:id="@+id/rg_gender" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+                            <com.google.android.material.radiobutton.MaterialRadioButton android:background="@drawable/register_choice_background" android:buttonTint="@color/register_accent" android:id="@+id/rb_male" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:layout_width="match_parent" android:minHeight="52dp" android:padding="12dp" android:text="@string/reg_male" android:textColor="@color/register_content" android:textSize="16sp" />
+                            <com.google.android.material.radiobutton.MaterialRadioButton android:background="@drawable/register_choice_background" android:buttonTint="@color/register_accent" android:id="@+id/rb_female" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:layout_width="match_parent" android:minHeight="52dp" android:padding="12dp" android:text="@string/reg_female" android:textColor="@color/register_content" android:textSize="16sp" />
+                        </RadioGroup>
+                        <TextView style="@style/Register.Secondary" android:accessibilityLiveRegion="polite" android:id="@+id/tv_gender_error" android:text="@string/reg_error_gender" android:textColor="@color/register_error" android:visibility="gone" />
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_nickname" android:id="@+id/til_nickname">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_nickname" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_phone" android:id="@+id/til_phone">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:autofillHints="phoneNumber" android:id="@+id/et_phone" android:imeOptions="actionDone" android:inputType="phone" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_birthplace" android:id="@+id/til_birthplace">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_birthplace" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconContentDescription="@string/reg_birthdate" app:endIconDrawable="@drawable/ic_register_calendar" app:endIconMode="custom" android:hint="@string/reg_birthdate" android:id="@+id/til_birthdate">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:cursorVisible="false" android:focusable="false" android:id="@+id/et_birthdate" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_profile" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_address" android:id="@+id/til_address">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_address" android:inputType="textPostalAddress|textMultiLine" android:maxLines="5" android:minLines="2" android:singleLine="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_blood" android:id="@+id/til_blood">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_blood" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_education" android:id="@+id/til_education">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_education" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_occupation" android:id="@+id/til_occupation">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_occupation" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_church" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_baptism" android:id="@+id/til_baptism">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_baptism" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconContentDescription="@string/reg_baptism_date" app:endIconDrawable="@drawable/ic_register_calendar" app:endIconMode="custom" android:hint="@string/reg_baptism_date" android:id="@+id/til_baptism_date" android:visibility="gone">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:cursorVisible="false" android:focusable="false" android:id="@+id/et_baptism_date" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_baptism_church" android:id="@+id/til_baptism_church">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_baptism_church" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_holy_spirit" android:id="@+id/til_holy_spirit">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_holy_spirit" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_church_origin" android:id="@+id/til_church_origin">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_church_origin" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_moving_reason" android:id="@+id/til_moving_reason">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:gravity="top" android:id="@+id/et_moving_reason" android:imeOptions="actionNext" android:inputType="textCapSentences|textMultiLine" android:maxLines="8" android:minLines="2" android:singleLine="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_family" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_marital" android:id="@+id/til_marital">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_marital" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:endIconMode="dropdown_menu" android:hint="@string/reg_family_status" android:id="@+id/til_family_status">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Register.Edit" android:id="@+id/et_family_status" android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_wife" android:id="@+id/til_wife">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_wife" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" android:hint="@string/reg_husband" android:id="@+id/til_husband">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:id="@+id/et_husband" android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:helperText="@string/reg_names_hint" android:hint="@string/reg_children" android:id="@+id/til_children">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:gravity="top" android:id="@+id/et_children" android:imeOptions="actionNext" android:inputType="textCapSentences|textMultiLine" android:maxLines="8" android:minLines="2" android:singleLine="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout style="@style/Register.Input" app:helperText="@string/reg_names_hint" android:hint="@string/reg_siblings" android:id="@+id/til_siblings">
+                            <com.google.android.material.textfield.TextInputEditText style="@style/Register.Edit" android:gravity="top" android:id="@+id/et_siblings" android:imeOptions="actionNext" android:inputType="textCapSentences|textMultiLine" android:maxLines="8" android:minLines="2" android:singleLine="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/panel_review" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+                        <TextView style="@style/Register.Label" android:accessibilityHeading="true" android:text="@string/reg_photo" />
+                        <com.mikhaellopez.circularimageview.CircularImageView app:civ_border_color="@color/register_outline" app:civ_border_width="1dp" android:contentDescription="@string/reg_photo_preview" android:id="@+id/iv_photo" android:layout_gravity="center_horizontal" android:layout_height="144dp" android:layout_marginTop="8dp" android:layout_width="144dp" android:src="@drawable/grey_circle" />
+                        <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_take_photo" android:layout_gravity="center_horizontal" android:text="@string/reg_take_photo" />
+                        <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_remove_photo" android:layout_gravity="center_horizontal" android:text="@string/reg_remove_photo" android:visibility="gone" />
+                        <TextView style="@style/Register.Secondary" android:gravity="center" android:text="@string/reg_photo_help" />
+                        <TextView style="@style/Register.Secondary" android:accessibilityLiveRegion="polite" android:id="@+id/tv_photo_error" android:textColor="@color/register_error" android:visibility="gone" />
+                        <TextView style="@style/Register.Secondary" android:id="@+id/label_review_name" android:layout_marginTop="20dp" android:text="@string/reg_name" />
+                        <TextView style="@style/Register.Body" android:fontFamily="@font/semibold" app:fontFamily="@font/semibold" android:id="@+id/tv_review_name" android:layout_marginTop="4dp" />
+                        <TextView style="@style/Register.Secondary" android:id="@+id/label_review_email" android:layout_marginTop="20dp" android:text="@string/reg_email" />
+                        <TextView style="@style/Register.Body" android:fontFamily="@font/semibold" app:fontFamily="@font/semibold" android:id="@+id/tv_review_email" android:layout_marginTop="4dp" />
+                        <TextView style="@style/Register.Secondary" android:id="@+id/label_review_gender" android:layout_marginTop="20dp" android:text="@string/reg_gender" />
+                        <TextView style="@style/Register.Body" android:fontFamily="@font/semibold" app:fontFamily="@font/semibold" android:id="@+id/tv_review_gender" android:layout_marginTop="4dp" />
+                        <TextView style="@style/Register.Body" android:id="@+id/tv_review_details" android:layout_marginTop="20dp" />
+                        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="8dp" android:layout_width="match_parent" android:orientation="vertical">
+                            <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_edit_account" android:text="@string/reg_edit_account" />
+                            <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_edit_personal" android:text="@string/reg_edit_personal" />
+                            <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_edit_profile" android:text="@string/reg_edit_profile" />
+                            <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_edit_church" android:text="@string/reg_edit_church" />
+                            <com.google.android.material.button.MaterialButton style="@style/Register.TextButton" android:id="@+id/btn_edit_family" android:text="@string/reg_edit_family" />
+                        </LinearLayout>
+                        <View android:background="@color/register_tint" android:layout_height="1dp" android:layout_marginBottom="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent" />
+                    </LinearLayout>
+                    <TextView style="@style/Register.Body" android:accessibilityLiveRegion="polite" android:id="@+id/tv_server_error" android:layout_marginTop="20dp" android:textColor="@color/register_error" android:visibility="gone" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+            <LinearLayout android:background="@color/register_surface" android:id="@+id/footer" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="12dp" android:paddingEnd="24dp" android:paddingStart="24dp" android:paddingTop="12dp">
+                <LinearLayout android:gravity="center_vertical" android:id="@+id/saving_status" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:layout_width="match_parent" android:orientation="horizontal" android:visibility="gone">
+                    <com.google.android.material.progressindicator.CircularProgressIndicator app:indicatorColor="@color/register_accent" app:indicatorSize="24dp" app:trackThickness="2dp" android:indeterminate="true" android:layout_height="24dp" android:layout_width="24dp" />
+                    <TextView style="@style/Register.Secondary" android:accessibilityLiveRegion="polite" android:layout_marginStart="12dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/reg_pending" />
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton style="@style/Register.Button" android:id="@+id/btn_continue" android:text="@string/reg_continue" />
+                <TextView style="@style/Register.Secondary" android:gravity="center" android:id="@+id/tv_footer_note" android:layout_marginTop="12dp" />
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

@@ -36,6 +36,9 @@ data class User(
     var childrenName: String,
     var siblingsName: String
 ) {
+    var maritalStatus: String = ""
+    var baptismStatus: String = ""
+
     constructor() : this(
         "",
         "",

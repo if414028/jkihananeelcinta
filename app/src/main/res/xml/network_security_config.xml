@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <!-- Temporary development CMS. Replace this exception when HTTPS is available. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">76.13.22.241</domain>
+    </domain-config>
+</network-security-config>

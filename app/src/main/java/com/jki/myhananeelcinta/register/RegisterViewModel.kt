@@ -1,19 +1,14 @@
 package com.jki.myhananeelcinta.register
 
 import android.app.Application
-import androidx.core.net.toUri
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
-import com.jki.myhananeelcinta.model.Role
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.gson.JsonObject
+import com.jki.myhananeelcinta.auth.CmsAuthRepository
+import com.jki.myhananeelcinta.auth.CmsProfileMapper
 import com.jki.myhananeelcinta.model.User
-import com.jki.myhananeelcinta.util.PictureUploader
 import com.jki.myhananeelcinta.util.SingleLiveEvent
 import com.jki.myhananeelcinta.util.UserConfiguration
 import java.io.File
@@ -21,9 +16,17 @@ import java.io.File
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var database: DatabaseReference = Firebase.database.getReference("users")
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val profilePictureUploader = PictureUploader()
+    private var password = ""
+    val isSubmitting = MutableLiveData(false)
+    val form = RegistrationForm()
+
+    fun submitForm() {
+        if ((0..5).any { form.errors(it).isNotEmpty() }) return
+        user = form.profile()
+        password = form.password
+        signUpUser()
+    }
 
     var user: User = User()
     var capturedImageFile: File? = null
@@ -36,8 +39,9 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     fun setUserCredential(username: String, email: String, password: String, rePassword: String) {
         user.username = username
-        user.email = email
-        user.password = password
+        user.email = email.trim()
+        this.password = if (password == rePassword) password else ""
+        user.password = ""
     }
 
     fun setUserInformation(
@@ -47,7 +51,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         dateOfBirth: String,
         phoneNumber: String
     ) {
-        if (fullName.isNotBlank() && gender.isNotBlank() && placeOfBirth.isNotBlank() && dateOfBirth.isNotBlank() && phoneNumber.isNotBlank()) {
+        if (fullName.isNotBlank() && gender.isNotBlank()) {
             user.fullName = fullName
             user.gender = gender
             user.placeOfBirth = placeOfBirth
@@ -57,9 +61,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun setUserAddress(address: String) {
-        if (address.isNotBlank()) {
-            user.address = address
-        }
+        user.address = address.trim()
     }
 
     fun setUserEducation(bloodType: String, lastEducation: String, job: String) {
@@ -88,7 +90,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         married: String,
         statusInFamily: String
     ) {
-        user.married = married == "Sudah Menikah"
+        user.married = married == "Sudah Menikah" || married == "married"
+        user.maritalStatus = married
         user.statusInFamily = statusInFamily
     }
 
@@ -134,94 +137,75 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun signUpUser() {
-        firebaseAuth.fetchSignInMethodsForEmail(user.email).addOnCompleteListener { task ->
+        if (isSubmitting.value == true) return
+        val payload = try {
+            CmsProfileMapper.registration(user)
+        } catch (error: IllegalArgumentException) {
+            isFailCreateNewUser.value = error.message
+            return
+        }
+        if (form.holySpiritStatus.isBlank()) payload.remove("holy_spirit_baptism")
+        if (capturedImageFile != null && capturedImageFile?.isFile != true) {
+            isFailCreateNewUser.value = "File foto tidak tersedia. Silakan ambil ulang foto."
+            return
+        }
+        if (password.length < 6) {
+            isFailCreateNewUser.value = "Password minimal 6 karakter."
+            return
+        }
+        isSubmitting.value = true
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null && currentUser.email.equals(user.email, ignoreCase = true)
+            && UserConfiguration.getInstance().isPendingRegistration(currentUser.uid)) {
+            registerCms(payload)
+            return
+        }
+        firebaseAuth.createUserWithEmailAndPassword(user.email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val signInMethods = task.result?.signInMethods
-                if (!signInMethods.isNullOrEmpty()) {
-                    //User already registered
-                    isUserAlreadyRegistered.postValue("User already registered")
-                } else {
-                    // User is not registered, proceed with account creation
-                    createUserWithEmailAndPassword()
-                }
-            } else {
-
-            }
-        }
-    }
-
-    private fun generateNIJ() {
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val userCount = snapshot.childrenCount
-                user.nij = "HC-%05d".format(userCount)
-
-                getFCMToken()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                isFailCreateNewUser.postValue("Gagal generate NIJ")
-            }
-
-        })
-    }
-
-    private fun getFCMToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if (it.isSuccessful) {
-                val token = it.result
-                user.fcmToken = token
-                writeUserData()
-
-            }
-        }.addOnFailureListener {
-            isFailCreateNewUser.postValue("Gagal generate token")
-        }
-    }
-
-    private fun createUserWithEmailAndPassword() {
-        firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    user.id = firebaseAuth.currentUser!!.uid
-                    generateNIJ()
-                } else {
-                    isFailCreateNewUser.postValue(it.exception?.localizedMessage)
-                }
-            }
-    }
-
-    private fun writeUserData() {
-        //avoid write password in database, password only saved in authentication
-        user.password = ""
-        user.role = Role.JEMAAT.role
-
-        database.child(user.id)
-            .setValue(user).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    UserConfiguration.getInstance().setUserId(user.id)
-                    UserConfiguration.getInstance().setUserData(user)
-                    uploadProfilePicture()
-                } else {
-                    val exception = task.exception
-                    if (exception != null) {
-                        isFailCreateNewUser.postValue(exception.localizedMessage)
+                val uid = task.result?.user?.uid
+                if (uid != null) {
+                    UserConfiguration.getInstance().setPendingRegistration(uid)
+                    registerCms(payload)
+                } else fail("Akun Firebase tidak tersedia. Silakan coba lagi.")
+            } else if (task.exception is FirebaseAuthUserCollisionException) {
+                // Only an account created by an unfinished signup may resume CMS registration.
+                firebaseAuth.signInWithEmailAndPassword(user.email, password).addOnCompleteListener { login ->
+                    val uid = if (login.isSuccessful) login.result?.user?.uid else null
+                    if (uid != null && UserConfiguration.getInstance().isPendingRegistration(uid)) registerCms(payload)
+                    else {
+                        isSubmitting.value = false
+                        isUserAlreadyRegistered.value = "Email sudah terdaftar. Silakan login."
                     }
                 }
-            }
+            } else fail(task.exception?.localizedMessage ?: "Registrasi Firebase gagal. Silakan coba lagi.")
+        }
     }
 
-    private fun uploadProfilePicture() {
-        if (capturedImageFile != null) {
-            profilePictureUploader.uploadProfilePicture(capturedImageFile!!.toUri()) { imageUrl, error ->
-                if (error != null) {
-                    isFailCreateNewUser.postValue(error!!)
-                } else {
-                    isSuccessCreateNewUser.postValue("Success")
-                }
-            }
-        } else {
-            isFailCreateNewUser.postValue("Fail to upload profile picture")
+    private fun registerCms(payload: JsonObject) {
+        val repository = CmsAuthRepository.getInstance(getApplication())
+        repository.register(payload, capturedImageFile) { result ->
+            result.fold({ profile ->
+                repository.saveSession(profile)
+                UserConfiguration.getInstance().clearPendingRegistration(profile.id)
+                password = ""
+                form.password = ""
+                form.confirmation = ""
+                user.password = ""
+                capturedImageFile?.delete()
+                capturedImageFile = null
+                form.photoPath = ""
+                isSubmitting.value = false
+                isSuccessCreateNewUser.value = "Success"
+            }, { error ->
+                repository.handleFailure(error)
+                fail((error.message ?: "Registrasi CMS gagal.") +
+                    " Akun Firebase tetap tersimpan; perbaiki data atau coba registrasi lagi dengan email yang sama.")
+            })
         }
+    }
+
+    private fun fail(message: String) {
+        isSubmitting.value = false
+        isFailCreateNewUser.value = message
     }
 }

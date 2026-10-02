@@ -1,0 +1,50 @@
+<resources>
+    <style name="Register" />
+    <style name="Theme.Hancin.Register" parent="Theme.JKIHananeelCinta">
+        <item name="colorPrimary">@color/register_accent</item>
+        <item name="colorOnPrimary">@color/register_on_accent</item>
+        <item name="colorSecondary">@color/register_accent</item>
+        <item name="colorSurface">@color/register_field</item>
+        <item name="colorOnSurface">@color/register_content</item>
+        <item name="colorError">@color/register_error</item>
+        <item name="android:colorBackground">@color/register_surface</item>
+        <item name="android:windowBackground">@color/register_surface</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+    <style name="Register.Body">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item><item name="android:textColor">@color/register_content</item>
+        <item name="android:fontFamily">@font/regular</item><item name="fontFamily">@font/regular</item><item name="android:lineSpacingExtra">3dp</item>
+    </style>
+    <style name="Register.Secondary" parent="Register.Body"><item name="android:textColor">@color/register_secondary</item><item name="android:textSize">14sp</item></style>
+    <style name="Register.Label" parent="Register.Body"><item name="android:fontFamily">@font/semibold</item><item name="fontFamily">@font/semibold</item><item name="android:layout_marginTop">20dp</item><item name="android:layout_marginBottom">10dp</item></style>
+    <style name="Register.Input" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:layout_marginTop">16dp</item>
+        <item name="boxBackgroundColor">@color/register_field</item><item name="boxStrokeColor">@color/register_input_stroke</item>
+        <item name="boxCornerRadiusTopStart">14dp</item><item name="boxCornerRadiusTopEnd">14dp</item><item name="boxCornerRadiusBottomStart">14dp</item><item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="hintTextColor">@color/register_secondary</item><item name="android:textColorHint">@color/register_secondary</item><item name="errorTextColor">@color/register_error</item>
+        <item name="helperTextTextColor">@color/register_secondary</item>
+        <item name="helperTextTextAppearance">@style/Register.Helper</item>
+    </style>
+    <style name="Register.Helper" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/regular</item><item name="fontFamily">@font/regular</item>
+        <item name="android:textSize">14sp</item><item name="android:textColor">@color/register_secondary</item>
+    </style>
+    <style name="Register.Edit">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:minHeight">56dp</item>
+        <item name="android:textSize">16sp</item><item name="android:textColor">@color/register_content</item><item name="android:fontFamily">@font/regular</item><item name="fontFamily">@font/regular</item>
+        <item name="android:paddingStart">16dp</item><item name="android:paddingEnd">16dp</item><item name="android:paddingTop">16dp</item><item name="android:paddingBottom">16dp</item>
+        <item name="android:singleLine">true</item><item name="android:imeOptions">actionNext</item>
+    </style>
+    <style name="Register.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:minHeight">56dp</item>
+        <item name="android:textSize">16sp</item><item name="android:textAllCaps">false</item><item name="android:fontFamily">@font/semibold</item><item name="fontFamily">@font/semibold</item><item name="android:textColor">@color/register_on_accent</item>
+        <item name="backgroundTint">@color/register_accent</item><item name="cornerRadius">16dp</item><item name="android:insetTop">0dp</item><item name="android:insetBottom">0dp</item>
+    </style>
+    <style name="Register.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item><item name="android:layout_height">wrap_content</item><item name="android:minHeight">48dp</item>
+        <item name="android:textSize">14sp</item><item name="android:textAllCaps">false</item><item name="android:textColor">@color/register_accent</item><item name="android:fontFamily">@font/semibold</item><item name="fontFamily">@font/semibold</item>
+    </style>
+</resources>

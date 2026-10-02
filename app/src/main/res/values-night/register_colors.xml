@@ -1,0 +1,11 @@
+<resources>
+    <color name="register_surface">#181417</color>
+    <color name="register_field">#231D21</color>
+    <color name="register_content">#F7EFF3</color>
+    <color name="register_secondary">#C4B4BD</color>
+    <color name="register_accent">#F4B4C8</color>
+    <color name="register_on_accent">#35101D</color>
+    <color name="register_tint">#3B2630</color>
+    <color name="register_outline">#AF949F</color>
+    <color name="register_error">#FFB1B9</color>
+</resources>

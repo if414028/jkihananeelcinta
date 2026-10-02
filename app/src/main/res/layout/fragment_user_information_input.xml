@@ -138,7 +138,7 @@
                         style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/place_of_birth" />
+                        android:text="@string/registration_optional_birthplace" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_place_of_birth"
@@ -147,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/edittext_background_grey_border"
-                        android:hint="@string/place_of_birth"
+                        android:hint="@string/registration_optional_birthplace"
                         android:inputType="textCapWords"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_12sdp"
@@ -186,7 +186,7 @@
                         style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/date_of_birth" />
+                        android:text="@string/registration_optional_birthdate" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_date_of_birth"
@@ -197,7 +197,7 @@
                         android:background="@drawable/edittext_background_grey_border"
                         android:drawableEnd="@drawable/ic_baseline_today_24"
                         android:editable="false"
-                        android:hint="@string/date_of_birth"
+                        android:hint="@string/registration_optional_birthdate"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingRight="@dimen/_16sdp"
@@ -232,7 +232,7 @@
                         style="@style/Sanfransisco.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/phone_number" />
+                        android:text="@string/registration_optional_phone" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_phone_number"
@@ -241,8 +241,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:background="@drawable/edittext_background_grey_border"
-                        android:hint="@string/phone_number"
-                        android:inputType="number"
+                        android:hint="@string/registration_optional_phone"
+                        android:inputType="phone"
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingRight="@dimen/_16sdp"

@@ -99,7 +99,6 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
 
     override fun onResume() {
         super.onResume()
-        updateLastOpen()
         getProfileImage()
         getBirthdayCard()
     }
@@ -227,50 +226,16 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
     }
 
     private fun getBirthdayCard() {
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let { currentUser ->
-            databaseReference.child("users/${currentUser.uid}/dateOfBirth").get()
-                .addOnSuccessListener {
-                    val dateString = it.value?.toString()
-                    if (!dateString.isNullOrEmpty()) {
-                        try {
-                            val dateOfBirthFormat = SimpleDateFormat("dd MMMM yyyy", Locale("id", "ID")).parse(dateString)
-                            val dateFormat = SimpleDateFormat("dd-MM", Locale.getDefault())
-                            val dateOfBirthFormatted = dateOfBirthFormat?.let { df -> dateFormat.format(df) }
-                            val todayDateFormatted = dateFormat.format(Date())
-                            binding.isBirthday = dateOfBirthFormatted == todayDateFormatted
-                        } catch (e: ParseException) {
-                            // Handle parsing error
-                            Log.e("getBirthdayCard", "ParseException: ${e.message}")
-                        }
-                    } else {
-                        Log.e("getBirthdayCard", "Date of birth is empty or null.")
-                    }
-                }
+        val dateString = UserConfiguration.getInstance().getUserData()?.dateOfBirth.orEmpty()
+        if (dateString.isBlank()) return
+        try {
+            val dateOfBirth = SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(dateString)
+            val format = SimpleDateFormat("dd-MM", Locale.US)
+            binding.isBirthday = dateOfBirth?.let { format.format(it) } == format.format(Date())
+        } catch (_: ParseException) {
+            binding.isBirthday = false
         }
     }
-
-    private fun updateLastOpen() {
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            val updates = mapOf(
-                "lastOpen" to System.currentTimeMillis(),
-                "lastOpenPlatform" to "ANDROID"
-            )
-
-            FirebaseDatabase.getInstance()
-                .getReference("users")
-                .child(it.uid)
-                .updateChildren(updates)
-                .addOnSuccessListener {
-                    Log.d("USER_ACTIVITY", "lastOpen updated")
-                }
-                .addOnFailureListener {
-                    Log.e("USER_ACTIVITY", "failed update lastOpen", it)
-                }
-        }
-    }
-
 
     private fun getPastorMessages() {
         val query: Query = pastorMessagesReference.limitToLast(1)
@@ -334,35 +299,7 @@ class MainActivity : AppCompatActivity(), ImageSliderAdapter.OnItemClickListener
     }
 
     private fun checkFCMToken() {
-        if (UserConfiguration.getInstance().getUserData()?.fcmToken?.isNotEmpty() == true) {
-            subscribeToPastorMessageTopic()
-        } else {
-            fetchAndUpdateFCMToken(UserConfiguration.getInstance().getUserId()!!)
-        }
-    }
-
-    private fun fetchAndUpdateFCMToken(userId: String) {
-        FirebaseMessaging.getInstance().token
-            .addOnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.e("FCM", "Gagal mendapatkan token FCM", task.exception)
-                    return@addOnCompleteListener
-                }
-
-                val token = task.result ?: ""
-                Log.d("FCM", "FCM Token didapatkan: $token")
-
-                // Update token ke database
-                val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
-                userRef.child("fcmToken").setValue(token)
-                    .addOnSuccessListener {
-                        Log.d("FCM", "FCM Token berhasil diperbarui di database")
-                        subscribeToPastorMessageTopic()
-                    }
-                    .addOnFailureListener {
-                        Log.e("FCM", "Gagal memperbarui FCM Token di database", it)
-                    }
-            }
+        subscribeToPastorMessageTopic()
     }
 
     private fun subscribeToPastorMessageTopic() {

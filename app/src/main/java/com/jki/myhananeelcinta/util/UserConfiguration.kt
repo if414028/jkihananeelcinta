@@ -52,4 +52,19 @@ class UserConfiguration {
     fun getUserId(): String? {
         return sharedPreferences.getString(USER_ID, null)
     }
+
+    fun clearSession() {
+        sharedPreferences.edit().remove(USER_ID).remove(USER_DATA).apply()
+    }
+
+    fun setPendingRegistration(uid: String) {
+        sharedPreferences.edit().putString("pending_registration_uid", uid).apply()
+    }
+
+    fun isPendingRegistration(uid: String): Boolean =
+        sharedPreferences.getString("pending_registration_uid", null) == uid
+
+    fun clearPendingRegistration(uid: String) {
+        if (isPendingRegistration(uid)) sharedPreferences.edit().remove("pending_registration_uid").apply()
+    }
 }

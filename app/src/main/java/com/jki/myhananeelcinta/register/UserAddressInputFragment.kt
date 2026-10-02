@@ -48,17 +48,12 @@ class UserAddressInputFragment : Fragment() {
     }
 
     private fun validateEachField() {
-        var isAddressValid = false
-        binding.etAddress.addTextChangedListener {
-            isAddressValid = it.toString().isNotEmpty()
-            if (isAddressValid)
-                binding.tvAddressErrorMessage.visibility = View.GONE
-            else binding.tvAddressErrorMessage.visibility = View.VISIBLE
-            viewModel.setIsSectionValid(isAddressValid)
-        }
+        binding.etAddress.addTextChangedListener { validateSection() }
     }
 
     fun validateSection() {
-        viewModel.setIsSectionValid(binding.etAddress.text.toString().isNotEmpty())
+        val valid = binding.etAddress.text.toString().trim().length <= 2000
+        binding.tvAddressErrorMessage.visibility = if (valid) View.GONE else View.VISIBLE
+        viewModel.setIsSectionValid(valid)
     }
 }
