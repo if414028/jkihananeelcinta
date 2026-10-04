@@ -32,11 +32,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.jki.myhananeelcinta.R
 import com.jki.myhananeelcinta.databinding.ActivityRegisterBinding
 import com.jki.myhananeelcinta.home.MainActivity
+import com.jki.myhananeelcinta.util.UIHelper
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -57,7 +57,8 @@ class RegisterActivity : AppCompatActivity() {
         "birthplace" to R.string.reg_error_birthplace, "birthdate" to R.string.reg_error_birthdate,
         "address" to R.string.reg_error_address, "occupation" to R.string.reg_error_occupation,
         "baptism_date" to R.string.reg_error_baptism_date,
-        "blood" to R.string.reg_error_detail, "education" to R.string.reg_error_detail,
+        "blood" to R.string.reg_error_blood, "education" to R.string.reg_error_education,
+        "marital" to R.string.reg_error_marital,
         "baptism_church" to R.string.reg_error_detail, "church_origin" to R.string.reg_error_detail,
         "moving_reason" to R.string.reg_error_detail, "family_status" to R.string.reg_error_detail,
         "wife" to R.string.reg_error_detail, "husband" to R.string.reg_error_detail,
@@ -131,6 +132,7 @@ class RegisterActivity : AppCompatActivity() {
             "address" to (binding.etAddress to binding.tilAddress),
             "occupation" to (binding.etOccupation to binding.tilOccupation),
             "baptism_date" to (binding.etBaptismDate to binding.tilBaptismDate),
+            "marital" to (binding.etMarital to binding.tilMarital),
             "blood" to (binding.etBlood to binding.tilBlood), "education" to (binding.etEducation to binding.tilEducation),
             "baptism_church" to (binding.etBaptismChurch to binding.tilBaptismChurch),
             "church_origin" to (binding.etChurchOrigin to binding.tilChurchOrigin),
@@ -233,7 +235,22 @@ class RegisterActivity : AppCompatActivity() {
         binding.tilBaptismDate.visibility = if (form.baptismStatus == "baptized") View.VISIBLE else View.GONE
     }
 
+    private fun updateFamilyVisibility() {
+        listOf(binding.tilWife to form.showsWife(), binding.tilHusband to form.showsHusband(),
+            binding.tilChildren to form.showsChildren()).forEach { (layout, visible) ->
+            if (!visible) {
+                layout.error = null
+                if (layout.hasFocus()) hideKeyboard()
+            }
+            layout.visibility = if (visible) View.VISIBLE else View.GONE
+        }
+    }
+
     private fun setupListeners() {
+        binding.etFamilyStatus.addTextChangedListener {
+            form.familyStatus = it.toString().takeUnless { value -> value == getString(R.string.reg_not_filled) }.orEmpty()
+            updateFamilyVisibility()
+        }
         binding.btnContinue.setOnClickListener { continueRegistration() }
         binding.btnBack.setOnClickListener { goBack() }
         binding.btnLogin.setOnClickListener { leaveRegistration() }
@@ -273,12 +290,6 @@ class RegisterActivity : AppCompatActivity() {
                     if (name !in form.errors(form.step)) layout.error = null
                 }
                 binding.tvServerError.visibility = View.GONE
-            }
-            edit.setOnFocusChangeListener { _, focused ->
-                if (!focused && edit.text.isNotBlank()) {
-                    collectDraft()
-                    if (name in form.errors(form.step)) layout.error = getString(errorMessages.getValue(name))
-                }
             }
         }
         listOf(binding.etConfirmation, binding.etPhone).forEach { edit ->
@@ -361,6 +372,7 @@ class RegisterActivity : AppCompatActivity() {
         form.step = step.coerceIn(0, lastStep)
         val panels = listOf(binding.panelAccount, binding.panelPersonal, binding.panelProfile, binding.panelChurch, binding.panelFamily, binding.panelReview)
         panels.forEach { it.animate().cancel(); it.visibility = View.GONE; it.alpha = 1f; it.translationY = 0f }
+        updateFamilyVisibility()
         val current = panels[form.step]
         current.visibility = View.VISIBLE
         val titles = listOf(R.string.reg_title_account, R.string.reg_title_personal, R.string.reg_title_profile, R.string.reg_title_church, R.string.reg_title_family, R.string.reg_title_review)
@@ -397,8 +409,8 @@ class RegisterActivity : AppCompatActivity() {
                 R.string.reg_baptism_church to form.baptismChurch, R.string.reg_holy_spirit to form.holySpiritStatus,
                 R.string.reg_church_origin to form.churchOrigin, R.string.reg_moving_reason to form.movingReason,
                 R.string.reg_marital to binding.etMarital.text.toString(), R.string.reg_family_status to form.familyStatus,
-                R.string.reg_wife to form.wifeName, R.string.reg_husband to form.husbandName,
-                R.string.reg_children to form.childrenNames, R.string.reg_siblings to form.siblingsNames
+                R.string.reg_wife to if (form.showsWife()) form.wifeName else "", R.string.reg_husband to if (form.showsHusband()) form.husbandName else "",
+                R.string.reg_children to if (form.showsChildren()) form.childrenNames else "", R.string.reg_siblings to form.siblingsNames
             ).filter { it.second.isNotBlank() && it.second != getString(R.string.reg_not_filled) }
             binding.tvReviewDetails.text = details.joinToString("\n\n") { (label, value) -> "${getString(label)}: $value" }
             binding.tvReviewDetails.visibility = if (details.isEmpty()) View.GONE else View.VISIBLE
@@ -491,10 +503,19 @@ class RegisterActivity : AppCompatActivity() {
     private fun leaveRegistration() {
         if (viewModel.isSubmitting.value == true) return
         collectDraft()
+        hideKeyboard()
         if (form.copy(step = 0) == RegistrationForm()) finish()
-        else MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.reg_cancel_title).setMessage(R.string.reg_cancel_description)
-            .setNegativeButton(R.string.reg_stay, null).setPositiveButton(R.string.reg_leave) { _, _ -> finish() }.show()
+        else UIHelper.getInstance().displayConfirmation(
+            getString(R.string.reg_cancel_title),
+            getString(R.string.reg_cancel_description),
+            this,
+            { },
+            { finish() },
+            getString(R.string.reg_stay),
+            getString(R.string.reg_leave),
+            R.drawable.question,
+            true
+        )
     }
 
     private fun hideKeyboard() {

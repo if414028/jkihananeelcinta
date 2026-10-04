@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView
 import android.graphics.Bitmap
 import androidx.core.content.res.ResourcesCompat
 import java.io.ByteArrayOutputStream
+import androidx.lifecycle.ViewModelProvider
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -40,16 +41,36 @@ class RegisterExperienceTest {
             scenario.onActivity { activity ->
                 activity.findViewById<EditText>(R.id.et_name).setText("Maria Santoso")
                 activity.findViewById<RadioGroup>(R.id.rg_gender).check(R.id.rb_female)
+                fillRequiredPersonal(activity)
                 activity.findViewById<View>(R.id.btn_continue).performClick()
             }
             capture("register-profile")
-            scenario.onActivity { it.findViewById<View>(R.id.btn_continue).performClick() }
+            scenario.onActivity { fillRequiredProfile(it); it.findViewById<View>(R.id.btn_continue).performClick() }
             capture("register-church")
             scenario.onActivity { it.findViewById<View>(R.id.btn_continue).performClick() }
             capture("register-family")
-            scenario.onActivity { it.findViewById<View>(R.id.btn_continue).performClick() }
+            scenario.onActivity { activity ->
+                // Family was visited above; a marital choice is now required to advance.
+                activity.findViewById<AutoCompleteTextView>(R.id.et_marital).setText(activity.getString(R.string.reg_single), false)
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+            }
             capture("register-review")
         }
+    }
+
+    private fun fillRequiredPersonal(activity: RegisterActivity) {
+        activity.findViewById<EditText>(R.id.et_phone).setText("08123456789")
+        activity.findViewById<EditText>(R.id.et_birthplace).setText("Jakarta")
+        // Seed the draft date exactly as the date picker callback does.
+        ViewModelProvider(activity)[RegisterViewModel::class.java].form.birthdate = "1995-06-20"
+        activity.findViewById<EditText>(R.id.et_birthdate).setText("20 Juni 1995")
+    }
+
+    private fun fillRequiredProfile(activity: RegisterActivity) {
+        activity.findViewById<EditText>(R.id.et_address).setText("Jl. Cinta 1")
+        activity.findViewById<AutoCompleteTextView>(R.id.et_blood).setText("AB", false)
+        activity.findViewById<AutoCompleteTextView>(R.id.et_education).setText("S1", false)
+        activity.findViewById<EditText>(R.id.et_occupation).setText("Guru")
     }
 
     private fun capture(name: String) {
@@ -86,11 +107,13 @@ class RegisterExperienceTest {
                 assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_personal).visibility)
                 activity.findViewById<EditText>(R.id.et_name).setText("Maria Santoso")
                 activity.findViewById<RadioGroup>(R.id.rg_gender).check(R.id.rb_female)
+                fillRequiredPersonal(activity)
                 activity.findViewById<View>(R.id.btn_continue).performClick()
                 assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_profile).visibility)
                 activity.findViewById<AutoCompleteTextView>(R.id.et_blood).setText("AB", false)
                 activity.findViewById<AutoCompleteTextView>(R.id.et_education).setText("S1", false)
                 activity.findViewById<EditText>(R.id.et_address).setText("Jl. Cinta 1")
+                activity.findViewById<EditText>(R.id.et_occupation).setText("Guru")
                 activity.findViewById<View>(R.id.btn_continue).performClick()
                 assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_church).visibility)
                 activity.findViewById<EditText>(R.id.et_baptism_church).setText("Gereja baptis")
@@ -99,6 +122,7 @@ class RegisterExperienceTest {
                 activity.findViewById<EditText>(R.id.et_moving_reason).setText("Pindah kota")
                 activity.findViewById<View>(R.id.btn_continue).performClick()
                 assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_family).visibility)
+                activity.findViewById<AutoCompleteTextView>(R.id.et_marital).setText(activity.getString(R.string.reg_married), false)
                 activity.findViewById<AutoCompleteTextView>(R.id.et_family_status).setText("Istri", false)
                 activity.findViewById<EditText>(R.id.et_husband).setText("Andi")
                 activity.findViewById<EditText>(R.id.et_wife).setText("Maria")
@@ -144,4 +168,64 @@ class RegisterExperienceTest {
             }
         }
     }
+    @Test fun requiredFieldsValidateOnContinueAndFamilyChoicesHideOnlyTheRequestedField() {
+        ActivityScenario.launch(RegisterActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                activity.findViewById<EditText>(R.id.et_email).setText("maria@example.com")
+                activity.findViewById<EditText>(R.id.et_password).setText("example-password")
+                activity.findViewById<EditText>(R.id.et_confirmation).setText("example-password")
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                activity.findViewById<EditText>(R.id.et_name).setText("Maria Santoso")
+                val phone = activity.findViewById<EditText>(R.id.et_phone)
+                phone.setText("123")
+                phone.requestFocus()
+                activity.findViewById<EditText>(R.id.et_name).requestFocus()
+                assertNull(activity.findViewById<TextInputLayout>(R.id.til_phone).error)
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_personal).visibility)
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.tv_gender_error).visibility)
+                for (id in listOf(R.id.til_phone, R.id.til_birthplace, R.id.til_birthdate)) {
+                    assertNotNull(activity.findViewById<TextInputLayout>(id).error)
+                }
+                activity.findViewById<RadioGroup>(R.id.rg_gender).check(R.id.rb_female)
+                fillRequiredPersonal(activity)
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_profile).visibility)
+                for (id in listOf(R.id.til_address, R.id.til_blood, R.id.til_education, R.id.til_occupation)) {
+                    assertNotNull(activity.findViewById<TextInputLayout>(id).error)
+                }
+                fillRequiredProfile(activity)
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_family).visibility)
+                assertNotNull(activity.findViewById<TextInputLayout>(R.id.til_marital).error)
+                activity.findViewById<EditText>(R.id.et_wife).setText("Maria")
+                activity.findViewById<EditText>(R.id.et_husband).setText("Andi")
+                activity.findViewById<EditText>(R.id.et_children).setText("Anak satu")
+                val choice = activity.findViewById<AutoCompleteTextView>(R.id.et_family_status)
+                for ((status, hidden) in listOf("Kepala Keluarga" to R.id.til_husband, "Istri" to R.id.til_wife, "Anak" to R.id.til_children)) {
+                    choice.setText(status, false)
+                    for (id in listOf(R.id.til_wife, R.id.til_husband, R.id.til_children)) {
+                        assertEquals(if (id == hidden) View.GONE else View.VISIBLE, activity.findViewById<View>(id).visibility)
+                    }
+                }
+                choice.setText("Kepala Keluarga", false)
+                activity.findViewById<AutoCompleteTextView>(R.id.et_marital).setText(activity.getString(R.string.reg_married), false)
+            }
+            scenario.recreate()
+            scenario.onActivity { activity ->
+                assertEquals(View.GONE, activity.findViewById<View>(R.id.til_husband).visibility)
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.til_wife).visibility)
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.til_children).visibility)
+                activity.findViewById<AutoCompleteTextView>(R.id.et_family_status).setText("Istri", false)
+                assertEquals("Andi", activity.findViewById<EditText>(R.id.et_husband).text.toString())
+                assertEquals("Maria", activity.findViewById<EditText>(R.id.et_wife).text.toString())
+                activity.findViewById<View>(R.id.btn_continue).performClick()
+                assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.panel_review).visibility)
+            }
+        }
+    }
+
 }

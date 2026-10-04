@@ -23,20 +23,20 @@ kontrak untuk penyesuaian CMS berikutnya, bukan klaim bahwa server sudah menduku
 | Data diri | Nama pengguna / panggilan | `nickname` | string, 100 |
 | Data diri | Nama lengkap | `full_name` | wajib, string, 255 |
 | Data diri | Jenis kelamin | `gender` | wajib, `male` / `female` |
-| Data diri | Tempat lahir | `place_of_birth` | string, 100 |
-| Data diri | Tanggal lahir | `date_of_birth` | `YYYY-MM-DD`, sebelum hari ini |
-| Data diri | Nomor telepon | `phone_number` | string, 7–30; awalan 0 menjadi +62 |
-| Profil | Alamat | `address` | string, 2000 |
-| Profil | Golongan darah | `blood_type` | `A`, `B`, `AB`, `O` |
-| Profil | Pendidikan terakhir | `last_education` | label lama: SD, SMP, SMA, D1/D2/D3, S1, S2, S3, Lainnya; 100 |
-| Profil | Pekerjaan | `occupation` | string, 150; pilihan lama tersedia, boleh mengetik detail |
+| Data diri | Tempat lahir | `place_of_birth` | wajib, string, 100 |
+| Data diri | Tanggal lahir | `date_of_birth` | wajib, `YYYY-MM-DD`, sebelum hari ini |
+| Data diri | Nomor telepon | `phone_number` | wajib, string, 7–30; awalan 0 menjadi +62 |
+| Profil | Alamat | `address` | wajib, string, 2000 |
+| Profil | Golongan darah | `blood_type` | wajib, `A`, `B`, `AB`, `O` |
+| Profil | Pendidikan terakhir | `last_education` | wajib, label lama: SD, SMP, SMA, D1/D2/D3, S1, S2, S3, Lainnya; 100 |
+| Profil | Pekerjaan | `occupation` | wajib, string, 150; pilihan lama tersedia, boleh mengetik detail |
 | Baptis & Gereja | Status baptis selam | `baptism_status` | `unknown`, `not_baptized`, `baptized` |
 | Baptis & Gereja | Tanggal baptis selam | `baptism_date` | wajib jika baptized; `YYYY-MM-DD`, tidak di masa depan |
 | Baptis & Gereja | Gereja tempat baptis selam | `baptism_church` | string, 255 |
 | Baptis & Gereja | Baptis Roh Kudus | `holy_spirit_baptism` | boolean; diabaikan jika belum dipilih |
 | Baptis & Gereja | Gereja asal | `church_origin` | string, 255 |
 | Baptis & Gereja | Alasan pindah gereja | `reason_to_move_church` | string, 2000 |
-| Keluarga | Status pernikahan | `marital_status` | `single`, `married`, `widowed`, `divorced` |
+| Keluarga | Status pernikahan | `marital_status` | wajib, `single`, `married`, `widowed`, `divorced` |
 | Keluarga | Status dalam keluarga | `family_status` | label lama: Kepala Keluarga, Istri, Anak, Janda, Duda, Single - Belum Menikah; 100 |
 | Keluarga | Nama istri | `wife_name` | string, 255 |
 | Keluarga | Nama suami | `husband_name` | string, 255 |
@@ -47,8 +47,18 @@ kontrak untuk penyesuaian CMS berikutnya, bukan klaim bahwa server sudah menduku
 Pilihan pendidikan diploma dikirim dengan label asli `D1, D2, D3`. Tanggal baptis
 hanya dikirim jika status baptized. Gereja tempat baptis yang sudah diisi tetap
 dipertahankan ketika pengguna mengganti status, sehingga perubahan pilihan tidak
-menghapus input tanpa sengaja. Field pasangan, anak, dan saudara tetap tersedia
-pada kategori keluarga.
+menghapus input tanpa sengaja. Pada kategori keluarga, Kepala Keluarga menyembunyikan
+nama suami, Istri menyembunyikan nama istri, dan Anak menyembunyikan nama anak.
+Nilai field tersembunyi tetap dipertahankan dalam draft ketika berganti pilihan,
+tetapi tidak divalidasi, ditampilkan di konfirmasi, atau dikirim dalam payload.
+Status keluarga lainnya menampilkan ketiga field tersebut.
+
+Sembilan field wajib di mobile adalah jenis kelamin, nomor telepon, tempat lahir,
+tanggal lahir, alamat, golongan darah, pendidikan terakhir, pekerjaan, dan status
+pernikahan. Label field tidak diberi penanda wajib/opsional. Validasi dilakukan
+ketika pengguna menekan Lanjutkan (dan sebelum submit akhir), bukan saat field
+kehilangan fokus. Nama, email, password, dan konfirmasi tetap mengikuti validasi
+akun yang sudah ada.
 
 ## Penyimpanan dan response CMS
 

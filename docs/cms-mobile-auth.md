@@ -6,6 +6,13 @@ account first, then sends the complete registration profile to `POST /api/v1/aut
 The app caches the CMS profile for the existing screens; it does not cache bearer tokens
 or passwords and does not reuse the legacy cached profile to authorize access.
 
+The app reads `data.profile.role` from the CMS response. `SuperUser` restores the
+existing admin menus and actions, including Green Room. `User`, a missing role,
+or an unknown role maps to the local legacy `Jemaat` role without admin menus.
+Login and startup save the fresh CMS role before opening the home screen; the
+same mapper applies to registration and `/me` recovery responses. Role is never
+sent in the registration payload.
+
 ## Development server
 
 `CMS_API_BASE_URL` in `app/build.gradle` currently uses
@@ -58,5 +65,8 @@ migration before Realtime Database can be fully retired.
    no Firebase account deletion, and recovery through `/me` if the request committed.
 5. Test an unmapped/disabled account, validation failure, and rate limit response.
 6. Logout: Firebase session and local profile should be cleared.
+7. Login with `data.profile.role = SuperUser`: Green Room and existing admin
+   actions should appear. Login with `User`: those controls should be hidden.
+   Change an admin to `User` in CMS and reopen the app to check the refreshed role.
 
 Automated recovery/mapping tests: `./gradlew :app:testDebugUnitTest`.

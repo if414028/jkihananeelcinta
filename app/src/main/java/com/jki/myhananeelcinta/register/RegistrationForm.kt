@@ -1,6 +1,9 @@
 package com.jki.myhananeelcinta.register
 
 import com.jki.myhananeelcinta.model.User
+import com.jki.myhananeelcinta.model.BloodType
+import com.jki.myhananeelcinta.model.Education
+import com.jki.myhananeelcinta.model.FamilyStatus
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -46,16 +49,16 @@ data class RegistrationForm(
                 if (fullName.trim().length !in 1..255) add("name")
                 if (gender !in listOf("male", "female")) add("gender")
                 if (nickname.trim().length > 100) add("nickname")
-                if (birthplace.trim().length > 100) add("birthplace")
-                if (birthdate.isNotBlank() && (!validDate(birthdate) || birthdate >= today)) add("birthdate")
+                if (birthplace.trim().length !in 1..100) add("birthplace")
+                if (!validDate(birthdate) || birthdate >= today) add("birthdate")
                 val number = formattedPhone()
-                if (number.isNotEmpty() && (number.length !in 7..30 || !number.matches(Regex("[0-9+() .-]+")))) add("phone")
+                if (number.length !in 7..30 || !number.matches(Regex("[0-9+() .-]+"))) add("phone")
             }
             2 -> {
-                if (address.trim().length > 2000) add("address")
-                if (occupation.trim().length > 150) add("occupation")
-                if (bloodType.trim().length > 3) add("blood")
-                if (education.trim().length > 100) add("education")
+                if (address.trim().length !in 1..2000) add("address")
+                if (occupation.trim().length !in 1..150) add("occupation")
+                if (bloodType !in BloodType.values().map { it.bloodType }) add("blood")
+                if (education !in Education.values().map { it.education }) add("education")
             }
             3 -> {
                 if (baptismChurch.trim().length > 255) add("baptism_church")
@@ -64,10 +67,11 @@ data class RegistrationForm(
                 if (baptismStatus == "baptized" && (!validDate(baptismDate) || baptismDate > today)) add("baptism_date")
             }
             4 -> {
+                if (maritalStatus !in listOf("single", "married", "widowed", "divorced")) add("marital")
                 if (familyStatus.trim().length > 100) add("family_status")
-                if (wifeName.trim().length > 255) add("wife")
-                if (husbandName.trim().length > 255) add("husband")
-                if (childrenNames.lines().any { it.trim().length > 255 }) add("children")
+                if (showsWife() && wifeName.trim().length > 255) add("wife")
+                if (showsHusband() && husbandName.trim().length > 255) add("husband")
+                if (showsChildren() && childrenNames.lines().any { it.trim().length > 255 }) add("children")
                 if (siblingsNames.lines().any { it.trim().length > 255 }) add("siblings")
             }
         }
@@ -95,11 +99,15 @@ data class RegistrationForm(
         churchOrigin = this@RegistrationForm.churchOrigin.trim()
         reasonToMovingChurch = movingReason.trim()
         statusInFamily = familyStatus
-        wifeName = this@RegistrationForm.wifeName.trim()
-        husbandName = this@RegistrationForm.husbandName.trim()
-        childrenName = childrenNames.trim()
+        wifeName = if (showsWife()) this@RegistrationForm.wifeName.trim() else ""
+        husbandName = if (showsHusband()) this@RegistrationForm.husbandName.trim() else ""
+        childrenName = if (showsChildren()) childrenNames.trim() else ""
         siblingsName = siblingsNames.trim()
     }
+
+    fun showsWife(): Boolean = familyStatus != FamilyStatus.WIFE.familyStatus
+    fun showsHusband(): Boolean = familyStatus != FamilyStatus.HEAD_OF_FAMILY.familyStatus
+    fun showsChildren(): Boolean = familyStatus != FamilyStatus.CHILD.familyStatus
 
     fun formattedPhone(): String = phone.trim().let { if (it.startsWith("0")) "+62${it.substring(1)}" else it }
 

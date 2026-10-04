@@ -16,8 +16,7 @@ Desain baru berfokus pada sambutan gereja yang hangat, enam kelompok singkat, se
 - **High — informasi lama hilang.** Seluruh field kini tampil dalam Akun, Data diri,
   Profil, Baptis & Gereja, Keluarga, serta Foto & Konfirmasi. `layout.md › Visual hierarchy`:
   Pengelompokan mengikuti prinsip hierarki informasi; seluruh field tetap dapat diakses.
-- **Medium — error terlalu dini.** Validasi dilakukan saat field ditinggalkan atau
-  tombol lanjut dipilih. Error berada dalam `TextInputLayout`; input pertama yang salah
+- **Medium — error terlalu dini.** Validasi dilakukan saat tombol lanjut dipilih. Error berada dalam `TextInputLayout`; input pertama yang salah
   mendapat fokus. `text-fields.md › Best practices`: “Validate fields when it makes sense.”
 - **Medium — data mudah hilang.** Draft bertahan di ViewModel saat rotasi dan perpindahan
   langkah. Password hanya berada di memori; setelah proses aplikasi mati, pengguna
@@ -87,7 +86,12 @@ emulator untuk inline errors, enam kelompok, semua field, foto, font lama, tombo
 Screenshot aktual dibuat untuk pemeriksaan visual light/dark dan teks besar. Tidak
 ada akun Firebase baru yang dibuat saat pengujian UI.
 
-Hasil verifikasi terakhir: 23 tes unit lulus; 3 tes instrumentasi lulus pada
+Verifikasi desain sebelumnya: 23 tes unit lulus; 3 tes instrumentasi lulus pada
 mode terang, serta 3 tes yang sama lulus pada mode gelap dengan lebar 320 dp
 dan skala teks 200%. Pemeriksaan mencakup pemulihan seluruh field lama,
 foto saat activity recreation, font asli, payload lengkap, dan multipart JPEG.
+
+Perubahan validasi dan status keluarga: 25 tes unit dan 4 tes instrumentasi lulus.
+Field wajib diperiksa saat Lanjutkan, label tanpa penanda wajib/opsional, dan
+pergantian status keluarga mempertahankan draft sambil menyembunyikan field yang
+tidak sesuai. Screenshot diperiksa setelah dialog System UI emulator ditutup.

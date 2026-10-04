@@ -103,8 +103,11 @@ object CmsProfileMapper {
             husbandName = profile.text("husband_name")
             childrenName = profile.namesText("children_names")
             siblingsName = profile.namesText("siblings_names")
-            // CMS admin permissions are not exposed by the mobile API.
-            role = Role.JEMAAT.role
+            // Only the CMS profile can grant admin menus; keep the legacy member role locally.
+            role = when (profile.text("role")) {
+                Role.SUPERUSER.role -> Role.SUPERUSER.role
+                else -> Role.JEMAAT.role
+            }
         }
     }
 

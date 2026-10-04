@@ -14,7 +14,7 @@ class CmsRegistrationFieldsTest {
         bloodType = "AB", education = "S1", occupation = "Pegawai Swasta",
         maritalStatus = "married", baptismStatus = "baptized", baptismDate = "2010-01-02",
         baptismChurch = "Gereja baptis", holySpiritStatus = "Sudah", churchOrigin = "Gereja asal",
-        movingReason = "Pindah kota", familyStatus = "Istri", wifeName = "Maria", husbandName = "Andi",
+        movingReason = "Pindah kota", familyStatus = "Single - Belum Menikah", wifeName = "Maria", husbandName = "Andi",
         childrenNames = "Anak satu\nAnak dua", siblingsNames = "Saudara satu\nSaudara dua"
     )
 
@@ -27,7 +27,7 @@ class CmsRegistrationFieldsTest {
             "address" to "Jl. Cinta 1", "blood_type" to "AB", "last_education" to "S1",
             "occupation" to "Pegawai Swasta", "marital_status" to "married", "baptism_status" to "baptized",
             "baptism_date" to "2010-01-02", "baptism_church" to "Gereja baptis", "church_origin" to "Gereja asal",
-            "reason_to_move_church" to "Pindah kota", "family_status" to "Istri", "wife_name" to "Maria", "husband_name" to "Andi")
+            "reason_to_move_church" to "Pindah kota", "family_status" to "Single - Belum Menikah", "wife_name" to "Maria", "husband_name" to "Andi")
         expected.forEach { (key, value) -> assertEquals(key, value, body[key].asString) }
         assertTrue(body["holy_spirit_baptism"].asBoolean)
         assertEquals(listOf("Anak satu", "Anak dua"), body["children_names"].asJsonArray.map { it.asString })
